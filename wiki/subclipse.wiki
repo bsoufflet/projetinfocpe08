@@ -1,7 +1,4 @@
-*Tuto rapide pour utiliser SVN sous l'environnement Eclipse*
-
-
-Voici comment utiliser google code svn avec Eclipse.
+#Voici comment utiliser google code svn avec Eclipse.
 
  * Tout d'abord vous devez avoir [eclipse]
  * Installer le plugin subclipse (Aptana dispose peut etre deja de ce plugin...)
