@@ -1,4 +1,5 @@
 #summary voici comment utiliser google code svn avec Eclipse.
+#labels Tuto
 
 = Introduction =
 
