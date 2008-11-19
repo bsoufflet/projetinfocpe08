@@ -1,3 +1,17 @@
+#summary One-sentence summary of this page.
+
+= Introduction =
+
+Add your content here.
+
+
+= Details =
+
+Add your content here.  Format your content with:
+  * Text in *bold* or _italic_
+  * Headings, paragraphs, and lists
+  * Automatic links to other wiki pages
+
 #Voici comment utiliser google code svn avec Eclipse.
 
  * Tout d'abord vous devez avoir [eclipse]
