@@ -1,4 +1,4 @@
-#Comment installer eclipse
+#summary Comment installer eclipse
 
 ==Installation d'Eclipse==
 
