@@ -1,4 +1,4 @@
-#summary One-sentence summary of this page.
+#summary Voici comment nous devrions utiliser ce fantastique outil qu'est le wiki!
 #labels Featured
 
 = introduction pour l'utilisation du wiki dans notre projet =
