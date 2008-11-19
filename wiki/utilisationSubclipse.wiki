@@ -1,4 +1,5 @@
 #summary Comment utiliser le SVN
+#labels Phase-Requirements
 
 = Introduction =
 
