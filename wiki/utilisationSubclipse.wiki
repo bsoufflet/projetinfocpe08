@@ -1,9 +1,4 @@
 #summary Comment utiliser le SVN
 #labels Phase-Requirements,Tuto
 
-= Introduction =
-
-
-
-
-= Details =
+Utiliser le menu Team qui s'affiche apres un clique droit sur le projet.
