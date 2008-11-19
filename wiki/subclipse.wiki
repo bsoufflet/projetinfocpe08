@@ -1,4 +1,4 @@
-#Voici comment utiliser google code svn avec Eclipse.
+#voici comment utiliser google code svn avec Eclipse.
 
 = Introduction =
 
