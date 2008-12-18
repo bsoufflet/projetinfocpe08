@@ -6,12 +6,12 @@
 
 JDK 6 Update 11
 
-http://java.sun.com/javase/downloads/index.jsp
+[http://java.sun.com/javase/downloads/index.jsp]
  
 
 = Eclipse =
 
-http://www.eclipse.org/downloads/
+[http://www.eclipse.org/downloads/]
 
 Download and extract Eclipse IDE for Java EE Developers (163 MB)
 
@@ -19,19 +19,17 @@ Download and extract Eclipse IDE for Java EE Developers (163 MB)
 
 = JBOSS Server =
 
-Download and extract http://downloads.sourceforge.net/jboss/jboss-5.0.0.GA-jdk6.zip?modtime=1228452481&big_mirror=1
+Download and extract [http://downloads.sourceforge.net/jboss/jboss-5.0.0.GA-jdk6.zip?modtime=1228452481&big_mirror=1]
 
  
 
 = JBOSS Tools pour Eclipse =
 
-http://www.jboss.org/community/docs/DOC-10044
+[http://www.jboss.org/community/docs/DOC-10044]
 
  
 
 dans JBoss tools selectioner: JBoss AS Tools , Struts tools, RichFaces
-
- 
 
 une fois installe, on peut setup le server dans eclipse : dans la view server add>new server> JBoss AS 5.0 puis indiquer le path du JBoss. Pour la configuration du runtime prenez « default »
 
@@ -41,7 +39,7 @@ une fois installe, on peut setup le server dans eclipse : dans la view server ad
 
 = Subclipse (SVN pour google code) =
 
-http://subclipse.tigris.org/install.html
+[http://subclipse.tigris.org/install.html]
 
  
 
@@ -69,7 +67,7 @@ y’aura surement besoin d’un ou plusieur EJB je pense… je v regarder de plu
 
  
 
-http://www.laliluna.de/webprojects-eclipse-jbosside-tutorial-en.html
+[http://www.laliluna.de/webprojects-eclipse-jbosside-tutorial-en.html]
 
  
 
@@ -77,6 +75,6 @@ note : JBOSS IDE a ete remplace par JBoss tools plugin pour eclipse.
 
  
 
-http://www.laliluna.de/first-steps-with-struts-free-tools-en.html
+[http://www.laliluna.de/first-steps-with-struts-free-tools-en.html]
 
  
