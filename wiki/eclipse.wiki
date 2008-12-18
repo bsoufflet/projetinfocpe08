@@ -5,11 +5,11 @@
 
 Prerequis : Java (JDK1.6) doit etre installé
 
- # telecharger eclipse PDT en version non executable ici : http://www.eclipse.org/pdt/downloads/
+ # telecharger Eclipse IDE for Java EE Developers en version non executable
  # désarchiver le fichier telecharger où vous voulez
  # executer eclipse.exe
- # choisissez le dossier htdocs de votre serveur apache (xampp par exemple) comme workspace afin de pouvoir y acceder via apache
- # Installer Aptana plugin pour javascript, HTML et MYSQL:
+ # choisir un workspace qui convienne avec JBOSS (je sais pas ou...)
+ # Installer Aptana plugin pour javascript, HTML et MYSQL (possibilite de naviguer dans la BD comme php my admin):
    * From the Help menu, select Software Updates > Find and Install... to open an Install/Update pop-up window.
    * On the Install/Update pop-up window, choose the Search for new features to install option, and click the Next button.
    * Set up a new remote site to scan for updates.
@@ -23,3 +23,4 @@ Prerequis : Java (JDK1.6) doit etre installé
    * Click the Finish button.
    * Click the Install All button.
  # Installer [subclipse] pour pouvoir utiliser le SVN de google code
+ # installer les autres plugin Jboss
