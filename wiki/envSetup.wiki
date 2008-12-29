@@ -29,7 +29,7 @@ Download and extract [http://downloads.sourceforge.net/jboss/jboss-5.0.0.GA-jdk6
 
  
 
-dans JBoss tools selectioner: JBoss AS Tools , Struts tools, RichFaces
+dans JBoss tools selectioner: JBoss AS Tools , (Struts tools) peut etre pas car que pour struts1, RichFaces
 
 une fois installe, on peut setup le server dans eclipse : dans la view server add>new server> JBoss AS 5.0 puis indiquer le path du JBoss. Pour la configuration du runtime prenez « default »
 
