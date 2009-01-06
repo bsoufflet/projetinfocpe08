@@ -87,6 +87,31 @@ float: left;
 }
 
 #brandingContainer {
-float: right:
+float: right;
 text-align: right;
-} 
+}
+#entete{
+	height:50px;
+	overflow:hidden;
+	border-bottom:1px solid blue;
+}
+#menu{
+	width:150px;
+	float:left;
+	min-height: 1px;
+	overflow:hidden;
+}
+#right{
+	padding:5px;
+	min-height: 1px;
+	float:left;
+}
+#pied{
+	border-top:1px solid blue;
+}
+.list:hover{
+	cursor:pointer;
+}
+.list{
+	text-decoration: underline;
+}
