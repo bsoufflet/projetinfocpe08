@@ -7,7 +7,7 @@
 
 </head>
 <body>
-<s:form action="doLogin" method="POST">
+<s:form action="doLogin" method="POST"  validate="true">
 <tr>
 <td colspan="2">
 Web Domotic
