@@ -10,7 +10,7 @@ CREATE TABLE utilisateurs (
   motdepasse VARCHAR(10) NULL,
   nom VARCHAR(20) NULL,
   prenom VARCHAR(20) NULL,
-  statut VARCHAR(10) NULL,
+  statut VARCHAR(20) NULL,
   PRIMARY KEY(id)
 );
 
