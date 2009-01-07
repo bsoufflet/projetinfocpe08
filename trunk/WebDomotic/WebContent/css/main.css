@@ -109,9 +109,12 @@ text-align: right;
 #pied{
 	border-top:1px solid blue;
 }
-.list:hover{
+div.list:hover{
 	cursor:pointer;
 }
 .list{
 	text-decoration: underline;
+}
+.disable{
+	font-weight:bold;
 }
