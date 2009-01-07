@@ -16,5 +16,8 @@
 			<result name="error">/pages/login.jsp</result>
 			<result>/pages/main.jsp</result>
 		</action>
+		<action name="droiteAction" class="webdomotic.DroiteAction">
+			<result>/pages/droite.jsp</result>
+		</action>
     </package>
 </struts>
