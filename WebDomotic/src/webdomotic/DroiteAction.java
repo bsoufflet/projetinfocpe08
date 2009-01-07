@@ -10,7 +10,11 @@ import com.opensymphony.xwork2.ActionSupport;
 public class DroiteAction extends ActionSupport {
 	private String selectedModule;
 	public String execute() throws Exception {
-		System.out.println("DroiteActio");
+		System.out.println("DroiteAction");
+		if(selectedModule==null || selectedModule.equals("")){
+			System.out.println("default to accueil");
+			selectedModule="accueil";
+		}
 		return SUCCESS;
 	}
 	public String getSelectedModule() {  
