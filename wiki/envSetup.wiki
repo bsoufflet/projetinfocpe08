@@ -47,19 +47,23 @@ puis voir le wiki ici [subclipse]
 
  
 = Mise en place du projet =
-g cree un projet web a partir de stuts2-blanc que g commit. ya just a le checkout…
-TODO : quelle type de projet eclipse utiliser?
+g crée un projet web a partir de stuts2-blanc que g commit. ya just a le checkout…
 
-dessus ya des example de JSP deja faite. Assurez vs que votre server JBoss est en marche avant d'essailler de visualiser les pages web.
+
+pour le checkout:
+une fois que vous avez ajoute le repository de google code dans le plugin SVN, vous faite nouveau projet>checkout project from SVN repository.
+Il y a 2 projets a checkout séparément, WebDomotic et EJBDomotic.
+
+
+
+dessus ya des example de JSP deja faite. Assurez vs que votre server JBoss est en marche avant d'essayer de visualiser les pages web.
 
 
 je pense que ca sera plus simple si benjamin vous montre comment utiliser svn.
 
-y’aura surement besoin d’un ou plusieur EJB je pense… je v regarder de plus pres demain les EJB, pour faire des sessions-beans, pour differencier les users.
+y’aura surement besoin d’un ou plusieurs EJB pour faire des sessions-beans, pour différencier les users.
 
 
-
- 
 
  
 
