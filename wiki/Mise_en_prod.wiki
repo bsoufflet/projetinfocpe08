@@ -1,0 +1,12 @@
+#summary Marche à suivre pour la mise en production.
+
+= Introduction =
+
+Cette page explique la mise en production de notre application. Notre serveur est à l'adresse http://cuicui.servegame.org. On peut s'y connecter en ssh avec un compte administrateur (login : CPE, mdp : CPE)
+
+
+= Marche à suivre =
+
+== Obtenir l'archive ==
+
+== Placer l'archive sur le serveur ==
