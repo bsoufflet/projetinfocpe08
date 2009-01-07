@@ -8,6 +8,7 @@
 	<script>  
 		function show_droite(selectedModule) {
 			document.getElementById('selectedModule').value = selectedModule;
+			
 			dojo.event.topic.publish("show_droite");
 		}
 	</script>
