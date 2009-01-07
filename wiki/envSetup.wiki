@@ -52,7 +52,7 @@ g crée un projet web a partir de stuts2-blanc que g commit. ya just a le checko
 
 pour le checkout:
 une fois que vous avez ajoute le repository de google code dans le plugin SVN, vous faite nouveau projet>checkout project from SVN repository.
-Il y a 2 projets a checkout séparément, WebDomotic et EJBDomotic.
+Il y a 2 projets a checkout séparément, WebDomoti et EJBDomotic.
 
 
 
