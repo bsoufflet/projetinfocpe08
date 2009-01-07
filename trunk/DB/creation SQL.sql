@@ -7,7 +7,7 @@ CREATE TABLE regles (
 CREATE TABLE utilisateurs (
   id INT UNSIGNED NOT NULL AUTO_INCREMENT,
   login VARCHAR(10) NULL,
-  motdepasse VARCHAR(10) NOT NULL,
+  motdepasse VARCHAR(10) NULL,
   nom VARCHAR(20) NULL,
   prenom VARCHAR(20) NULL,
   statut VARCHAR(10) NULL,
@@ -33,6 +33,7 @@ CREATE TABLE consoles (
   ip VARCHAR(15) NULL,
   version VARCHAR(10) NULL,
   mac VARCHAR(17) NULL,
+  port INT NULL,
   PRIMARY KEY(id),
   FOREIGN KEY(maisons_id)
     REFERENCES maisons(id)
