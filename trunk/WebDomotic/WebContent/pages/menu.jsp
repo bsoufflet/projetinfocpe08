@@ -1,5 +1,5 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
-
+<jsp:include page="/pages/loginCheck.jsp" />
 <div class="list" onclick="javascript:show_droite('accueil');return false;">Accueil</div>
 <div class="list" onclick="javascript:show_droite('compte');return false;">Mon Compte</div>
 <div class="list" onclick="javascript:show_droite('maison');return false;">Ma Maison</div>
