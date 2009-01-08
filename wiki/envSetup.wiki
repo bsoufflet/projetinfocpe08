@@ -65,6 +65,9 @@ y’aura surement besoin d’un ou plusieurs EJB pour faire des sessions-beans, 
 
 
 
+= DB setup for JBoss =
+
+[http://docs.jboss.org/jbossas/getting_started/v4/html/db.html]
  
 
 = doc externe =
