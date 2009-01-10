@@ -7,23 +7,23 @@
 		<s:head theme="ajax" debug="false"/>
 	</head>
 	<script>  
-		function show_droite(selectedModule, selectedAction) {
+		function montrer_vue(selectedModule, selectedAction) {
 			if(selectedModule != ""){
 				document.getElementById('selectedModule').value = selectedModule;
 			}
 			if(selectedAction != ""){
 				document.getElementById('selectedAction').value = selectedAction;
 			}
-			dojo.event.topic.publish("show_droite");
+			dojo.event.topic.publish("montrer_vue");
 		}
 	</script>
 	<body>
 		<s:url id="enteteurl" value="/pages/entete.jsp" />
 		<s:url id="menuurl" value="/pages/menu.jsp" />
-		<s:url id="droiteurl" action="droiteAction" />
+		<s:url id="vueurl" action="vue" />
 		
 		<s:div id="entete" theme="ajax" href="%{enteteurl}"></s:div>
 		<s:div id="menu" theme="ajax" href="%{menuurl}"></s:div>
-		<s:div id="droite" theme="ajax" href="%{droiteurl}" listenTopics="show_droite" formId="frm_menu"></s:div>
+		<s:div id="vue" theme="ajax" href="%{vueurl}" listenTopics="montrer_vue" formId="frm_menu"></s:div>
 	</body>
 </html>

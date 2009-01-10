@@ -16,8 +16,8 @@
 		<action name="logout" class="webdomotic.Logout" >
 			<result name="success">/pages/login.jsp</result>
 		</action>
-		<action name="droiteAction" class="webdomotic.DroiteAction">
-			<result>/pages/droite.jsp</result>
+		<action name="vue" class="webdomotic.Vue">
+			<result>/pages/vue.jsp</result>
 		</action>
 		<action name="liste" class="webdomotic.Liste">
 			<result>/pages/contenu/liste.jsp</result>
