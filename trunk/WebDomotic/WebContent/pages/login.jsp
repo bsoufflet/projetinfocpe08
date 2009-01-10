@@ -17,8 +17,8 @@
 				<s:fielderror />
 			</td>
 		  </tr>
-		<s:textfield name="username" label="Login name"/>
-		<s:password name="password" label="Password"/>
+		<s:textfield name="username" label="Nom d'utilisateur"/>
+		<s:password name="password" label="Mot de passe"/>
 		<s:submit value="Login" align="center"/>
 	</s:form>
 </body>

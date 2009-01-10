@@ -7,9 +7,13 @@
 		<s:head theme="ajax" debug="false"/>
 	</head>
 	<script>  
-		function show_droite(selectedModule) {
-			document.getElementById('selectedModule').value = selectedModule;
-			
+		function show_droite(selectedModule, selectedAction) {
+			if(selectedModule != ""){
+				document.getElementById('selectedModule').value = selectedModule;
+			}
+			if(selectedAction != ""){
+				document.getElementById('selectedAction').value = selectedAction;
+			}
 			dojo.event.topic.publish("show_droite");
 		}
 	</script>
