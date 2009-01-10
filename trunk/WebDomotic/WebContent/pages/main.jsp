@@ -4,19 +4,9 @@
 	<head>
 		<title>Login Success</title>
 		<link href="<s:url value="/css/main.css"/>" rel="stylesheet" type="text/css"/>
+		<script type="text/javascript" language="javascript" src="<s:url value="/javascript/main.js"/>"></script>
 		<s:head theme="ajax" debug="false"/>
 	</head>
-	<script>  
-		function montrer_vue(selectedModule, selectedAction) {
-			if(selectedModule != ""){
-				document.getElementById('selectedModule').value = selectedModule;
-			}
-			if(selectedAction != ""){
-				document.getElementById('selectedAction').value = selectedAction;
-			}
-			dojo.event.topic.publish("montrer_vue");
-		}
-	</script>
 	<body>
 		<s:url id="enteteurl" value="/pages/entete.jsp" />
 		<s:url id="menuurl" value="/pages/menu.jsp" />
