@@ -36,24 +36,3 @@ public class Vue extends ActionSupport {
 		this.selectedAction = selectedAction;
 	} 
 }
-
-class Edition extends Vue {
-	public String execute() throws Exception {
-		System.out.println("Edition Action - module:" + selectedModule);
-		return SUCCESS;
-	}
-}
-
-class Detail extends Vue {
-	public String execute() throws Exception {
-		System.out.println("Detail Action - module:" + selectedModule);
-		return SUCCESS;
-	}
-}
-
-class Liste extends Vue {
-	public String execute() throws Exception {
-		System.out.println("Liste Action - module:" + selectedModule);
-		return SUCCESS;
-	}
-}
