@@ -7,8 +7,7 @@ response.setDateHeader("Expires", 0); //Causes the proxy cache to see the page a
 response.setHeader("Pragma","no-cache"); //HTTP 1.0 backward compatibility
 String authorized = (String) session.getAttribute("authorized");
 if ("yes" != authorized) {
-	request.setAttribute("authorized", "no");
-    request.setAttribute("Error", "Session has ended.  Please login.");
+	session.setAttribute("authorized", "no");
 %>
 <jsp:forward page="/pages/login.jsp" />
 <%

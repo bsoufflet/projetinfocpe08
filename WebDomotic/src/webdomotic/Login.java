@@ -14,12 +14,6 @@ public class Login extends ActionSupport {
 	public String execute() throws Exception {
 		System.out.println("Validating login");
 		Map session = ActionContext.getContext().getSession();
-		//TODO marche pas pour l'instant ...
-		if(session.get("Error") != null){
-			addActionError((String)session.get("Error"));
-			session.remove("Error");
-			return ERROR;
-		}
 		if (!getUsername().equals("Admin") || !getPassword().equals("Admin")) {
 			addActionError("Invalid user name or password! Please try again!");
 			return ERROR;
