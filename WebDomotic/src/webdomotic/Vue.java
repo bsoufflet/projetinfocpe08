@@ -7,11 +7,11 @@ import com.opensymphony.xwork2.ActionSupport;
  * 
  * </p>
  */
-public class DroiteAction extends ActionSupport {
+public class Vue extends ActionSupport {
 	protected String selectedModule;
 	protected String selectedAction;
 	public String execute() throws Exception {
-		System.out.println("DroiteAction - module:" + selectedModule + " - action:" + selectedAction);
+		System.out.println("Vue - module:" + selectedModule + " - action:" + selectedAction);
 		if(selectedModule==null || selectedModule.equals("")){
 			System.out.println("default to accueil module");
 			selectedModule="accueil";
