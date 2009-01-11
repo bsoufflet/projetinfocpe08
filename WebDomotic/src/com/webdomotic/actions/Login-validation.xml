@@ -8,14 +8,14 @@
 	<field name="username">
 		<field-validator type="requiredstring">
 			<param name="trim">true</param>
-			<message>Login name is required</message>
+			<message>Le nom d'utilisateur est obligatoire</message>
 		</field-validator>
 	</field>
 
 	<field name="password">
 		<field-validator type="requiredstring">
 			<param name="trim">true</param>
-			<message>Password is required</message>
+			<message>Le mot de passe est obligatoire</message>
 		</field-validator>
 	</field>
 </validators>

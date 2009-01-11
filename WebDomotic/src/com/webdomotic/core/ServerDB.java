@@ -7,7 +7,7 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-final class ServerDB{
+public final class ServerDB{
 
 	private Connection DBconnector;
 		
