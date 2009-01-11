@@ -4,16 +4,26 @@ public interface Constants {
 	
 	
 	/**
-	 * DB TABLES
+	 * DB properties
 	 */
-	final static String consoles 	= " CONSOLES ";
-	final static String maison 		= " MAISON ";
-	final static String periph 		= " PERIPHERIQUES ";
-	final static String pieces	 	= " PIECES ";
-	final static String profiles 	= " PROFILES ";
-	final static String regles	 	= " REGLES ";
-	final static String utilisateur = " UTILISATEURS ";
+	final static String DBurl = "jdbc:mysql://localhost:3306/webdomotic";
+	final static String DBuser = "root";
+	final static String DBpass = null;
 	
+	/**
+	 * Mapping
+	 *									Module_name, Label, DB_Table
+	 */
+	final static String[][] g_mapping =	{
+											{"","Ma Console","CONSOLES"},
+											{"","Ma Maison","MAISON"},
+											{"","","PERIPHERIQUES"},
+											{"","","PIECES"},
+											{"","","PROFILES"},
+											{"","","REGLES"},
+											{"","","UTILISATEURS"},
+											{"","","REGLES"}
+										};
 	
 	
 
