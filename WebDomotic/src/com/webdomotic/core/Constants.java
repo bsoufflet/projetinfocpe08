@@ -12,17 +12,19 @@ public interface Constants {
 	
 	/**
 	 * Mapping
-	 *									Module_name, Label, DB_Table
+	 *									Module_name, Label, admin_label, DB_Table
 	 */
 	final static String[][] g_mapping =	{
-											{"","Ma Console","CONSOLES"},
-											{"","Ma Maison","MAISON"},
-											{"","","PERIPHERIQUES"},
-											{"","","PIECES"},
-											{"","","PROFILES"},
-											{"","","REGLES"},
-											{"","","UTILISATEURS"},
-											{"","","REGLES"}
+											{"console","Ma console","Consoles","consoles"},
+											{"maison","Ma maison","Maisons","maisons"},
+											{"peripherique","Mes periphériques","Peripheriques","peripheriques"},
+											{"piece","Mes pièces","Pièces","pieces"},
+											{"profil","Mes profils","Profils","profils"},
+											{"regle","Mes règles","Règles","regles"},
+											{"accueil","Accueil","Accueil",""},
+											{"outil","Mes outils","Outils",""},
+											{"aide","Aide","Aide",""},
+											{"compte","Mon compte","Comptes utilisateurs",""}
 										};
 	
 	
