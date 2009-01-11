@@ -38,10 +38,11 @@ final class ServerDB{
 		/**
 		 * Query typical select command
 		 */
-		public ResultSet queryDB(String query){	  
+		public String[][] queryDB(String query){	  
 				try {
 					Statement st = DBconnector.createStatement();
-					return st.executeQuery(query);
+					ResultSet rs = st.executeQuery(query);
+					return resultToArray(rs);
 				} catch (SQLException e) {
 					e.printStackTrace();
 					return null;
@@ -94,7 +95,6 @@ final class ServerDB{
 	        //fill row[0] with the columns name
 	        for(int j=0; j<nb_columns; j++){
 				result[0][j] = rsmd.getColumnName(j+1);
-				System.out.println(rsmd.getColumnName(j+1));
 			}
 	        
 	        //fill data
