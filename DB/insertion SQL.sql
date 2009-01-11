@@ -2,19 +2,19 @@
 
 INSERT INTO `utilisateurs` ( `id` , `login` , `motdepasse` , `nom` , `prenom` , `statut` )
 VALUES (
-1 , 'sltieche', 'password', 'TIECHE', 'Sarah', 'client'
+1 , 'sltieche', md5('password'), 'TIECHE', 'Sarah', 'client'
 );
 INSERT INTO `utilisateurs` ( `id` , `login` , `motdepasse` , `nom` , `prenom` , `statut` )
 VALUES (
-2 , 'mgousseff', 'password2', 'GOUSSEFF', 'Marina', 'client'
+2 , 'mgousseff', md5('password2'), 'GOUSSEFF', 'Marina', 'client'
 );
 INSERT INTO `utilisateurs` ( `id` , `login` , `motdepasse` , `nom` , `prenom` , `statut` )
 VALUES (
-3 , 'ncuillery', 'test', 'CUILLERY', 'Nicolas', 'client'
+3 , 'ncuillery', md5('test'), 'CUILLERY', 'Nicolas', 'client'
 );
 INSERT INTO `utilisateurs` ( `id` , `login` , `motdepasse` , `nom` , `prenom` , `statut` )
 VALUES (
-4 , 'bsoufflet', 'test2', 'SOUFFLET', 'Benjamin', 'administrateur'
+4 , 'bsoufflet', md5('test2'), 'SOUFFLET', 'Benjamin', 'administrateur'
 );
 
 
