@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.Socket;
 
-final class ConsoleSocket{
+public final class ConsoleSocket{
 
 	private Socket socket;
 	private OutputStream out;
