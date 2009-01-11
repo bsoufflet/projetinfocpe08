@@ -5,7 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 
-public class Test {
+public class ExampleCore {
 
 	private static byte[] filedata;
 
