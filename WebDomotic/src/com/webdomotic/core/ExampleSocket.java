@@ -1,40 +1,11 @@
 package com.webdomotic.core;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 
 
-public class ExampleCore {
+public class ExampleSocket {
 
 	private static byte[] filedata;
-
-/**
- * Main example for ServerDB
- * 
- */
-/*	
-public static void main(String[] args){
-		
-		
-		ServerDB db = COMFactory.getInstanceDB();
-		ResultSet rs = db.queryDB("SELECT * FROM MAISONS");
-		
-		try {
-			while(!rs.isLast()){
-				rs.next();
-				System.out.println("id: " + rs.getString(1));
-				System.out.println("id: " + rs.getString(2));
-			}
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
-		System.out.println();
-	}
-			
-*/
 	/**
 	 * Main example for socket use
 	 */
@@ -51,7 +22,7 @@ public static void main(String[] args){
 			System.out.println(toHex(filedata));
 			System.out.println("content : "+ content);
 			
-			ConsoleSocket socket = COMFactory.getInstanceSoc("192.168.0.30", 2000);
+			ConsoleSocket socket = new ConsoleSocket("192.168.0.30", 2000);
 			socket.write('d');
 			socket.write(intToByteArray(filedata.length));
 			socket.write(filedata);
