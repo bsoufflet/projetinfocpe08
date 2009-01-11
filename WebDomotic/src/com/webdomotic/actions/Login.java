@@ -4,6 +4,8 @@ import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ActionContext;
 import com.webdomotic.core.*;
 
+import java.security.*;
+import java.math.*;
 import java.util.*;
 
 /**
@@ -43,7 +45,7 @@ public class Login extends ActionSupport {
 		String[][] result=retrouverUtilisateurs();
 		for(int i=0; i<result.length-1; i++){
 			if(getUsername().equals(result[i+1][0])){
-				if(getPassword().equals(result[i+1][1])){
+				if(toMD5(getPassword()).equals(result[i+1][1])){
 					return true;
 				}else{
 					return false;
@@ -51,6 +53,17 @@ public class Login extends ActionSupport {
 			}
 		}
 		return false;
+	}
+	private String toMD5(String value){
+		try{
+		    MessageDigest m=MessageDigest.getInstance("MD5");
+		    m.update(value.getBytes(),0,value.length());
+		    return new BigInteger(1,m.digest()).toString(16);
+		}catch(Exception e){
+			e.printStackTrace();
+			addActionError("Java error in toMD5.");
+			return "";
+		}
 	}
 	// ---- Username property ----
 
