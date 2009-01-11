@@ -10,6 +10,15 @@ public interface Constants {
 	final static String DBuser = "root";
 	final static String DBpass = null;
 	
+	
+	/**
+	 * Mapping columns names
+	 */
+	final static int MODULE					=	0;
+	final static int LABEL					=	1;
+	final static int ADMIN_LABEL			=	2;
+	final static int DB_TABLE				=	3;
+	
 	/**
 	 * Mapping
 	 */
