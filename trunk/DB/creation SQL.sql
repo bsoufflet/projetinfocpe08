@@ -7,7 +7,7 @@ CREATE TABLE regles (
 CREATE TABLE utilisateurs (
   id INT UNSIGNED NOT NULL AUTO_INCREMENT,
   login VARCHAR(10) NULL,
-  motdepasse VARCHAR(10) NULL,
+  motdepasse VARCHAR(32) NULL,
   nom VARCHAR(20) NULL,
   prenom VARCHAR(20) NULL,
   statut VARCHAR(20) NULL,
