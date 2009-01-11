@@ -27,16 +27,16 @@ public class Login extends ActionSupport {
 			return ERROR;
 		}
 	}
-	/*
+	/**
 	 * Retrouve le login et le mot de passe de tous les utilisateurs
 	 */
 	private String[][] retrouverUtilisateurs(){
-		ServerDB db = new ServerDB(Constants.DBurl,Constants.DBuser,Constants.DBpass);
+		ServerDB db = new ServerDB();
 		String [][] result = db.queryDB("SELECT login, motdepasse FROM utilisateurs");
 		db.close();
 		return result;
 	}
-	/*
+	/**
 	 * Verifie le login et le mot de passe et retourne true si c'est ok
 	 */
 	private Boolean checkLogin(){
