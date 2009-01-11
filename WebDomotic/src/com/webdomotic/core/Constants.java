@@ -17,10 +17,10 @@ public interface Constants {
 	final static String[][] g_mapping =	{
 											{"console","Ma console","Consoles","consoles"},
 											{"maison","Ma maison","Maisons","maisons"},
-											{"peripherique","Mes periphériques","Peripheriques","peripheriques"},
-											{"piece","Mes pièces","Pièces","pieces"},
+											{"peripherique","Mes p√©riph√©riques","P√©riph√©riques","peripheriques"},
+											{"piece","Mes pi√®ces","Pi√®ces","pieces"},
 											{"profil","Mes profils","Profils","profils"},
-											{"regle","Mes règles","Règles","regles"},
+											{"regle","Mes r√®gles","R√®gles","regles"},
 											{"accueil","Accueil","Accueil",""},
 											{"outil","Mes outils","Outils",""},
 											{"aide","Aide","Aide",""},
