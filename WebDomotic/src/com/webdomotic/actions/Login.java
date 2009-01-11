@@ -2,6 +2,8 @@ package com.webdomotic.actions;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ActionContext;
+import com.webdomotic.core.*;
+
 import java.util.*;
 
 /**
@@ -14,17 +16,42 @@ public class Login extends ActionSupport {
 	public String execute() throws Exception {
 		System.out.println("Validating login");
 		Map session = ActionContext.getContext().getSession();
-		if (!getUsername().equals("Admin") || !getPassword().equals("Admin")) {
-			addActionError("Invalid user name or password! Please try again!");
-			return ERROR;
-		} else {
+		if(checkLogin()){
 	        session.put("name",getUsername());
 	        session.put("authorized","yes");
 	        System.out.println("Session cree pour "+getUsername());
 			return SUCCESS;
+		}else{
+			System.out.println("login refuse pour "+getUsername());
+			addActionError("Invalid user name or password! Please try again!");
+			return ERROR;
 		}
 	}
-
+	/*
+	 * Retrouve le login et le mot de passe de tous les utilisateurs
+	 */
+	private String[][] retrouverUtilisateurs(){
+		ServerDB db = new ServerDB(Constants.DBurl,Constants.DBuser,Constants.DBpass);
+		String [][] result = db.queryDB("SELECT login, motdepasse FROM utilisateurs");
+		db.close();
+		return result;
+	}
+	/*
+	 * Verifie le login et le mot de passe et retourne true si c'est ok
+	 */
+	private Boolean checkLogin(){
+		String[][] result=retrouverUtilisateurs();
+		for(int i=0; i<result.length-1; i++){
+			if(getUsername().equals(result[i+1][0])){
+				if(getPassword().equals(result[i+1][1])){
+					return true;
+				}else{
+					return false;
+				}
+			}
+		}
+		return false;
+	}
 	// ---- Username property ----
 
 	/**
