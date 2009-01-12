@@ -15,11 +15,16 @@ import java.util.*;
  */
 public class Login extends ActionSupport {
 
+	private String userid;
+	private String isadmin;
+	
 	public String execute() throws Exception {
 		System.out.println("Validating login");
 		Map session = ActionContext.getContext().getSession();
 		if(checkLogin()){
-	        session.put("name",getUsername());
+	        session.put("username",getUsername());
+	        session.put("userid",userid);
+	        session.put("isadmin",isadmin);
 	        session.put("authorized","yes");
 	        System.out.println("Session cree pour "+getUsername());
 			return SUCCESS;
@@ -34,7 +39,7 @@ public class Login extends ActionSupport {
 	 */
 	private String[][] retrouverUtilisateurs(){
 		ServerDB db = new ServerDB();
-		String [][] result = db.queryDB("SELECT login, motdepasse FROM utilisateurs");
+		String [][] result = db.queryDB("SELECT login, motdepasse, id, statut FROM utilisateurs");
 		db.close();
 		return result;
 	}
@@ -46,8 +51,15 @@ public class Login extends ActionSupport {
 		for(int i=0; i<result.length-1; i++){
 			if(getUsername().equals(result[i+1][0])){
 				if(toMD5(getPassword()).equals(result[i+1][1])){
+					userid=result[i+1][2];
+					if(result[i+1][3] == "administrateur"){
+						isadmin="true";
+					}else{
+						isadmin="false";
+					}
 					return true;
 				}else{
+					userid="";
 					return false;
 				}
 			}

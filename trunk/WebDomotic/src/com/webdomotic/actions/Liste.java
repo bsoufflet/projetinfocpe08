@@ -3,18 +3,18 @@ package com.webdomotic.actions;
 import com.webdomotic.core.*;
 
 public class Liste extends Vue {
-	private String listeDonnee; 
+	
+	private String dataXML;
+	
 	public String execute() throws Exception {
 		System.out.println("Liste Action - module:" + selectedModule);
-		retrieveData();
+		dataXML=Hypervisor.getDataXML(selectedModule, selectedAction, "", "");
 		return SUCCESS;
 	}
-	protected String[][] retrieveData(){
-		ServerDB db = new ServerDB();
-		return db.queryDB("SELECT * FROM MAISONS");
+	public void setDataXML(String dataXML){
+		this.dataXML=dataXML;
 	}
-	public void construireListe(){
-
-		
+	public String getDataXML(){
+		return dataXML;
 	}
 }
