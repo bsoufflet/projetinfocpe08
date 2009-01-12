@@ -8,7 +8,7 @@ public class ExampleDB {
 	public static void main(String[] args){
 			
 			
-			ServerDB db = new ServerDB();
+			ServerDB db = new ServerDB(Constants.DBurl, Constants.DBuser, Constants.DBpass);
 			String [][] result = db.queryDB("SELECT * FROM MAISONS");
 			
 			for(int i=0; i<result.length; i++){

@@ -1,15 +1,11 @@
 package com.webdomotic.core;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
-
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
-import javax.sql.DataSource;
 
 public final class ServerDB{
 
@@ -18,15 +14,18 @@ public final class ServerDB{
 		/**
 		 * Connect to DB
 		 */
-		public ServerDB(){
+		public ServerDB(String DBurl, String user, String pass){
 			try {
+				Class.forName("com.mysql.jdbc.Driver");
+				DBconnector = DriverManager.getConnection(DBurl,user,pass);
+				/*
 				Context ctx = new InitialContext();
 				DataSource ds = (DataSource)ctx.lookup("jdbc/"+Constants.DB_JNDI_NAME);
 				DBconnector = ds.getConnection();
-				
-			}catch (SQLException e) {
+				*/
+			} catch (ClassNotFoundException e) {
 				e.printStackTrace();
-			} catch (NamingException e) {
+			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 			
