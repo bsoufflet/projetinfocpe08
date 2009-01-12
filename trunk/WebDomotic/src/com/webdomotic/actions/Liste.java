@@ -10,7 +10,7 @@ public class Liste extends Vue {
 		return SUCCESS;
 	}
 	protected String[][] retrieveData(){
-		ServerDB db = new ServerDB(Constants.DBurl, Constants.DBuser, Constants.DBpass);
+		ServerDB db = new ServerDB();
 		return db.queryDB("SELECT * FROM MAISONS");
 	}
 	public void construireListe(){

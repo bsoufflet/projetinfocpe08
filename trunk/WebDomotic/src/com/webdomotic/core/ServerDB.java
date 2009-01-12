@@ -14,10 +14,10 @@ public final class ServerDB{
 		/**
 		 * Connect to DB
 		 */
-		public ServerDB(String DBurl, String user, String pass){
+		public ServerDB(){
 			try {
 				Class.forName("com.mysql.jdbc.Driver");
-				DBconnector = DriverManager.getConnection(DBurl,user,pass);
+				DBconnector = DriverManager.getConnection(Constants.DBurl,Constants.DBuser,Constants.DBpass);
 				/*
 				Context ctx = new InitialContext();
 				DataSource ds = (DataSource)ctx.lookup("jdbc/"+Constants.DB_JNDI_NAME);
@@ -28,16 +28,6 @@ public final class ServerDB{
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-			
-			System.out.println("Connexion:"+ DBconnector);
-		}
-		
-		/**
-		 *	Helper function to assemble query string
-		 */
-		public static String genQuery(String[] s){
-			
-			return null;
 		}
 		
 		/**
@@ -85,7 +75,6 @@ public final class ServerDB{
 			
 			//Get result set meta data
 	        ResultSetMetaData rsmd = rs.getMetaData();
-	        
 	        //get number of columns
 	        int nb_columns = rsmd.getColumnCount();
 	        
@@ -96,7 +85,6 @@ public final class ServerDB{
 	        
 	        //create array
 	        String[][] result = new String[nb_rows+1][nb_columns];
-	        
 	        //fill row[0] with the columns name
 	        for(int j=0; j<nb_columns; j++){
 				result[0][j] = rsmd.getColumnName(j+1);
