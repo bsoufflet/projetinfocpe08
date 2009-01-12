@@ -13,7 +13,7 @@ public interface Constants {
 	
 	
 	/**
-	 * Mapping columns names
+	 * Columns names mapping for modules
 	 */
 	final static int MODULE					=	0;
 	final static int LABEL					=	1;
@@ -21,9 +21,9 @@ public interface Constants {
 	final static int DB_TABLE				=	3;
 	
 	/**
-	 * Mapping
+	 * Mapping for modules
 	 */
-	final static String[][] g_mapping =	{
+	final static String[][] g_mapping_mod =	{
 							/*Module_name, 	Label, 				admin_label, 		DB_Table*/
 		
 							{"console",		"Ma console",		"Consoles",			"consoles"},
@@ -37,6 +37,26 @@ public interface Constants {
 							{"aide",		"Aide",				"Aide",				""},
 							{"compte",		"Mon compte",		"Comptes utilisateurs",""}
 										};
+
+	/**
+	 * Columns name mapping for columns DB
+	 */
+	final static int FIELD_NAME				=	0;
+	//final static int LABEL				=	1;
+	final static int TYPE					=	2;
 	
+	
+	/**
+	 * Mapping for columns DB
+	 */
+	final static String[][] g_mapping_DB_col =	{
+							/*Field_name, 	Label, 				Type*/
+		
+							{"motdepass",	"Mot de pass",		"password"},
+							{"motdepass",	"Mot de pass",		"password"},
+							{"motdepass",	"Mot de pass",		"password"},
+							{"motdepass",	"Mot de pass",		"password"}
+							
+										};
 
 }
