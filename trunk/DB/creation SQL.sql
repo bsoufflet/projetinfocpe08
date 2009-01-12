@@ -14,14 +14,28 @@ CREATE TABLE utilisateurs (
   PRIMARY KEY(id)
 );
 
+CREATE TABLE profils (
+  id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+  utilisateur_id INT UNSIGNED NOT NULL,
+  nom VARCHAR(10) NULL,
+  description VARCHAR(60) NULL,
+  statut INTEGER UNSIGNED NULL,
+  PRIMARY KEY(id),
+  FOREIGN KEY(utilisateur_id)
+    REFERENCES utilisateurs(id)
+      ON DELETE NO ACTION
+      ON UPDATE NO ACTION
+);
+
 CREATE TABLE maisons (
   id INT UNSIGNED NOT NULL AUTO_INCREMENT,
-  utilisateurs_id INT UNSIGNED NULL,
+  utilisateur_id INT UNSIGNED NOT NULL,
+  nom VARCHAR(20) NULL,
   adresse VARCHAR(20) NULL,
   codepostal INT UNSIGNED NULL,
   ville VARCHAR(20) NULL,
   PRIMARY KEY(id),
-  FOREIGN KEY(utilisateurs_id)
+  FOREIGN KEY(utilisateur_id)
     REFERENCES utilisateurs(id)
       ON DELETE CASCADE
       ON UPDATE CASCADE
@@ -29,28 +43,24 @@ CREATE TABLE maisons (
 
 CREATE TABLE consoles (
   id INT NOT NULL AUTO_INCREMENT,
-  maisons_id INT UNSIGNED NOT NULL,
+  maison_id INT UNSIGNED NOT NULL,
   ip VARCHAR(15) NULL,
   version VARCHAR(10) NULL,
   mac VARCHAR(17) NULL,
   port INT NULL,
   PRIMARY KEY(id),
-  FOREIGN KEY(maisons_id)
+  FOREIGN KEY(maison_id)
     REFERENCES maisons(id)
       ON DELETE CASCADE
       ON UPDATE CASCADE
 );
 
-CREATE TABLE profils (
-  id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+CREATE TABLE profils_regles (
+  profils_id INTEGER UNSIGNED NOT NULL,
   regles_id INTEGER UNSIGNED NOT NULL,
-  utilisateurs_id INT UNSIGNED NOT NULL,
-  nom VARCHAR(10) NULL,
-  description VARCHAR(60) NULL,
-  statut INTEGER UNSIGNED NULL,
-  PRIMARY KEY(id),
-  FOREIGN KEY(utilisateurs_id)
-    REFERENCES utilisateurs(id)
+  PRIMARY KEY(profils_id, regles_id),
+  FOREIGN KEY(profils_id)
+    REFERENCES profils(id)
       ON DELETE NO ACTION
       ON UPDATE NO ACTION,
   FOREIGN KEY(regles_id)
@@ -61,10 +71,11 @@ CREATE TABLE profils (
 
 CREATE TABLE pieces (
   id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
-  maisons_id INT UNSIGNED NOT NULL,
+  maison_id INT UNSIGNED NOT NULL,
+  nom VARCHAR(20) NULL,
   superficie DOUBLE NULL,
   PRIMARY KEY(id),
-  FOREIGN KEY(maisons_id)
+  FOREIGN KEY(maison_id)
     REFERENCES maisons(id)
       ON DELETE CASCADE
       ON UPDATE CASCADE
@@ -72,13 +83,15 @@ CREATE TABLE pieces (
 
 CREATE TABLE peripheriques (
   id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
-  pieces_id INTEGER UNSIGNED NOT NULL,
+  piece_id INTEGER UNSIGNED NOT NULL,
+  nom VARCHAR(20) NULL,
   description VARCHAR(60) NULL,
   PRIMARY KEY(id),
-  FOREIGN KEY(pieces_id)
+  FOREIGN KEY(piece_id)
     REFERENCES pieces(id)
       ON DELETE CASCADE
       ON UPDATE CASCADE
 );
+
 
 

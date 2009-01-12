@@ -20,39 +20,39 @@ VALUES (
 
 /* INSERTION DANS LA TABLE MAISONS */
 
-INSERT INTO `maisons` ( `id` , `utilisateurs_id` , `adresse` , `codepostal` , `ville` )
+INSERT INTO `maisons` ( `id` , `utilisateur_id` , `nom`, `adresse` , `codepostal` , `ville` )
 VALUES (
-1, 2, 'rue bidule', '69100', 'VILLEURBANNE'
+1, 2,'maison principale', 'rue bidule', '69100', 'VILLEURBANNE'
 );
-INSERT INTO `maisons` ( `id` , `utilisateurs_id` , `adresse` , `codepostal` , `ville` )
+INSERT INTO `maisons` ( `id` , `utilisateur_id`, `nom` , `adresse` , `codepostal` , `ville` )
 VALUES (
-2, 2, 'rue machin', '69002', 'LYON'
+2, 2,'maison secondaire', 'rue machin', '69002', 'LYON'
 );
-INSERT INTO `maisons` ( `id` , `utilisateurs_id` , `adresse` , `codepostal` , `ville` )
+INSERT INTO `maisons` ( `id` , `utilisateur_id`, `nom` , `adresse` , `codepostal` , `ville` )
 VALUES (
-3, 1, 'rue du test', '71008', 'Metropolis'
+3, 1,'maison principale', 'rue du test', '71008', 'Metropolis'
 );
-INSERT INTO `maisons` ( `id` , `utilisateurs_id` , `adresse` , `codepostal` , `ville` )
+INSERT INTO `maisons` ( `id` , `utilisateur_id`, `nom` , `adresse` , `codepostal` , `ville` )
 VALUES (
-4, 3, 'rue truc', '69004', 'LYON'
+4, 3,'maison principale', 'rue truc', '69004', 'LYON'
 );
 
 
 /* INSERTION DANS LA TABLE CONSOLES */
 
-INSERT INTO `consoles` ( `id` , `maisons_id` , `ip` , `version` , `mac`, `port`)
+INSERT INTO `consoles` ( `id` , `maison_id` , `ip` , `version` , `mac`, `port`)
 VALUES (
 1, 1, '192.168.0.1', '1', '00-20-7E-5B-3F-C5', 1
 );
-INSERT INTO `consoles` ( `id` , `maisons_id` , `ip` , `version` , `mac`, `port` )
+INSERT INTO `consoles` ( `id` , `maison_id` , `ip` , `version` , `mac`, `port` )
 VALUES (
 2, 2, '192.168.0.2', '1', '00-19-7F-4B-3A-D5', 2
 );
-INSERT INTO `consoles` ( `id` , `maisons_id` , `ip` , `version` , `mac`, `port` )
+INSERT INTO `consoles` ( `id` , `maison_id` , `ip` , `version` , `mac`, `port` )
 VALUES (
 3, 4, '192.168.0.3', '1', '00-18-3F-2B-FA-D1', 4
 );
-INSERT INTO `consoles` ( `id` , `maisons_id` , `ip` , `version` , `mac`, `port` )
+INSERT INTO `consoles` ( `id` , `maison_id` , `ip` , `version` , `mac`, `port` )
 VALUES (
 4, 3, '192.168.0.4', '1', '00-3D-4E-4B-40-F5', 3
 );
@@ -60,112 +60,112 @@ VALUES (
 
 /* INSERTION DANS LA TABLES PIECES */
 
-INSERT INTO `pieces` ( `id` , `maisons_id` , `superficie` )
+INSERT INTO `pieces` ( `id` , `maison_id`, `nom` , `superficie` )
 VALUES (
-1, 1, 12.3
+1, 1, 'salle de bain', 12.3
 );
-INSERT INTO `pieces` ( `id` , `maisons_id` , `superficie` )
+INSERT INTO `pieces` ( `id` , `maison_id`, `nom` , `superficie` )
 VALUES (
-2, 1, 9
+2, 1, 'cuisine', 9
 );
-INSERT INTO `pieces` ( `id` , `maisons_id` , `superficie` )
+INSERT INTO `pieces` ( `id` , `maison_id`, `nom` , `superficie` )
 VALUES (
-3, 2, 11
+3, 2, 'salon', 11
 );
-INSERT INTO `pieces` ( `id` , `maisons_id` , `superficie` )
+INSERT INTO `pieces` ( `id` , `maison_id`, `nom` , `superficie` )
 VALUES (
-4, 2, 12.3
+4, 2, 'salle de bain', 12.3
 );
-INSERT INTO `pieces` ( `id` , `maisons_id` , `superficie` )
+INSERT INTO `pieces` ( `id` , `maison_id`, `nom` , `superficie` )
 VALUES (
-5, 3, 12.3
+5, 3, 'salon', 12.3
 );
-INSERT INTO `pieces` ( `id` , `maisons_id` , `superficie` )
+INSERT INTO `pieces` ( `id` , `maison_id`, `nom` , `superficie` )
 VALUES (
-6, 3, 10
+6, 3, 'salle a manger', 10
 );
-INSERT INTO `pieces` ( `id` , `maisons_id` , `superficie` )
+INSERT INTO `pieces` ( `id` , `maison_id`, `nom` , `superficie` )
 VALUES (
-7, 4, 14.22
+7, 4, 'salon', 14.22
 );
 
 
 /* INSERTION DANS LA TABLE PERIPHERIQUE */
 
-INSERT INTO `peripheriques` ( `id` , `pieces_id` , `description` )
+INSERT INTO `peripheriques` ( `id` , `piece_id`, `nom` , `description` )
 VALUES (
-1, 1, 'interrupteur'
+1, 1, 'interrupteur', 'peripherique pour reglage d une lumiere'
 );
-INSERT INTO `peripheriques` ( `id` , `pieces_id` , `description` )
+INSERT INTO `peripheriques` ( `id` , `piece_id`, `nom` , `description` )
 VALUES (
-2, 1, 'capteur de temperature'
+2, 1, 'capteur de temperature', 'peripherique pour reglage de la temperature'
 );
-INSERT INTO `peripheriques` ( `id` , `pieces_id` , `description` )
+INSERT INTO `peripheriques` ( `id` , `piece_id`, `nom` , `description` )
 VALUES (
-3, 2, 'capteur de luminosite'
+3, 2, 'capteur de luminosite', 'peripherique pour reglage d une lumiere'
 );
-INSERT INTO `peripheriques` ( `id` , `pieces_id` , `description` )
+INSERT INTO `peripheriques` ( `id` , `piece_id`, `nom` , `description` )
 VALUES (
-4, 3, 'interrupteur'
+4, 3, 'interrupteur', 'peripherique pour reglage d une lumiere'
 );
-INSERT INTO `peripheriques` ( `id` , `pieces_id` , `description` )
+INSERT INTO `peripheriques` ( `id` , `piece_id`, `nom` , `description` )
 VALUES (
-5, 4, 'interrupteur'
+5, 4, 'interrupteur', 'peripherique pour reglage d une lumiere'
 );
-INSERT INTO `peripheriques` ( `id` , `pieces_id` , `description` )
+INSERT INTO `peripheriques` ( `id` , `piece_id`, `nom` , `description` )
 VALUES (
-6, 5, 'interrupteur'
+6, 5, 'interrupteur', 'peripherique pour reglage d une lumiere'
 );
-INSERT INTO `peripheriques` ( `id` , `pieces_id` , `description` )
+INSERT INTO `peripheriques` ( `id` , `piece_id`, `nom` , `description` )
 VALUES (
-7, 6, 'interrupteur'
+7, 6, 'interrupteur', 'peripherique pour reglage d une lumiere'
 );
-INSERT INTO `peripheriques` ( `id` , `pieces_id` , `description` )
+INSERT INTO `peripheriques` ( `id` , `piece_id`, `nom` , `description` )
 VALUES (
-8, 7, 'interrupteur'
+8, 7, 'interrupteur', 'peripherique pour reglage d une lumiere'
 );
-INSERT INTO `peripheriques` ( `id` , `pieces_id` , `description` )
+INSERT INTO `peripheriques` ( `id` , `piece_id`, `nom` , `description` )
 VALUES (
-9, 5, 'radiateur'
+9, 5, 'radiateur', 'peripherique pour reglage de la temperature'
 );
 
 /* INSERTION DANS LA TABLE PROFILS */
 
-INSERT INTO `profils` ( `id` , `regles_id` , `utilisateurs_id` , `nom` , `description` , `statut` )
+INSERT INTO `profils` ( `id` , `utilisateur_id` , `nom` , `description` , `statut` )
 VALUES (
-1, 1, 1, 'Vacances', 'profil à suivre pendant les vacances', '0'
+1, 1, 'Vacances', 'profil à suivre pendant les vacances', '0'
 );
-INSERT INTO `profils` ( `id` , `regles_id` , `utilisateurs_id` , `nom` , `description` , `statut` )
+INSERT INTO `profils` ( `id` , `utilisateur_id` , `nom` , `description` , `statut` )
 VALUES (
-2, 2, 1, 'Boulot', 'profil à suivre pendant les journées de travail', '0'
+2, 1, 'Boulot', 'profil à suivre pendant les journées de travail', '0'
 );
-INSERT INTO `profils` ( `id` , `regles_id` , `utilisateurs_id` , `nom` , `description` , `statut` )
+INSERT INTO `profils` ( `id` , `utilisateur_id` , `nom` , `description` , `statut` )
 VALUES (
-3, 3, 1, 'Week-end', 'profil à suivre pendant les week-end', '0'
+3, 1, 'Week-end', 'profil à suivre pendant les week-end', '0'
 );
-INSERT INTO `profils` ( `id` , `regles_id` , `utilisateurs_id` , `nom` , `description` , `statut` )
+INSERT INTO `profils` ( `id` , `utilisateur_id` , `nom` , `description` , `statut` )
 VALUES (
-4, 3, 2, 'Vacances', 'profil à suivre pendant les vacances', '0'
+4, 2, 'Vacances', 'profil à suivre pendant les vacances', '0'
 );
-INSERT INTO `profils` ( `id` , `regles_id` , `utilisateurs_id` , `nom` , `description` , `statut` )
+INSERT INTO `profils` ( `id` , `utilisateur_id` , `nom` , `description` , `statut` )
 VALUES (
-5, 2, 2, 'Boulot', 'profil à suivre pendant les journées de travail', '0'
+5, 2, 'Boulot', 'profil à suivre pendant les journées de travail', '0'
 );
-INSERT INTO `profils` ( `id` , `regles_id` , `utilisateurs_id` , `nom` , `description` , `statut` )
+INSERT INTO `profils` ( `id` , `utilisateur_id` , `nom` , `description` , `statut` )
 VALUES (
-6, 1, 2, 'Week-end', 'profil à suivre pendant les week-end', '0'
+6, 2, 'Week-end', 'profil à suivre pendant les week-end', '0'
 );
-INSERT INTO `profils` ( `id` , `regles_id` , `utilisateurs_id` , `nom` , `description` , `statut` )
+INSERT INTO `profils` ( `id` , `utilisateur_id` , `nom` , `description` , `statut` )
 VALUES (
-7, 2, 3, 'Vacances', 'profil à suivre pendant les vacances', '0'
+7, 3, 'Vacances', 'profil à suivre pendant les vacances', '0'
 );
-INSERT INTO `profils` ( `id` , `regles_id` , `utilisateurs_id` , `nom` , `description` , `statut` )
+INSERT INTO `profils` ( `id` , `utilisateur_id` , `nom` , `description` , `statut` )
 VALUES (
-8, 3, 3, 'Boulot', 'profil à suivre pendant les journées de travail', '0'
+8, 3, 'Boulot', 'profil à suivre pendant les journées de travail', '0'
 );
-INSERT INTO `profils` ( `id` , `regles_id` , `utilisateurs_id` , `nom` , `description` , `statut` )
+INSERT INTO `profils` ( `id` , `utilisateur_id` , `nom` , `description` , `statut` )
 VALUES (
-9, 1, 3, 'Week-end', 'profil à suivre pendant les week-end', '0'
+9, 3, 'Week-end', 'profil à suivre pendant les week-end', '0'
 );
 
 
@@ -184,4 +184,38 @@ VALUES (
 3, 'bla'
 );
 
+/* INSERTION DANS LA TABLE PROFILS_REGLES */
 
+INSERT INTO `profils_regles` (`profil_id`, `regle_id`) 
+VALUES(
+1, 2
+);
+INSERT INTO `profils_regles` (`profil_id`, `regle_id`) 
+VALUES(
+2, 3
+);
+INSERT INTO `profils_regles` (`profil_id`, `regle_id`) 
+VALUES(
+3, 1
+);
+INSERT INTO `profils_regles` (`profil_id`, `regle_id`) 
+VALUES(
+4, 2
+);
+INSERT INTO `profils_regles` (`profil_id`, `regle_id`) 
+VALUES(
+5, 3
+);
+INSERT INTO `profils_regles` (`profil_id`, `regle_id`) 
+VALUES(
+6, 1
+);
+INSERT INTO `profils_regles` (`profil_id`, `regle_id`) 
+VALUES(
+6, 2
+);
+INSERT INTO `profils_regles` (`profil_id`, `regle_id`) 
+VALUES(
+1, 3
+);
+ 
