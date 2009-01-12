@@ -91,11 +91,11 @@ public class Hypervisor {
 	private static String searchMapping(String input,int return_type){
 		
 		//for all the rows
-		for(int i=0; i<Constants.g_mapping.length; i++){
+		for(int i=0; i<Constants.g_mapping_mod.length; i++){
 			//for all the columns
-			for(int j=0; j<Constants.g_mapping[0].length; j++){
-				if(Constants.g_mapping[i][j].equals(input) && j!=return_type)
-					return Constants.g_mapping[i][return_type];
+			for(int j=0; j<Constants.g_mapping_mod[0].length; j++){
+				if(Constants.g_mapping_mod[i][j].equals(input) && j!=return_type)
+					return Constants.g_mapping_mod[i][return_type];
 			}
 		}
 		return null;
