@@ -5,24 +5,24 @@ import java.util.Map;
 import com.opensymphony.xwork2.ActionContext;
 
 public class Hypervisor {
-	private ServerDB db;
-	private String query;
-	private String [][] queryResult;
+	private static ServerDB db;
+	private static String query;
+	private static String [][] queryResult;
 	
 	
 	public Hypervisor() {
 	}
 	
-	public String[][] getDataArray(){
+	public static String[][] getDataArray(String module, String action, String id, String extraWhere){
 	
 		return null;
 	}
-	public String getDataXML(){
+	public static String getDataXML(String module, String action, String id, String extraWhere){
 		
 		return null;
 	}
 	
-    private void genQuery(String module, String action, String id, String extraWhere){
+    private static void genQuery(String module, String action, String id, String extraWhere){
     	boolean where=false;
         query="SELECT "+getDBTableName(module)+".* FROM "+getDBTableName(module);
         String privilegeQuery=privilegeQuery(module);
@@ -44,7 +44,7 @@ public class Hypervisor {
         }
     }
 
-    private String privilegeQuery(String module){
+    private static String privilegeQuery(String module){
         Map session = ActionContext.getContext().getSession();
         String isadmin = (String)session.get("isadmin");
         if(isadmin == "true"){
@@ -65,7 +65,7 @@ public class Hypervisor {
         }
     }
 	
-	private void performQuery(){
+	private static void performQuery(){
 		queryResult=db.queryDB(query);
 	}
 	
