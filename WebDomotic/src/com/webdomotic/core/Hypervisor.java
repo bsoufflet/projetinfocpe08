@@ -6,25 +6,49 @@ import com.opensymphony.xwork2.ActionContext;
 
 public class Hypervisor {
 	private static ServerDB db;
-	private static String query;
-	private static String [][] queryResult;
 	
 	
 	public Hypervisor() {
 	}
-	
+	/**
+	 * Action Edition et Detail
+	 */
 	public static String[][] getDataArray(String module, String action, String id, String extraWhere){
 	
-		return null;
-	}
-	public static String getDataXML(String module, String action, String id, String extraWhere){
+		String query = genQuery(module, action, id, extraWhere);
+		db = new ServerDB();
+		String [][] queryResult = db.queryDB(query);
+		db.close();
+
+		//build data array
+		
+		
+		
+		
+		
 		
 		return null;
 	}
 	
-    private static void genQuery(String module, String action, String id, String extraWhere){
+	/**
+	 * Action List
+	 */
+	public static String getDataXML(String module, String action, String id, String extraWhere){
+
+		String query = genQuery(module, action, id, extraWhere);
+		db = new ServerDB();
+		String [][] queryResult = db.queryDB(query);
+		db.close();
+
+		//build XML document
+		
+		
+		return null;
+	}
+
+    private static String genQuery(String module, String action, String id, String extraWhere){
     	boolean where=false;
-        query="SELECT "+getDBTableName_mod(module)+".* FROM "+getDBTableName_mod(module);
+        String query="SELECT "+getDBTableName_mod(module)+".* FROM "+getDBTableName_mod(module);
         String privilegeQuery=privilegeQuery(module);
         if(privilegeQuery.toUpperCase().contains("WHERE")){
         	where=true;
@@ -42,6 +66,8 @@ public class Hypervisor {
         }else{
         	query+=" WHERE "+extraWhere;
         }
+        
+        return query;
     }
 
     private static String privilegeQuery(String module){
@@ -64,11 +90,6 @@ public class Hypervisor {
             return "";
         }
     }
-	
-	private static void performQuery(){
-		queryResult=db.queryDB(query);
-	}
-	
 
 	
 	public static String getModuleName_mod(String input){
