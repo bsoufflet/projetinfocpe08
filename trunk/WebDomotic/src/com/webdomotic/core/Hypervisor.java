@@ -24,7 +24,7 @@ public class Hypervisor {
 	
     private static void genQuery(String module, String action, String id, String extraWhere){
     	boolean where=false;
-        query="SELECT "+getDBTableName(module)+".* FROM "+getDBTableName(module);
+        query="SELECT "+getDBTableName_mod(module)+".* FROM "+getDBTableName_mod(module);
         String privilegeQuery=privilegeQuery(module);
         if(privilegeQuery.toUpperCase().contains("WHERE")){
         	where=true;
@@ -71,31 +71,45 @@ public class Hypervisor {
 	
 
 	
-	public static String getModuleName(String input){
-		return searchMapping(input, Constants.MODULE);
+	public static String getModuleName_mod(String input){
+		return searchMapping(Constants.g_mapping_mod, input, Constants.MODULE);
 	}
 
-	public static String getLabelName(String input){
-		return searchMapping(input, Constants.LABEL);
+	public static String getLabel_mod(String input){
+		return searchMapping(Constants.g_mapping_mod, input, Constants.LABEL);
 	}
 
-	public static String getAdminLabelName(String input){
-		return searchMapping(input, Constants.ADMIN_LABEL);
+	public static String getAdminLabel_mod(String input){
+		return searchMapping(Constants.g_mapping_mod, input, Constants.ADMIN_LABEL);
 	}
 
-	public static String getDBTableName(String input){
-		return searchMapping(input, Constants.DB_TABLE);
+	public static String getDBTableName_mod(String input){
+		return searchMapping(Constants.g_mapping_mod, input, Constants.DB_TABLE);
 	}
+	
+	
+	public static String getFieldName_DB(String input){
+		return searchMapping(Constants.g_mapping_DB_col, input, Constants.FIELD_NAME);
+	}
+
+	public static String getLabel_DB(String input){
+		return searchMapping(Constants.g_mapping_DB_col, input, Constants.LABEL);
+	}
+
+	public static String getType_DB(String input){
+		return searchMapping(Constants.g_mapping_DB_col, input, Constants.TYPE);
+	}
+
 
 	
-	private static String searchMapping(String input,int return_type){
+	private static String searchMapping(String[][] mapping_table, String input,int return_type){
 		
 		//for all the rows
-		for(int i=0; i<Constants.g_mapping_mod.length; i++){
+		for(int i=0; i<mapping_table.length; i++){
 			//for all the columns
-			for(int j=0; j<Constants.g_mapping_mod[0].length; j++){
-				if(Constants.g_mapping_mod[i][j].equals(input) && j!=return_type)
-					return Constants.g_mapping_mod[i][return_type];
+			for(int j=0; j<mapping_table[0].length; j++){
+				if(mapping_table[i][j].equals(input) && j!=return_type)
+					return mapping_table[i][return_type];
 			}
 		}
 		return null;
