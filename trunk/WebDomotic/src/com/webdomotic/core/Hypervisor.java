@@ -22,17 +22,26 @@ public class Hypervisor {
 		return null;
 	}
 	
-    private void genQuery(String module, String action, String id){
+    private void genQuery(String module, String action, String id, String extraWhere){
+    	boolean where=false;
         query="SELECT "+getDBTableName(module)+".* FROM "+getDBTableName(module);
         String privilegeQuery=privilegeQuery(module);
+        if(privilegeQuery.toUpperCase().contains("WHERE")){
+        	where=true;
+        }
         query+=privilegeQuery;       
         if(id!=null && id!=""){
-            if(privilegeQuery == ""){
-                query+=" WHERE id='"+id+"'";
+            if(where){
+            	query+=" AND id='"+id+"'";
             }else{
-                query+=" AND id='"+id+"'";
+            	query+=" WHERE id='"+id+"'";
             }
-        } 
+        }
+        if(where){
+        	query+=" AND "+extraWhere;
+        }else{
+        	query+=" WHERE "+extraWhere;
+        }
     }
 
     private String privilegeQuery(String module){
