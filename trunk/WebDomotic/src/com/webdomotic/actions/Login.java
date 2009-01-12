@@ -33,7 +33,7 @@ public class Login extends ActionSupport {
 	 * Retrouve le login et le mot de passe de tous les utilisateurs
 	 */
 	private String[][] retrouverUtilisateurs(){
-		ServerDB db = new ServerDB();
+		ServerDB db = new ServerDB(Constants.DBurl, Constants.DBuser, Constants.DBpass);
 		String [][] result = db.queryDB("SELECT login, motdepasse FROM utilisateurs");
 		db.close();
 		return result;
