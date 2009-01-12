@@ -22,10 +22,12 @@
 		<action name="liste" class="com.webdomotic.actions.Liste">
 			<result>/pages/contenu/liste.jsp</result>
 		</action>
-		<action name="edition" class="com.webdomotic.actions.Edition">
+		<action name="edition" class="com.webdomotic.actions.EditionDetail">
+			<result name="error">/pages/contenu/edition.jsp</result>
 			<result>/pages/contenu/edition.jsp</result>
 		</action>
-		<action name="detail" class="com.webdomotic.actions.Detail">
+		<action name="detail" class="com.webdomotic.actions.EditionDetail">
+			<result name="error">/pages/contenu/detail.jsp</result>
 			<result>/pages/contenu/detail.jsp</result>
 		</action>
     </package>

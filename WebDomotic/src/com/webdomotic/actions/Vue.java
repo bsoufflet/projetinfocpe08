@@ -31,8 +31,8 @@ public class Vue extends ActionSupport {
 	} 
 	public String getSelectedAction() {
 		return selectedAction;
-	}  
+	}
 	public void setSelectedAction(String selectedAction) {
 		this.selectedAction = selectedAction;
-	} 
+	}
 }
