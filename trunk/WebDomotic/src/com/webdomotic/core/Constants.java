@@ -6,9 +6,9 @@ public interface Constants {
 	/**
 	 * DB properties
 	 */
-	final static String DBurl = "jdbc:mysql://localhost:3306/webdomotic";
+	final static String DBurl = "jdbc:mysql://localhost:8889/webdomotic";
 	final static String DBuser = "root";
-	final static String DBpass = null;
+	final static String DBpass = "root";
 	final static String DB_JNDI_NAME = "MySqlDS";
 	
 	
@@ -42,7 +42,7 @@ public interface Constants {
 	 * Columns name mapping for columns DB
 	 */
 	final static int FIELD_NAME				=	0;
-	//final static int LABEL				=	1;
+	//final static int LABEL				=  	1;
 	final static int TYPE					=	2;
 	
 	
@@ -50,13 +50,26 @@ public interface Constants {
 	 * Mapping for columns DB
 	 */
 	final static String[][] g_mapping_DB_col =	{
-							/*Field_name, 	Label, 				Type*/
+							/*Field_name, 		Label, 						Type*/
 		
-							{"motdepass",	"Mot de pass",		"password"},
-							{"motdepass",	"Mot de pass",		"password"},
-							{"motdepass",	"Mot de pass",		"password"},
-							{"motdepass",	"Mot de pass",		"password"}
+							{"nom",				"Nom",						"text"},
+							{"prenom",			"Prénom",					"text"},
+							{"login",			"Nom d'utilisateur",		"text"},
+							{"motdepass",		"Mot de passe",				"password"},
+							{"status",			"Status",					"select"},
+							{"ip",				"IP",						"text"},
+							{"version",			"Version de la console",	"text"},
+							{"mac",				"Adresse MAC",				"text"},
+							{"port",			"Port",						"text"},
+							{"adresse",			"Adresse",					"text"},
+							{"codepostal",		"Code postal",				"text"},
+							{"ville",			"Ville",					"text"},
+							{"description",		"Description",				"text"},
+							{"superficie",		"Superficie",				"text"},
+							{"maison_id",		"Maison",					"object"},
+							{"utilisateur_id",	"Utilisateur",				"object"},
+							{"piece_id",		"Pièce",					"object"},
 							
-										};
+												};
 
 }
