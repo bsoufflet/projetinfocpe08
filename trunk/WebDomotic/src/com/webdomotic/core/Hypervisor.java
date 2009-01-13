@@ -19,17 +19,20 @@ public class Hypervisor {
 		db = new ServerDB();
 		String [][] queryResult = db.queryDB(query);
 		db.close();
+		
+		if(queryResult.length==1)
+			return null;
 
 		//build data array
-		String[][] returnArray = new String[queryResult.length-1][4];
+		String[][] returnArray = new String[(queryResult.length-1)*queryResult[0].length][4];
 		//for all columns in queryResult
 		for(int j=0; j<queryResult[0].length; j++){
 			//for all rows in queryResult
-			for( int i=0; i<queryResult.length-1; i++){
-				returnArray[j*4+i][0]=queryResult[0][j];
-				returnArray[j*4+i][1]=queryResult[i][j];
-				returnArray[j*4+i][2]=getLabel_DB(queryResult[0][j]);
-				returnArray[j*4+i][3]=getType_DB(queryResult[0][j]);
+			for(int i=1,k=0; i<queryResult.length; i++, k=k+4){
+				returnArray[j+k][0]=queryResult[0][j];
+				returnArray[j+k][1]=queryResult[i][j];
+				returnArray[j+k][2]=getLabel_DB(queryResult[0][j]);
+				returnArray[j+k][3]=getType_DB(queryResult[0][j]);
 			}
 		}
 		
