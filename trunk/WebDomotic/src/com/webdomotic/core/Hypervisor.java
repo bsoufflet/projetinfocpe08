@@ -24,7 +24,7 @@ public class Hypervisor {
 			return null;
 
 		//build data array
-		String[][] returnArray = new String[(queryResult.length-1)*queryResult[0].length][4];
+		String[][] returnArray = new String[(queryResult.length-1)*queryResult[0].length][5];
 		//for all columns in queryResult
 		for(int j=0; j<queryResult[0].length; j++){
 			//for all rows in queryResult
@@ -33,9 +33,9 @@ public class Hypervisor {
 				returnArray[j+k][1]=queryResult[i][j];
 				returnArray[j+k][2]=getLabel_DB(queryResult[0][j]);
 				returnArray[j+k][3]=getType_DB(queryResult[0][j]);
+				returnArray[j+k][4]=getEditRight_DB(queryResult[0][j]);
 			}
 		}
-		
 		return returnArray;
 	}
 	
