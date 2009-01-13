@@ -33,7 +33,7 @@ public class Hypervisor {
 	/**
 	 * Action List
 	 */
-	public static String getDataXML(String module, String action, String id, String extraWhere){
+	public static Object[] getDataXML(String module, String action, String id, String extraWhere){
 
 		String query = genQuery(module, action, id, extraWhere);
 		db = new ServerDB();
@@ -75,7 +75,7 @@ public class Hypervisor {
         String isadmin = (String)session.get("isadmin");
         if(isadmin == "true"){
             String userid = (String)session.get("userid");
-            if(module == "maison"){
+            if(module == "maison" || module == "profil" || module == "regle"){
                 return " WHERE utilisateurs_id = '"+userid+"'";
             }else if(module == "piece" || module == "console"){
                 return "INNER JOIN maisons ON pieces.maisons_id = maisons.id WHERE maisons.utilisateurs_id = '"+userid+"'";
