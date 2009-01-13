@@ -64,8 +64,6 @@ public class Hypervisor {
 		js_array.deleteCharAt(js_array.lastIndexOf(","));
 		js_array.append("]");
 		
-		
-		
 		//build mapping
 		String [][] mapping = new String[queryResult[0].length][3];
 		//for all the columns
@@ -111,16 +109,16 @@ public class Hypervisor {
     }
 
     private static String privilegeQuery(String module){
-    	  
-        String isadmin = "false";
+        Map session = ActionContext.getContext().getSession();
+        String isadmin = (String)session.get("isadmin");
         if(!isadmin.equals("true")){
-            String userid = "1";
+            String userid = (String)session.get("userid");
             if(module.equals("maison") || module.equals("profil") || module.equals("regle")){
                 return " WHERE utilisateur_id = '"+userid+"'";
             }else if(module.equals("piece") || module.equals("console")){
                 return " INNER JOIN maisons ON pieces.maison_id = maisons.id WHERE maisons.utilisateur_id = '"+userid+"'";
             }else if(module.equals("peripherique")){
-                return " INNER JOIN pieces ON peripheriques.piece_id = pieces.id INNER JOIN maisons ON pieces.maison_id = maisons.id WHERE maisons.utilisateur_id = '"+userid+"'";
+                return " INNER JOIN pieces ON peripheriques.piece_id = piece.id INNER JOIN maisons ON pieces.maison_id = maisons.id WHERE maisons.utilisateur_id = '"+userid+"'";
             }else if(module.equals("utilisateur")){
                 return " WHERE id = '"+userid+"'";
             }else{
