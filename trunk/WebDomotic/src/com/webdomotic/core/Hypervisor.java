@@ -21,13 +21,19 @@ public class Hypervisor {
 		db.close();
 
 		//build data array
+		String[][] returnArray = new String[queryResult.length-1][4];
+		//for all columns in queryResult
+		for(int j=0; j<queryResult[0].length; j++){
+			//for all rows in queryResult
+			for( int i=0; i<queryResult.length-1; i++){
+				returnArray[j*4+i][0]=queryResult[0][j];
+				returnArray[j*4+i][1]=queryResult[i][j];
+				returnArray[j*4+i][2]=getLabel_DB(queryResult[0][j]);
+				returnArray[j*4+i][3]=getType_DB(queryResult[0][j]);
+			}
+		}
 		
-		
-		
-		
-		
-		
-		return null;
+		return returnArray;
 	}
 	
 	/**
@@ -122,6 +128,14 @@ public class Hypervisor {
 
 	public static String getType_DB(String input){
 		return searchMapping(Constants.g_mapping_DB_col, input, Constants.TYPE);
+	}
+	
+	public static String getEditRight_DB(String input){
+		return searchMapping(Constants.g_mapping_DB_col, input, Constants.EDIT_RIGHT);
+	}
+	
+	public static String getViewRight_DB(String input){
+		return searchMapping(Constants.g_mapping_DB_col, input, Constants.VIEW_RIGHT);
 	}
 
 
