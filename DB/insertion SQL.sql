@@ -40,21 +40,21 @@ VALUES (
 
 /* INSERTION DANS LA TABLE CONSOLES */
 
-INSERT INTO `consoles` ( `id` , `maison_id` , `ip` , `version` , `mac`, `port`)
+INSERT INTO `consoles` ( `id` , `maison_id` , `nom` ,`ip` , `version` , `mac`, `port`)
 VALUES (
-1, 1, '192.168.0.1', '1', '00-20-7E-5B-3F-C5', 1
+1, 1, 'console1', '192.168.0.1', '1', '00-20-7E-5B-3F-C5', 1
 );
-INSERT INTO `consoles` ( `id` , `maison_id` , `ip` , `version` , `mac`, `port` )
+INSERT INTO `consoles` ( `id` , `maison_id` , `nom` ,`ip` , `version` , `mac`, `port` )
 VALUES (
-2, 2, '192.168.0.2', '1', '00-19-7F-4B-3A-D5', 2
+2, 2, 'console2', '192.168.0.2', '1', '00-19-7F-4B-3A-D5', 2
 );
-INSERT INTO `consoles` ( `id` , `maison_id` , `ip` , `version` , `mac`, `port` )
+INSERT INTO `consoles` ( `id` , `maison_id` , `nom` ,`ip` , `version` , `mac`, `port` )
 VALUES (
-3, 4, '192.168.0.3', '1', '00-18-3F-2B-FA-D1', 4
+3, 4, 'console3', '192.168.0.3', '1', '00-18-3F-2B-FA-D1', 4
 );
-INSERT INTO `consoles` ( `id` , `maison_id` , `ip` , `version` , `mac`, `port` )
+INSERT INTO `consoles` ( `id` , `maison_id` , `nom` ,`ip` , `version` , `mac`, `port` )
 VALUES (
-4, 3, '192.168.0.4', '1', '00-3D-4E-4B-40-F5', 3
+4, 3, 'console4', '192.168.0.4', '1', '00-3D-4E-4B-40-F5', 3
 );
 
 
@@ -171,18 +171,44 @@ VALUES (
 
 /* INSERTION DANS LA TABLE REGLES */
 
-INSERT INTO `regles` ( `id` , `description` )
+INSERT INTO `regles` ( `id` , `utilisateur_id` , `nom` ,`description` )
 VALUES (
-1, 'blabla'
+1, 1, 'regle1', 'blabla'
 );
-INSERT INTO `regles` ( `id` , `description` )
+INSERT INTO `regles` ( `id` , `utilisateur_id` , `nom` ,`description` )
 VALUES (
-2, 'blablabla'
+2, 1, 'regle2' , 'blablabla'
 );
-INSERT INTO `regles` ( `id` , `description` )
+INSERT INTO `regles` ( `id` , `utilisateur_id` , `nom` ,`description` )
 VALUES (
-3, 'bla'
+3, 1, 'regle3', 'bla'
 );
+INSERT INTO `regles` ( `id` , `utilisateur_id` , `nom` ,`description` )
+VALUES (
+4, 2, 'regle1', 'blabla'
+);
+INSERT INTO `regles` ( `id` , `utilisateur_id` , `nom` ,`description` )
+VALUES (
+5, 2, 'regle2' , 'blablabla'
+);
+INSERT INTO `regles` ( `id` , `utilisateur_id` , `nom` ,`description` )
+VALUES (
+6, 2, 'regle3', 'bla'
+);
+INSERT INTO `regles` ( `id` , `utilisateur_id` , `nom` ,`description` )
+VALUES (
+7, 3, 'regle1', 'blabla'
+);
+INSERT INTO `regles` ( `id` , `utilisateur_id` , `nom` ,`description` )
+VALUES (
+8, 3, 'regle2' , 'blablabla'
+);
+INSERT INTO `regles` ( `id` , `utilisateur_id` , `nom` ,`description` )
+VALUES (
+9, 3, 'regle3', 'bla'
+);
+
+
 
 /* INSERTION DANS LA TABLE PROFILS_REGLES */
 
