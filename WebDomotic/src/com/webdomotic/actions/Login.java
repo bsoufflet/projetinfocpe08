@@ -5,13 +5,10 @@ import com.opensymphony.xwork2.ActionContext;
 import com.webdomotic.core.*;
 
 import java.security.*;
-import java.math.*;
 import java.util.*;
 
 /**
- * <p>
  * Validate a user login.
- * </p>
  */
 public class Login extends ActionSupport {
 
@@ -48,14 +45,6 @@ public class Login extends ActionSupport {
 	 */
 	private Boolean checkLogin(){
 		String[][] result=retrouverUtilisateur(getUsername());
-		for(int i=0; i<result.length; i++){
-			for(int j=0; j<result[0].length; j++){
-				System.out.print(result[i][j]+"\t");
-			}
-			System.out.println();
-		}
-		System.out.println(toMD5(getPassword()));
-		System.out.println();
 		if(toMD5(getPassword()).equals(result[1][1])){
 			userid=result[1][2];
 			if(result[1][3] == "administrateur"){
@@ -73,28 +62,40 @@ public class Login extends ActionSupport {
 		try{
 		    MessageDigest m=MessageDigest.getInstance("MD5");
 		    m.update(value.getBytes(),0,value.length());
-		    return new BigInteger(1,m.digest()).toString(16);
+		    return toHex(m.digest());
 		}catch(Exception e){
 			e.printStackTrace();
 			addActionError("Java error in toMD5.");
 			return "";
 		}
 	}
+	
+	
+	
+	//helper function
+	final private static String digits="0123456789abcdef";
+	private static String toHex(byte[] data)
+	{
+		StringBuffer buf = new StringBuffer();
+		for (int i = 0; i != data.length; i++){
+			int	v = data[i] & 0xff;
+			buf.append(digits.charAt(v >> 4));
+			buf.append(digits.charAt(v & 0xf));
+		}
+		return buf.toString();
+	}
+
+
+
 	// ---- Username property ----
 
 	/**
-	 * <p>
 	 * Field to store User username.
-	 * </p>
-	 * <p/>
 	 */
 	private String username = null;
 
 	/**
-	 * <p>
-	 * Provide User username.
-	 * </p>
-	 * 
+	 * Provide User username
 	 * @return Returns the User username.
 	 */
 	public String getUsername() {
@@ -102,10 +103,7 @@ public class Login extends ActionSupport {
 	}
 
 	/**
-	 * <p>
 	 * Store new User username
-	 * </p>
-	 * 
 	 * @param value
 	 *            The username to set.
 	 */
@@ -116,18 +114,12 @@ public class Login extends ActionSupport {
 	// ---- Username property ----
 
 	/**
-	 * <p>
 	 * Field to store User password.
-	 * </p>
-	 * <p/>
 	 */
 	private String password = null;
 
 	/**
-	 * <p>
 	 * Provide User password.
-	 * </p>
-	 * 
 	 * @return Returns the User password.
 	 */
 	public String getPassword() {
@@ -135,10 +127,7 @@ public class Login extends ActionSupport {
 	}
 
 	/**
-	 * <p>
 	 * Store new User password
-	 * </p>
-	 * 
 	 * @param value
 	 *            The password to set.
 	 */
