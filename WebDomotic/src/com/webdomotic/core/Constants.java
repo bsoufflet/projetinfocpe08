@@ -37,7 +37,7 @@ public interface Constants {
 							{"accueil",		"Accueil",			"Accueil",			""},
 							{"outil",		"Mes outils",		"Outils",			""},
 							{"aide",		"Aide",				"Aide",				""},
-							{"compte",		"Mon compte",		"Comptes utilisateurs",""}
+							{"compte",		"Mon compte",		"Comptes utilisateurs","utilisateurs"}
 										};
 
 	/**
