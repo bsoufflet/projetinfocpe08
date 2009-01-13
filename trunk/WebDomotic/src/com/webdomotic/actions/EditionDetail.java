@@ -22,4 +22,10 @@ public class EditionDetail extends Vue {
 	public String[][] getFieldToDisplay(){
 		return fieldToDisplay;
 	}
+	public void setSelectedId(String selectedId){
+		this.selectedId=selectedId;
+	}
+	public String getSelectedId(){
+		return selectedId;
+	}
 }
