@@ -5,10 +5,12 @@ public interface Constants {
 	
 	/**
 	 * DB properties
+	 * le port par defaut pour la base de donnee est 3306 
+	 * pour le MAC: c un truc comme 8889 bizzard....
 	 */
-	final static String DBurl = "jdbc:mysql://localhost:8889/webdomotic";
-	final static String DBuser = "root";
-	final static String DBpass = "root";
+	final static String DBurl = "jdbc:mysql://localhost:3306/webdomotic";
+	final static String DBuser = "jboss";
+	final static String DBpass = "jboss";
 	final static String DB_JNDI_NAME = "MySqlDS";
 	
 	
