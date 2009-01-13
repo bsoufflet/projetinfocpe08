@@ -1,7 +1,13 @@
 CREATE TABLE regles (
   id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+  utilisateur_id INT UNSIGNED NOT NULL,
+  nom VARCHAR(30) NULL,
   description VARCHAR(60) NULL,
-  PRIMARY KEY(id)
+  PRIMARY KEY(id),
+  FOREIGN KEY(utilisateur_id)
+    REFERENCES utilisateurs(id)
+      ON DELETE NO ACTION
+      ON UPDATE NO ACTION
 );
 
 CREATE TABLE utilisateurs (
@@ -44,6 +50,7 @@ CREATE TABLE maisons (
 CREATE TABLE consoles (
   id INT NOT NULL AUTO_INCREMENT,
   maison_id INT UNSIGNED NOT NULL,
+  nom VARCHAR(30) NULL,
   ip VARCHAR(15) NULL,
   version VARCHAR(10) NULL,
   mac VARCHAR(17) NULL,
