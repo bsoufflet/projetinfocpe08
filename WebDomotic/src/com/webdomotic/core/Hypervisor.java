@@ -73,7 +73,7 @@ public class Hypervisor {
     private static String privilegeQuery(String module){
         Map session = ActionContext.getContext().getSession();
         String isadmin = (String)session.get("isadmin");
-        if(isadmin != "true"){
+        if(!isadmin.equals("true")){
             String userid = (String)session.get("userid");
             if(module == "maison" || module == "profil" || module == "regle"){
                 return " WHERE utilisateurs_id = '"+userid+"'";
