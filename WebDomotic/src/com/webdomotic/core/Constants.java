@@ -44,31 +44,33 @@ public interface Constants {
 	final static int FIELD_NAME				=	0;
 	//final static int LABEL				=  	1;
 	final static int TYPE					=	2;
+	final static int EDIT_RIGHT				=	3;
+	final static int VIEW_RIGHT				=	4;
 	
 	
 	/**
 	 * Mapping for columns DB
 	 */
 	final static String[][] g_mapping_DB_col =	{
-							/*Field_name, 		Label, 						Type*/
+							/*Field_name, 		Label, 						Type			edit_right			view_right*/
 		
-							{"nom",				"Nom",						"text"},
-							{"prenom",			"Prénom",					"text"},
-							{"login",			"Nom d'utilisateur",		"text"},
-							{"motdepass",		"Mot de passe",				"password"},
-							{"status",			"Status",					"select"},
-							{"ip",				"IP",						"text"},
-							{"version",			"Version de la console",	"text"},
-							{"mac",				"Adresse MAC",				"text"},
-							{"port",			"Port",						"text"},
-							{"adresse",			"Adresse",					"text"},
-							{"codepostal",		"Code postal",				"text"},
-							{"ville",			"Ville",					"text"},
-							{"description",		"Description",				"text"},
-							{"superficie",		"Superficie",				"text"},
-							{"maison_id",		"Maison",					"object"},
-							{"utilisateur_id",	"Utilisateur",				"object"},
-							{"piece_id",		"Pièce",					"object"},
+							{"nom",				"Nom",						"text",			"true",				"true"},
+							{"prenom",			"Prénom",					"text",			"true",				"true"},
+							{"login",			"Nom d'utilisateur",		"text",			"true",				"true"},
+							{"motdepass",		"Mot de passe",				"password",		"true",				"true"},
+							{"status",			"Status",					"select",		"false",			"true"},
+							{"ip",				"IP",						"text",			"true",				"true"},
+							{"version",			"Version de la console",	"text",			"false",			"false"},
+							{"mac",				"Adresse MAC",				"text",			"false",			"true"},
+							{"port",			"Port",						"text",			"true",				"true"},
+							{"adresse",			"Adresse",					"text",			"true",				"true"},
+							{"codepostal",		"Code postal",				"text",			"true",				"true"},
+							{"ville",			"Ville",					"text",			"true",				"true"},
+							{"description",		"Description",				"text",			"true",				"true"},
+							{"superficie",		"Superficie",				"text",			"true",				"true"},
+							{"maison_id",		"Maison",					"object",		"true",				"true"},
+							{"utilisateur_id",	"Utilisateur",				"object",		"true",				"true"},
+							{"piece_id",		"Pièce",					"object",		"true",				"true"},
 							
 												};
 
