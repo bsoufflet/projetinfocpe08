@@ -54,17 +54,20 @@ public class Hypervisor {
         	where=true;
         }
         query+=privilegeQuery;       
-        if(id!=null && id!=""){
+        if(id!=null && !id.equals("")){
             if(where){
             	query+=" AND id='"+id+"'";
             }else{
             	query+=" WHERE id='"+id+"'";
+            	where=true;
             }
         }
-        if(where){
-        	query+=" AND "+extraWhere;
-        }else{
-        	query+=" WHERE "+extraWhere;
+        if(extraWhere != null && !extraWhere.equals("")){
+	        if(where){
+	        	query+=" AND "+extraWhere;
+	        }else{
+	        	query+=" WHERE "+extraWhere;
+	        }
         }
         
         return query;
@@ -75,13 +78,13 @@ public class Hypervisor {
         String isadmin = (String)session.get("isadmin");
         if(!isadmin.equals("true")){
             String userid = (String)session.get("userid");
-            if(module == "maison" || module == "profil" || module == "regle"){
+            if(module.equals("maison") || module.equals("profil") || module.equals("regle")){
                 return " WHERE utilisateurs_id = '"+userid+"'";
-            }else if(module == "piece" || module == "console"){
+            }else if(module.equals("piece") || module.equals("console")){
                 return "INNER JOIN maisons ON pieces.maisons_id = maisons.id WHERE maisons.utilisateurs_id = '"+userid+"'";
-            }else if(module == "peripherique"){
+            }else if(module.equals("peripherique")){
                 return "INNER JOIN pieces ON peripheriques.pieces_id = pieces.id INNER JOIN maisons ON pieces.maisons_id = maisons.id WHERE maisons.utilisateurs_id = '"+userid+"'";
-            }else if(module == "utilisateur"){
+            }else if(module.equals("utilisateur")){
                 return " WHERE id = '"+userid+"'";
             }else{
                 return "";
