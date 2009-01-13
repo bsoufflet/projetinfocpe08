@@ -30,16 +30,16 @@ public class Login extends ActionSupport {
 			return SUCCESS;
 		}else{
 			System.out.println("login refuse pour "+getUsername());
-			addActionError("Invalid user name or password! Please try again!");
+			addActionError("Mot de passe ou nom d'utilisateur errone!");
 			return ERROR;
 		}
 	}
 	/**
 	 * Retrouve le login et le mot de passe de tous les utilisateurs
 	 */
-	private String[][] retrouverUtilisateurs(){
+	private String[][] retrouverUtilisateur(String utilisateur){
 		ServerDB db = new ServerDB();
-		String [][] result = db.queryDB("SELECT login, motdepasse, id, statut FROM utilisateurs");
+		String [][] result = db.queryDB("SELECT login, motdepasse, id, statut FROM utilisateurs WHERE login='"+utilisateur+"'");
 		db.close();
 		return result;
 	}
@@ -47,24 +47,27 @@ public class Login extends ActionSupport {
 	 * Verifie le login et le mot de passe et retourne true si c'est ok
 	 */
 	private Boolean checkLogin(){
-		String[][] result=retrouverUtilisateurs();
-		for(int i=0; i<result.length-1; i++){
-			if(getUsername().equals(result[i+1][0])){
-				if(toMD5(getPassword()).equals(result[i+1][1])){
-					userid=result[i+1][2];
-					if(result[i+1][3] == "administrateur"){
-						isadmin="true";
-					}else{
-						isadmin="false";
-					}
-					return true;
-				}else{
-					userid="";
-					return false;
-				}
+		String[][] result=retrouverUtilisateur(getUsername());
+		for(int i=0; i<result.length; i++){
+			for(int j=0; j<result[0].length; j++){
+				System.out.print(result[i][j]+"\t");
 			}
+			System.out.println();
 		}
-		return false;
+		System.out.println(toMD5(getPassword()));
+		System.out.println();
+		if(toMD5(getPassword()).equals(result[1][1])){
+			userid=result[1][2];
+			if(result[1][3] == "administrateur"){
+				isadmin="true";
+			}else{
+				isadmin="false";
+			}
+			return true;
+		}else{
+			userid="";
+			return false;
+		}
 	}
 	private String toMD5(String value){
 		try{
