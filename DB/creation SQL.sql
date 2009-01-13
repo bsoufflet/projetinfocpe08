@@ -56,14 +56,14 @@ CREATE TABLE consoles (
 );
 
 CREATE TABLE profils_regles (
-  profils_id INTEGER UNSIGNED NOT NULL,
-  regles_id INTEGER UNSIGNED NOT NULL,
-  PRIMARY KEY(profils_id, regles_id),
-  FOREIGN KEY(profils_id)
+  profil_id INTEGER UNSIGNED NOT NULL,
+  regle_id INTEGER UNSIGNED NOT NULL,
+  PRIMARY KEY(profil_id, regle_id),
+  FOREIGN KEY(profil_id)
     REFERENCES profils(id)
       ON DELETE NO ACTION
       ON UPDATE NO ACTION,
-  FOREIGN KEY(regles_id)
+  FOREIGN KEY(regle_id)
     REFERENCES regles(id)
       ON DELETE NO ACTION
       ON UPDATE NO ACTION
