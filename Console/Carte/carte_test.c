@@ -3,6 +3,8 @@
 //***********************************************************************************
 // Programme qui recoit une connexion avec le serveur par socket et qui lance
 // la sauvegarde dans des fichiers de ce qu'il a recu.
+// Il lance aussi le programme parseur pour que le fichier soit lu et que les
+// données soient envoyées sur la liaison série.
 //***********************************************************************************
 
 #include <stdio.h>
@@ -20,8 +22,10 @@ typedef int bool;
 #define TRUE (1==1)
 #define FALSE (1==0)
 
-int login_ok = 0;
+int login_ok = 1;	// login de base faux
 int i;	// indice pour les boucles for
+FILE *f_test;
+pid_t fils_pid;
 
 //********************************************************************************************
 // fonction de callback qui recoit et envoi les sockets au PC
@@ -31,7 +35,6 @@ int cb (unsigned char msg,SOCKET sock)			//fonction de callback
 	char acc;
 	int taille, frame;
 	char *data;
-	pid_t fils_pid;
 
 	frame = 128; //taille d'une frame socket en reception
 
@@ -39,20 +42,16 @@ int cb (unsigned char msg,SOCKET sock)			//fonction de callback
 	{
 		char mess;
 		int i, frame;
-		FILE *f_test;
+		
 		
 		case 0 : // lors de la connexion initiale
 			
-			//if(CNX_envoi_char(sock,'1'))	//accuse
-			//	return 1;
 			printf("connexion msg = 0\n");
-			
-		
 			break;	// fin de l'initialisation
 
-		case 'l':
-			CNX_recoit(sock, data, 11);
-			if (data[0]=='a' && data[1]=='d' && data[2]=='m' && data[3]=='i' && data[4]=='n' && data[5]==',' && data[6]=='a' && data[7]=='d' && data[8]=='m' && data[9]=='i' && data[10]=='n')
+		case 'l':	// demande de login
+			CNX_recoit (sock, data, 11);
+			if (strcmp (data,"admin,admin")==0)	// =0 sir les 2 chianes soont egales
 			{	
 				// test du login
 				login_ok = 1;
@@ -61,7 +60,7 @@ int cb (unsigned char msg,SOCKET sock)			//fonction de callback
 				// recoit les donnees de la taille precedemment envoyee
 				// mise à jour des fichiers quand ttes les donnees annoncees sont arrivees
 				printf ("dans 'l'\n");
-				f_test=fopen("ordre.txt", "w");
+				f_test=fopen("ordre.txt", "w");	// ouverture du fichier en ecriture
 				CNX_recoit_int (sock, &taille);
 				printf ("taille = %d\n", taille);
 				
@@ -78,12 +77,8 @@ int cb (unsigned char msg,SOCKET sock)			//fonction de callback
 					printf ("%s\n", data);
 					fprintf (f_test, "/s\n", data);
 				}
-				fclose (f_test);*/
+				fclose (f_test);
 
-				CNX_recoit (sock, data, taille);
-				fprintf (f_test,"%s", data);
-				printf ("%s\n", data);
-			//	CNX_envoi (sock, "coucou paul 1234\n", strlen("coucou paul 1234\n"));
 				printf ("apres envoi string\n");
 				fclose (f_test);
 			}
@@ -111,6 +106,7 @@ int cb (unsigned char msg,SOCKET sock)			//fonction de callback
 int main()
 {
 
+	char time[12];	// string pour le temps que l'on recoit dans le fichir pour la synchro
 	while (1)
 	{
 		printf ("init carte\n");
@@ -120,18 +116,41 @@ int main()
 			printf ("erreur serveur\n");
 			return 1;
 		}
-		if (login_ok == 1)
+		if (login_ok == 1)	// si on eu un bon login, on fork et on lance le programme parseur
 		{
 			login_ok = 0;
-			// on lance parsage fichier ici comme ca la deconnexion a eu lieu
-			
-			if (!vfork())	//on est dans le fils
+			// on lance parsage fichier ici comme ca la deconnexion a eu lieu et le vfork ne peut avoir 
+			//lieu dans la callback
+			// il faut lire la premiere ligne du fichier pour synchroniser le temps du PC et le temps de la carte
+			f_test=fopen("ordre.txt", "r");
+			if (f_test == NULL)
 			{
-				execlp ("./parser", "./parser", NULL);
-				_exit (3);
+				printf ("fichier introuvable ou erreur ouverture!!");
 			}
-			wait (NULL);	// le pere attend le fils
-		}
+			else
+			{
+				fscanf(f_test, "%s\n", &time);
+				printf("time lu: %s\n", time);
+				fclose(f_test);
+				
+				
+				if (!vfork())	// dans le fils
+				{
+					printf ("commande date\n");
+					execlp ("date", "date", time, NULL); //on remet le timestamp du PC dans la carte
+					_exit (3);
+				}
+				wait (NULL);	// le pere attend le fils
+				
+				if (!vfork())	//on est dans le fils
+				{
+					execlp ("./parser", "./parser", NULL);
+					_exit (3);
+				}
+				wait (NULL);	// le pere attend le fils
+			}
+		}	
+			// sinon on rebouble sur une attente de connexion
 		
 		printf ("terminate carte\n");
 	}
