@@ -1,27 +1,35 @@
 package com.webdomotic.core;
 
+import java.util.Vector;
+
 public class HypervisorConsole extends Thread {
 	private static ServerDB db;
 	
 	public HypervisorConsole() {
 	}
 	
-	private static String[] construireOrdres(String userid) {
-		String[] t_ordres = null;
-		String[][] t_regles = recupRegles(userid);
+	public static void envoyerOrdres(String userid) {
+		Vector<String> t_ordres = construireOrdres(userid);
+		for(int i=0; i<t_ordres.size(); i++){
+			// Envoi de l'ordre à la carte par la socket.
+			
+			
+		}
+	}
+	
+	private static Vector<String> construireOrdres(String userid) {
+		Vector<String> t_ordres = new Vector<String>();
+		String[][] t_regles = recupererRegles(userid);
 		int index = 0;
 		for(int i=0; i<t_regles.length; i++){
 			// Generation des ordres à partir des regles :
-			t_ordres[index] = t_regles[i][3]; //champs description de la table
+			t_ordres.add(t_regles[i][3]); //champs description de la table
+			index++;
 		}
 		return t_ordres;
 	}
 	
-	public static void envoyerOrdres(String userid) {
-		
-	}
-	
-	private static String[][] recupRegles(String userid){
+	private static String[][] recupererRegles(String userid){
         String query="SELECT * FROM regles WHERE utilisateur_id = '"+userid+"'";
         String [][] result = db.queryDB(query);
         return result;
