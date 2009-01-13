@@ -42,17 +42,45 @@ public class Hypervisor {
 	/**
 	 * Action List
 	 */
-	public static Object[] getDataXML(String module, String action, String id, String extraWhere){
+	public static Object[] getDataJSArray(String module, String action, String id, String extraWhere){
 
 		String query = genQuery(module, action, id, extraWhere);
 		db = new ServerDB();
 		String [][] queryResult = db.queryDB(query);
 		db.close();
 
-		//build XML document
+		//build JSArray
+		StringBuffer js_array = new StringBuffer("[\n");
+		for(int i=1; i<queryResult.length;i++){
+			js_array.append("{");
+			for(int j=0; j<queryResult[0].length; j++){
+				js_array.append(queryResult[0][j]+": ");
+				js_array.append("\'"+queryResult[i][j]+"\', ");
+			}
+			js_array.deleteCharAt(js_array.lastIndexOf(","));
+			js_array.append("},\n");
+			
+		}
+		js_array.deleteCharAt(js_array.lastIndexOf(","));
+		js_array.append("]");
 		
 		
-		return null;
+		
+		//build mapping
+		String [][] mapping = new String[queryResult[0].length][3];
+		//for all the columns
+		for(int i=0; i<queryResult[0].length; i++){
+			mapping[i][0]=queryResult[0][i];
+			mapping[i][1]=getLabel_DB(queryResult[0][i]);
+			mapping[i][2]=getType_DB(queryResult[0][i]);
+		}
+		
+		//map results to returnObject 
+		Object[] returnObject = new Object[2];
+		returnObject[0]=js_array.toString();
+		returnObject[1]=mapping;
+		
+		return returnObject;
 	}
 
     private static String genQuery(String module, String action, String id, String extraWhere){
@@ -83,16 +111,16 @@ public class Hypervisor {
     }
 
     private static String privilegeQuery(String module){
-        Map session = ActionContext.getContext().getSession();
-        String isadmin = (String)session.get("isadmin");
+    	  
+        String isadmin = "false";
         if(!isadmin.equals("true")){
-            String userid = (String)session.get("userid");
+            String userid = "1";
             if(module.equals("maison") || module.equals("profil") || module.equals("regle")){
-                return " WHERE utilisateurs_id = '"+userid+"'";
+                return " WHERE utilisateur_id = '"+userid+"'";
             }else if(module.equals("piece") || module.equals("console")){
-                return "INNER JOIN maisons ON pieces.maisons_id = maisons.id WHERE maisons.utilisateurs_id = '"+userid+"'";
+                return " INNER JOIN maisons ON pieces.maison_id = maisons.id WHERE maisons.utilisateur_id = '"+userid+"'";
             }else if(module.equals("peripherique")){
-                return "INNER JOIN pieces ON peripheriques.pieces_id = pieces.id INNER JOIN maisons ON pieces.maisons_id = maisons.id WHERE maisons.utilisateurs_id = '"+userid+"'";
+                return " INNER JOIN pieces ON peripheriques.piece_id = pieces.id INNER JOIN maisons ON pieces.maison_id = maisons.id WHERE maisons.utilisateur_id = '"+userid+"'";
             }else if(module.equals("utilisateur")){
                 return " WHERE id = '"+userid+"'";
             }else{
