@@ -133,39 +133,39 @@ VALUES (
 
 INSERT INTO `profils` ( `id` , `utilisateur_id` , `nom` , `description` , `statut` )
 VALUES (
-1, 1, 'Vacances', 'profil à suivre pendant les vacances', '0'
+1, 1, 'Vacances', 'profil Ã  suivre pendant les vacances', '0'
 );
 INSERT INTO `profils` ( `id` , `utilisateur_id` , `nom` , `description` , `statut` )
 VALUES (
-2, 1, 'Boulot', 'profil à suivre pendant les journées de travail', '0'
+2, 1, 'Boulot', 'profil Ã  suivre pendant les journÃ©es de travail', '0'
 );
 INSERT INTO `profils` ( `id` , `utilisateur_id` , `nom` , `description` , `statut` )
 VALUES (
-3, 1, 'Week-end', 'profil à suivre pendant les week-end', '0'
+3, 1, 'Week-end', 'profil Ã  suivre pendant les week-end', '0'
 );
 INSERT INTO `profils` ( `id` , `utilisateur_id` , `nom` , `description` , `statut` )
 VALUES (
-4, 2, 'Vacances', 'profil à suivre pendant les vacances', '0'
+4, 2, 'Vacances', 'profil Ã  suivre pendant les vacances', '0'
 );
 INSERT INTO `profils` ( `id` , `utilisateur_id` , `nom` , `description` , `statut` )
 VALUES (
-5, 2, 'Boulot', 'profil à suivre pendant les journées de travail', '0'
+5, 2, 'Boulot', 'profil Ã  suivre pendant les journÃ©es de travail', '0'
 );
 INSERT INTO `profils` ( `id` , `utilisateur_id` , `nom` , `description` , `statut` )
 VALUES (
-6, 2, 'Week-end', 'profil à suivre pendant les week-end', '0'
+6, 2, 'Week-end', 'profil Ã  suivre pendant les week-end', '0'
 );
 INSERT INTO `profils` ( `id` , `utilisateur_id` , `nom` , `description` , `statut` )
 VALUES (
-7, 3, 'Vacances', 'profil à suivre pendant les vacances', '0'
+7, 3, 'Vacances', 'profil Ã  suivre pendant les vacances', '0'
 );
 INSERT INTO `profils` ( `id` , `utilisateur_id` , `nom` , `description` , `statut` )
 VALUES (
-8, 3, 'Boulot', 'profil à suivre pendant les journées de travail', '0'
+8, 3, 'Boulot', 'profil Ã  suivre pendant les journÃ©es de travail', '0'
 );
 INSERT INTO `profils` ( `id` , `utilisateur_id` , `nom` , `description` , `statut` )
 VALUES (
-9, 3, 'Week-end', 'profil à suivre pendant les week-end', '0'
+9, 3, 'Week-end', 'profil Ã  suivre pendant les week-end', '0'
 );
 
 
