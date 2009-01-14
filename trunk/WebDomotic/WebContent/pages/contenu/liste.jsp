@@ -10,9 +10,10 @@
 	var myColumnDefs = [
 	//<s:iterator value="columnDefs" status="cust_stat">
 		//<s:if test='(top[3] != null && !top[3].equals("false")) || top[3] == null'>
+		//<s:if test='!top[0].equals("motdepasse")'>
 		{	
 			key:'<s:property value="top[0]"/>' 
-			,label:'<s:property value="top[1]"/>'
+			,label:"<s:property value="top[1]"/>"
 		    ,sortable:true
 			//<s:if test='top[2] != null'>
 				//<s:if test='top[2].equals("number")'>
@@ -31,6 +32,7 @@
 			//<s:else>
 			//</s:else>
 		},
+		//</s:if>
 		//</s:if>
 	//</s:iterator>
 		{

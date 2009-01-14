@@ -3,7 +3,12 @@
 <s:actionerror />
 <jsp:include page="/pages/button/detailBtn.jsp" />
 <s:form id="frm_edition" name="frm_edition" theme="ajax" action="save" method="POST" validate="true">
-	
+	<tr>
+		<td colspan="2">
+		<s:actionerror />
+		<s:fielderror />
+		</td>
+	</tr>
 	<s:hidden name="selectedModule" value="%{selectedModule}"/>
 	
 	<s:iterator value="fieldToDisplay">
