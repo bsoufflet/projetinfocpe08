@@ -7,6 +7,9 @@ public class EditionDetail extends Vue {
 	
 	public String execute() throws Exception {
 		System.out.println("EditionDetail Action - module:" + selectedModule);
+		if(selectedModule.equals("compte") && !isAdmin.equals("true")){
+			selectedId=userId;
+		}
 		if(selectedId != null && !selectedId.equals("")){
 			fieldToDisplay=Hypervisor.getDataArray(selectedModule, selectedAction, selectedId, "");
 		}else{

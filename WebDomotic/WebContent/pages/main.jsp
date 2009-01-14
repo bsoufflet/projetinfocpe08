@@ -18,7 +18,7 @@
 	</head>
 	<body class=" yui-skin-sam">
 		<s:url id="enteteurl" value="/pages/entete.jsp" />
-		<s:url id="menuurl" value="/pages/menu.jsp" />
+		<s:url id="menuurl" action="menu" />
 		<s:url id="vueurl" action="vue" />
 		
 		<s:div id="entete" theme="ajax" href="%{enteteurl}"></s:div>

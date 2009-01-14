@@ -19,6 +19,9 @@
 		<action name="vue" class="com.webdomotic.actions.Vue">
 			<result>/pages/vue.jsp</result>
 		</action>
+		<action name="menu" class="com.webdomotic.actions.Vue">
+			<result>/pages/menu.jsp</result>
+		</action>
 		<action name="liste" class="com.webdomotic.actions.Liste">
 			<result>/pages/contenu/liste.jsp</result>
 		</action>
