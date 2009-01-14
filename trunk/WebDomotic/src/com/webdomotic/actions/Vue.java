@@ -2,14 +2,11 @@ package com.webdomotic.actions;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-/**
- * <p>
- * 
- * </p>
- */
+
 public class Vue extends ActionSupport {
 	protected String selectedModule;
 	protected String selectedAction;
+	
 	public String execute() throws Exception {
 		System.out.println("Vue - module:" + selectedModule + " - action:" + selectedAction);
 		if(selectedModule==null || selectedModule.equals("")){
