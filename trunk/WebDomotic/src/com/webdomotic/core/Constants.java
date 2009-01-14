@@ -59,7 +59,7 @@ public interface Constants {
 							{"nom",				"Nom",						"text",				"true",				"true"},
 							{"prenom",			"Prénom",					"text",				"true",				"true"},
 							{"login",			"Nom d'utilisateur",		"text",				"true",				"true"},
-							{"motdepass",		"Mot de passe",				"password",			"true",				"true"},
+							{"motdepasse",		"Mot de passe",				"password",			"true",				"true"},
 							{"statut",			"Statut",					"select",			"false",			"true"},
 							{"etat",			"Etat",						"bool",				"true",				"true"},
 							{"ip",				"IP",						"text",				"true",				"true"},
