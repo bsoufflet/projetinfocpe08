@@ -63,8 +63,8 @@ if (typeof(WEBDOMOTIC) == "undefined") {
 			}
 		},
 		customObjectURLFormatter: function(elLiner, oRecord, oColumn, oData){
-        	var id = oData; 
-        	elLiner.innerHTML = "<a href=\"/WebDomotic/detail.action?id=" + id + "&module="+oColumn.extra.replace('object_','')+"\">" + id + "</a>";
+        	var id = oData;
+        	elLiner.innerHTML = "<a href=\"javascript:document.getElementById('selectedId').value = '"+id+"';webdomotic.montrer_vue('"+oColumn.extra.replace('object_','')+"', 'detail');\">" + id + "</a>";
 		}
 	};
 }
