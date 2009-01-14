@@ -33,7 +33,8 @@ public final class ServerDB{
 		/**
 		 * Query typical select command
 		 */
-		public String[][] queryDB(String query){	  
+		public String[][] queryDB(String query){
+				System.out.println("QUERY: "+query);
 				try {
 					Statement st = DBconnector.createStatement();
 					ResultSet rs = st.executeQuery(query);
