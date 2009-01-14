@@ -45,7 +45,7 @@ public class Login extends ActionSupport {
 	 */
 	private Boolean checkLogin(){
 		String[][] result=retrouverUtilisateur(getUsername());
-		if(toMD5(getPassword()).equals(result[1][1])){
+		if((result.length>1) && toMD5(getPassword()).equals(result[1][1])){
 			userid=result[1][2];
 			if(result[1][3].equals("administrateur")){
 				isadmin="true";
