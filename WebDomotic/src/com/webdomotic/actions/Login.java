@@ -47,7 +47,7 @@ public class Login extends ActionSupport {
 		String[][] result=retrouverUtilisateur(getUsername());
 		if(toMD5(getPassword()).equals(result[1][1])){
 			userid=result[1][2];
-			if(result[1][3] == "administrateur"){
+			if(result[1][3].equals("administrateur")){
 				isadmin="true";
 			}else{
 				isadmin="false";
@@ -65,7 +65,7 @@ public class Login extends ActionSupport {
 		    return toHex(m.digest());
 		}catch(Exception e){
 			e.printStackTrace();
-			addActionError("Java error in toMD5.");
+			addActionError("Erreur Java dans toMD5.");
 			return "";
 		}
 	}

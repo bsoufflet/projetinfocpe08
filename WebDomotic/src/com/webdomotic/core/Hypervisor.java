@@ -69,7 +69,8 @@ public class Hypervisor {
 			returnObject[0]=js_array.toString();
 		}
 		else{
-			returnObject[0]=null;
+			System.err.println("getDataJSArray: Pas de donnees retournee.");
+			returnObject[0]="";
 		}
 
 		if(queryResult[0].length>0){
@@ -83,6 +84,7 @@ public class Hypervisor {
 			}
 			returnObject[1]=mapping;
 		}else{
+			System.err.println("getDataJSArray: Pas de Header de colonne retourne.");
 			returnObject[1]=null;
 		}
 
