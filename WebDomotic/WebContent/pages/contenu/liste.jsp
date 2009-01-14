@@ -9,40 +9,43 @@
 	//</s:else>
 	var myColumnDefs = [
 	//<s:iterator value="columnDefs" status="cust_stat">
+		//<s:if test='(top[3] != null && !top[3].equals("false")) || top[3] == null'>
 		{	
 			key:'<s:property value="top[0]"/>' 
 			,label:'<s:property value="top[1]"/>'
 		    ,sortable:true
-			//<s:if test='top[0].equals("name")'>
-				
-			//</s:if>
-			//<s:elseif test='top[2] != null'>
+			//<s:if test='top[2] != null'>
 				//<s:if test='top[2].equals("number")'>
 					,formatter:"number"
 				//</s:if>
-				//<s:elseif test='top[2].equals("select")'>
+				//<s:elseif test='top[2].equals("bool")'>
 					,formatter:"customEtat"
 				//</s:elseif>
 				//<s:elseif test='top[2].contains("object_")'>
 					,formatter:"customObjectURL"
+					,extra:'<s:property value="top[2]"/>'
 				//</s:elseif>
 				//<s:else>
-					
 				//</s:else>
-			//</s:elseif>
+			//</s:if>
 			//<s:else>
-					
 			//</s:else>
 		},
+		//</s:if>
 	//</s:iterator>
 		{
+			key:"detail_button",
+			label:"",
+			formatter:YAHOO.widget.DataTable.formatButton
+		},
+		{
 			key:"edit_button",
-			label:"Edition",
+			label:"",
 			formatter:YAHOO.widget.DataTable.formatButton
 		},
 		{
 			key:"delete_button",
-			label:"Supprimer",
+			label:"",
 			formatter:YAHOO.widget.DataTable.formatButton
 		}
 	];
@@ -50,11 +53,11 @@
 		resultsList : "results",
 		fields : [
 			//<s:iterator value="columnDefs" status="cust_stat">
-				{ key:'<s:property value="top[0]"/>' }
-				//<s:if test="!#cust_stat.last">
-				,
-				//</s:if>
+				{ key:'<s:property value="top[0]"/>' },
 			//</s:iterator>
+			{ key:'detail_button' },
+			{ key:'edit_button' },
+			{ key:'delete_button' }
 		]
 	};
 	webdomotic.buildYUIDataTable(myColumnDefs,responseSchema,dataJSArray);
