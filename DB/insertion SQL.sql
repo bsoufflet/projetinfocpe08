@@ -226,22 +226,38 @@ VALUES(
 );
 INSERT INTO `profils_regles` (`profil_id`, `regle_id`) 
 VALUES(
-4, 2
+4, 4
 );
 INSERT INTO `profils_regles` (`profil_id`, `regle_id`) 
 VALUES(
-5, 3
+5, 4
 );
 INSERT INTO `profils_regles` (`profil_id`, `regle_id`) 
 VALUES(
-6, 1
+6, 5
 );
 INSERT INTO `profils_regles` (`profil_id`, `regle_id`) 
 VALUES(
-6, 2
+6, 6
 );
 INSERT INTO `profils_regles` (`profil_id`, `regle_id`) 
 VALUES(
 1, 3
+);
+INSERT INTO `profils_regles` (`profil_id`, `regle_id`) 
+VALUES(
+7, 7
+);
+INSERT INTO `profils_regles` (`profil_id`, `regle_id`) 
+VALUES(
+8, 8
+);
+INSERT INTO `profils_regles` (`profil_id`, `regle_id`) 
+VALUES(
+9, 9
+);
+INSERT INTO `profils_regles` (`profil_id`, `regle_id`) 
+VALUES(
+9, 7
 );
  
