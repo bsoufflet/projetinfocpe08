@@ -61,6 +61,7 @@ public interface Constants {
 							{"login",			"Nom d'utilisateur",		"text",				"true",				"true"},
 							{"motdepass",		"Mot de passe",				"password",			"true",				"true"},
 							{"statut",			"Statut",					"select",			"false",			"true"},
+							{"etat",			"Etat",						"bool",				"true",				"true"},
 							{"ip",				"IP",						"text",				"true",				"true"},
 							{"version",			"Version de la console",	"text",				"false",			"false"},
 							{"mac",				"Adresse MAC",				"text",				"false",			"true"},
@@ -71,7 +72,7 @@ public interface Constants {
 							{"description",		"Description",				"text",				"true",				"true"},
 							{"superficie",		"Superficie",				"text",				"true",				"true"},
 							{"maison_id",		"Maison",					"object_maison",	"true",				"true"},
-							{"utilisateur_id",	"Utilisateur",				"object_utilisateur","true",			"true"},
+							{"utilisateur_id",	"Utilisateur",				"object_compte",	"true",				"false"},
 							{"piece_id",		"Pièce",					"object_piece",		"true",				"true"},
 							
 												};
