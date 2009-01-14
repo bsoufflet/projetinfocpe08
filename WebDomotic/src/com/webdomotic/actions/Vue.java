@@ -1,13 +1,18 @@
 package com.webdomotic.actions;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+import com.webdomotic.core.Hypervisor;
 
 
 public class Vue extends ActionSupport {
 	
 	protected String selectedModule;
+	protected String selectedModuleLabel;
 	protected String selectedAction;
 	protected String selectedId;
+	protected String isAdmin;
+	protected String userId;
 	
 	public String execute() throws Exception {
 		System.out.println("Vue - module:" + selectedModule + " - action:" + selectedAction);
@@ -27,6 +32,12 @@ public class Vue extends ActionSupport {
 	}  
 	public void setSelectedModule(String selectedModule) {
 		this.selectedModule = selectedModule;
+	}
+	public String getSelectedModuleLabel() {
+		return Hypervisor.getLabel_mod(selectedModule);
+	}  
+	public void setSelectedModuleLabel(String selectedModuleLabel) {
+		this.selectedModuleLabel = selectedModuleLabel;
 	} 
 	public String getSelectedAction() {
 		return selectedAction;
@@ -39,5 +50,17 @@ public class Vue extends ActionSupport {
 	}
 	public String getSelectedId(){
 		return selectedId;
+	}
+	public void setIsAdmin(String isAdmin){
+		this.isAdmin=(String)ActionContext.getContext().getSession().get("isadmin");
+	}
+	public String getIsAdmin(){
+		return (String)ActionContext.getContext().getSession().get("isadmin");
+	}
+	public void setUserId(String userId){
+		this.userId=(String)ActionContext.getContext().getSession().get("userid");
+	}
+	public String getUserId(){
+		return (String)ActionContext.getContext().getSession().get("userid");
 	}
 }
