@@ -9,4 +9,5 @@
 <s:form id="frm_menu" name="frm_menu">
 	<s:hidden name="selectedModule" id="selectedModule"/>
 	<s:hidden name="selectedAction" id="selectedAction"/>
+	<s:hidden name="selectedId" id="selectedId"/>
 </s:form>

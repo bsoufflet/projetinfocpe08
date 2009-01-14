@@ -43,7 +43,8 @@ public class Hypervisor {
 	 * Action List
 	 */
 	public static Object[] getDataJSArray(String module, String action, String id, String extraWhere){
-
+		Map session = ActionContext.getContext().getSession();
+		String isadmin = (String)session.get("isadmin");
 		String query = genQuery(module, action, id, extraWhere);
 		db = new ServerDB();
 		String [][] queryResult = db.queryDB(query);
@@ -59,7 +60,10 @@ public class Hypervisor {
 					js_array.append(queryResult[0][j]+": ");
 					js_array.append("\'"+queryResult[i][j]+"\', ");
 				}
-				js_array.deleteCharAt(js_array.lastIndexOf(","));
+				js_array.append("edit_button: \'Edition\', ");
+				js_array.append("detail_button: \'Detail\', ");
+				js_array.append("delete_button: \'Supprimer\' ");
+				//js_array.deleteCharAt(js_array.lastIndexOf(","));
 				js_array.append("},");
 
 			}
@@ -75,12 +79,17 @@ public class Hypervisor {
 
 		if(queryResult[0].length>0){
 			//build mapping
-			String [][] mapping = new String[queryResult[0].length][3];
+			String [][] mapping = new String[queryResult[0].length][4];
 			//for all the columns
 			for(int i=0; i<queryResult[0].length; i++){
 				mapping[i][0]=queryResult[0][i];
 				mapping[i][1]=getLabel_DB(queryResult[0][i]);
 				mapping[i][2]=getType_DB(queryResult[0][i]);
+				if(!isadmin.equals("true")){
+					mapping[i][3]=getViewRight_DB(queryResult[0][i]);
+				}else{
+					mapping[i][3]="true";
+				}
 			}
 			returnObject[1]=mapping;
 		}else{

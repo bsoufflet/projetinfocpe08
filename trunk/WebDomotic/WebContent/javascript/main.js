@@ -22,12 +22,27 @@ if (typeof(WEBDOMOTIC) == "undefined") {
 			myDataSource.responseType = YAHOO.util.DataSource.TYPE_JSARRAY;
 			myDataSource.connXhrMode = "queueRequests";
 			myDataSource.responseSchema = responseSchema;
-			var myDataTable = new YAHOO.widget.DataTable("ListeDiv", myColumnDefs, myDataSource);
+			this.myDataTable = new YAHOO.widget.DataTable("ListeDiv", myColumnDefs, myDataSource);
 			
-			myDataTable.subscribe("buttonClickEvent", 
-			function(oArgs){ 
-				var oRecord = this.getRecord(oArgs.target); 
-				alert(YAHOO.lang.dump(oRecord.getData())); 
+			this.myDataTable.subscribe("buttonClickEvent", 
+			function(oArgs){
+				var button = oArgs.target.innerHTML;
+				var oRecord = this.getRecord(oArgs.target);
+				if(typeof(oRecord._oData.id)!="undefined" && oRecord._oData.id != ""){
+					document.getElementById('selectedId').value = oRecord._oData.id;
+					if(button == "Detail"){
+						webdomotic.montrer_vue('', 'detail');
+					}else if(button == "Edition"){
+						webdomotic.montrer_vue('', 'edition');
+					}else if(button == "Supprimer"){
+						webdomotic.montrer_vue('', 'supprimer');
+					}else{
+						document.getElementById('selectedId').value = "";
+						alert('main.js-buildYUIDataTable : le nom du bouton est inconnu!!');
+					}
+				}else{
+					alert('main.js-buildYUIDataTable : Pas d ID disponible!!');
+				}
 			});
 		},
 		/*
@@ -49,9 +64,8 @@ if (typeof(WEBDOMOTIC) == "undefined") {
 		},
 		customObjectURLFormatter: function(elLiner, oRecord, oColumn, oData){
         	var id = oData; 
-        	elLiner.innerHTML = "<a href=\"/WebDomotic/detail.action?id=" + id + "&module="+id+"\">" + id + "</a>";
+        	elLiner.innerHTML = "<a href=\"/WebDomotic/detail.action?id=" + id + "&module="+oColumn.extra.replace('object_','')+"\">" + id + "</a>";
 		}
-
 	};
 }
 webdomotic = new WEBDOMOTIC();
