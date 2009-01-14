@@ -124,3 +124,9 @@ div.list:hover{
 }
 .textfield{
 }
+.yui-skin-sam .yui-dt tbody td.up {
+	background-color: #efe;
+}
+.yui-skin-sam .yui-dt tbody td.down {
+	background-color: #fee;
+}
