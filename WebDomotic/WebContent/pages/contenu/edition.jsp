@@ -3,7 +3,6 @@
 <s:actionerror />
 <jsp:include page="/pages/button/detailBtn.jsp" />
 <s:form id="frm_edition" name="frm_edition" theme="ajax" action="save" method="POST" validate="true">
-	<jsp:include page="/pages/button/saveBtn.jsp" />
 	
 	<s:hidden name="selectedModule" value="%{selectedModule}"/>
 	
