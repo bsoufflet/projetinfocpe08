@@ -36,7 +36,7 @@ int cb (unsigned char msg,SOCKET sock)			//fonction de callback
 	int taille, frame;
 	char *data;
 
-	frame = 128; //taille d'une frame socket en reception
+	frame = 64; //taille d'une frame socket en reception
 
 	switch (msg)
 	{
@@ -49,43 +49,55 @@ int cb (unsigned char msg,SOCKET sock)			//fonction de callback
 			printf("connexion msg = 0\n");
 			break;	// fin de l'initialisation
 
-		case 'l':	// demande de login
-			CNX_recoit (sock, data, 11);
-			if (strcmp (data,"admin,admin")==0)	// =0 sir les 2 chianes soont egales
-			{	
+		case 'd':	// demande de login
+		//	CNX_recoit (sock, data, 11);
+		//	if (strcmp (data,"admin,admin")==0)	// =0 si les 2 chaines sont egales
+		//	{	
 				// test du login
 				login_ok = 1;
-				CNX_envoi(sock, "ok", 2);
+			//	CNX_envoi(sock, "ok", 2);
 				// recoit d'abord la taille des donnees a recevoir
 				// recoit les donnees de la taille precedemment envoyee
 				// mise à jour des fichiers quand ttes les donnees annoncees sont arrivees
-				printf ("dans 'l'\n");
+				printf ("dans 'd'\n");
 				f_test=fopen("ordre.txt", "w");	// ouverture du fichier en ecriture
 				CNX_recoit_int (sock, &taille);
 				printf ("taille = %d\n", taille);
 				
 				// decouper la taille en plusieurs frame
-				for (i=taille; i==i%frame; i= i-frame)
+				if (taille >= frame)
 				{
-					CNX_recoit (sock, data, frame);
-					printf ("%s\n", data);
-					fprintf (f_test, "/s\n", data);
+					for (i=taille; i==i%frame; i= i-frame)
+					{
+						CNX_recoit (sock, data, frame);
+						printf ("%s\n", data);
+						fprintf (f_test, "%s\n", data);
+						CNX_envoi (sock, "ok", 2);
+					}
+					if (i!=0)
+					{
+						CNX_recoit (sock, data, i);
+						printf ("%s\n", data);
+						fprintf (f_test, "%s\n", data);
+						CNX_envoi (sock, "ok", 2);
+					}
 				}
-				if (i!=0)
+				else
 				{
-					CNX_recoit (sock, data, i);
+					CNX_recoit (sock, data, taille);
 					printf ("%s\n", data);
-					fprintf (f_test, "/s\n", data);
+					fprintf (f_test, "%s\n", data);
+					CNX_envoi (sock, "ok", 2);
 				}
 				fclose (f_test);
 
 				printf ("apres envoi string\n");
 				fclose (f_test);
-			}
-			else	//probleme de login
+		//	}
+		/*	else	//probleme de login
 			{
 				CNX_envoi (sock, "wrong", 5);
-			}
+			}*/
 			break;
 
 		case 255 :		// message de fin de connexion
@@ -109,7 +121,7 @@ int main()
 	char time[12];	// string pour le temps que l'on recoit dans le fichir pour la synchro
 	while (1)
 	{
-		printf ("init carte\n");
+		printf ("init carte - attente connexion\n");
 
 		if (CNX_serveur(2000,cb))					//port 2000 et callback
 		{
@@ -122,7 +134,7 @@ int main()
 			// on lance parsage fichier ici comme ca la deconnexion a eu lieu et le vfork ne peut avoir 
 			//lieu dans la callback
 			// il faut lire la premiere ligne du fichier pour synchroniser le temps du PC et le temps de la carte
-			f_test=fopen("ordre.txt", "r");
+			f_test=fopen("ordres.txt", "r");
 			if (f_test == NULL)
 			{
 				printf ("fichier introuvable ou erreur ouverture!!");
@@ -150,9 +162,7 @@ int main()
 				wait (NULL);	// le pere attend le fils
 			}
 		}	
-			// sinon on rebouble sur une attente de connexion
-		
-		printf ("terminate carte\n");
+		printf ("connexion carte terminee\n");
 	}
 	return 0;
 }
