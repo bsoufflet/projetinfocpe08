@@ -62,5 +62,5 @@
 	};
 	webdomotic.buildYUIDataTable(myColumnDefs,responseSchema,dataJSArray);
 </script>
-
+<jsp:include page="/pages/button/nouveauBtn.jsp" /><br>
 <div id="ListeDiv"></div>
