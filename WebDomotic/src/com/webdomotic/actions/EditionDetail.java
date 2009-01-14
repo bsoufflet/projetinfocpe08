@@ -4,14 +4,13 @@ import com.webdomotic.core.*;
 public class EditionDetail extends Vue {
 	
 	private String[][] fieldToDisplay;
-	private String selectedId;
 	
 	public String execute() throws Exception {
 		System.out.println("EditionDetail Action - module:" + selectedModule);
-		if(selectedId != null && selectedId != ""){
+		if(selectedId != null && !selectedId.equals("")){
 			fieldToDisplay=Hypervisor.getDataArray(selectedModule, selectedAction, selectedId, "");
 		}else{
-			addActionError("Pas de ID");
+			addActionError("Pas de ID et ce n'est pas une creation!");
 			return ERROR;
 		}
 		return SUCCESS;
@@ -21,11 +20,5 @@ public class EditionDetail extends Vue {
 	}
 	public String[][] getFieldToDisplay(){
 		return fieldToDisplay;
-	}
-	public void setSelectedId(String selectedId){
-		this.selectedId=selectedId;
-	}
-	public String getSelectedId(){
-		return selectedId;
 	}
 }

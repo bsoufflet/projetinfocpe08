@@ -4,8 +4,10 @@ import com.opensymphony.xwork2.ActionSupport;
 
 
 public class Vue extends ActionSupport {
+	
 	protected String selectedModule;
 	protected String selectedAction;
+	protected String selectedId;
 	
 	public String execute() throws Exception {
 		System.out.println("Vue - module:" + selectedModule + " - action:" + selectedAction);
@@ -31,5 +33,11 @@ public class Vue extends ActionSupport {
 	}
 	public void setSelectedAction(String selectedAction) {
 		this.selectedAction = selectedAction;
+	}
+	public void setSelectedId(String selectedId){
+		this.selectedId=selectedId;
+	}
+	public String getSelectedId(){
+		return selectedId;
 	}
 }
