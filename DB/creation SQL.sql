@@ -25,7 +25,7 @@ CREATE TABLE profils (
   utilisateur_id INT UNSIGNED NOT NULL,
   nom VARCHAR(10) NULL,
   description VARCHAR(60) NULL,
-  statut INTEGER UNSIGNED NULL,
+  etat INTEGER UNSIGNED NULL,
   PRIMARY KEY(id),
   FOREIGN KEY(utilisateur_id)
     REFERENCES utilisateurs(id)

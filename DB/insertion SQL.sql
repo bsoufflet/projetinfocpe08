@@ -131,39 +131,39 @@ VALUES (
 
 /* INSERTION DANS LA TABLE PROFILS */
 
-INSERT INTO `profils` ( `id` , `utilisateur_id` , `nom` , `description` , `statut` )
+INSERT INTO `profils` ( `id` , `utilisateur_id` , `nom` , `description` , `etat` )
 VALUES (
 1, 1, 'Vacances', 'profil à suivre pendant les vacances', '0'
 );
-INSERT INTO `profils` ( `id` , `utilisateur_id` , `nom` , `description` , `statut` )
+INSERT INTO `profils` ( `id` , `utilisateur_id` , `nom` , `description` , `etat` )
 VALUES (
 2, 1, 'Boulot', 'profil à suivre pendant les journées de travail', '0'
 );
-INSERT INTO `profils` ( `id` , `utilisateur_id` , `nom` , `description` , `statut` )
+INSERT INTO `profils` ( `id` , `utilisateur_id` , `nom` , `description` , `etat` )
 VALUES (
 3, 1, 'Week-end', 'profil à suivre pendant les week-end', '0'
 );
-INSERT INTO `profils` ( `id` , `utilisateur_id` , `nom` , `description` , `statut` )
+INSERT INTO `profils` ( `id` , `utilisateur_id` , `nom` , `description` , `etat` )
 VALUES (
 4, 2, 'Vacances', 'profil à suivre pendant les vacances', '0'
 );
-INSERT INTO `profils` ( `id` , `utilisateur_id` , `nom` , `description` , `statut` )
+INSERT INTO `profils` ( `id` , `utilisateur_id` , `nom` , `description` , `etat` )
 VALUES (
 5, 2, 'Boulot', 'profil à suivre pendant les journées de travail', '0'
 );
-INSERT INTO `profils` ( `id` , `utilisateur_id` , `nom` , `description` , `statut` )
+INSERT INTO `profils` ( `id` , `utilisateur_id` , `nom` , `description` , `etat` )
 VALUES (
 6, 2, 'Week-end', 'profil à suivre pendant les week-end', '0'
 );
-INSERT INTO `profils` ( `id` , `utilisateur_id` , `nom` , `description` , `statut` )
+INSERT INTO `profils` ( `id` , `utilisateur_id` , `nom` , `description` , `etat` )
 VALUES (
 7, 3, 'Vacances', 'profil à suivre pendant les vacances', '0'
 );
-INSERT INTO `profils` ( `id` , `utilisateur_id` , `nom` , `description` , `statut` )
+INSERT INTO `profils` ( `id` , `utilisateur_id` , `nom` , `description` , `etat` )
 VALUES (
 8, 3, 'Boulot', 'profil à suivre pendant les journées de travail', '0'
 );
-INSERT INTO `profils` ( `id` , `utilisateur_id` , `nom` , `description` , `statut` )
+INSERT INTO `profils` ( `id` , `utilisateur_id` , `nom` , `description` , `etat` )
 VALUES (
 9, 3, 'Week-end', 'profil à suivre pendant les week-end', '0'
 );
