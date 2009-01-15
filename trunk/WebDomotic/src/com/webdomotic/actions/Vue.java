@@ -24,7 +24,6 @@ public class Vue extends ActionSupport {
 			System.out.println("default to liste action");
 			selectedAction="liste";
 		}
-		
 		return SUCCESS;
 	}
 	public String supprimer() {

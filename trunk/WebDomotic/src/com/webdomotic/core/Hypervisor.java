@@ -7,18 +7,18 @@ import com.opensymphony.xwork2.ActionContext;
 public class Hypervisor {
 	private static ServerDB db;
 
-
 	public Hypervisor() {
 	}
 	/**
 	 * Action Edition et Detail
 	 */
-	public static String[][] getDataArray(String module, String action, String id, String extraWhere){
+	public static String[][] getDataArray(String module, String id, String extraWhere){
 
-		String query = genQuery(module, action, id, extraWhere);
+		String query = genQuery(module, id, extraWhere);
 		db = new ServerDB();
 		String [][] queryResult = db.queryDB(query);
 		db.close();
+		//if query is null only have the columns, used by "nouveau"
 		if(queryResult.length==1){
 			String[][] returnArray = new String[queryResult[0].length][5];
 			for(int j=0; j<queryResult[0].length; j++){
@@ -47,13 +47,13 @@ public class Hypervisor {
 	}
 
 	/**
-	 * Retourn un tableau d'objet contenant un string formate en JS Array pour YUI et un tableau 2D
+	 * Retourne un tableau d'objet contenant un string formate en JS Array pour YUI et un tableau 2D
 	 * contenant le nom, le label, le type et le view right.
 	 * 
-	 * Utiliser par Liste.java
+	 * Utilise par Liste.java
 	 */
-	public static Object[] getDataJSArray(String module, String action, String id, String extraWhere){
-		String query = genQuery(module, action, id, extraWhere);
+	public static Object[] getDataJSArray(String module, String id, String extraWhere){
+		String query = genQuery(module, id, extraWhere);
 		db = new ServerDB();
 		String [][] queryResult = db.queryDB(query);
 		db.close();
@@ -104,10 +104,19 @@ public class Hypervisor {
 			System.err.println("getDataJSArray: Pas de Header de colonne retourne.");
 			returnObject[1]=null;
 		}
-
-
 		return returnObject;
 	}
+	
+	
+	public static boolean saveQuery(Map response,String module){
+		
+		//response.
+		
+		
+		return false;
+	}
+	
+	
 	public static Boolean deleteRow(String id, String module){
 		if(!isOwner(id, module)){
 			return false;
@@ -125,7 +134,7 @@ public class Hypervisor {
 		if(isAdmin()){
 			return true;
 		}
-		String query=genQuery(module, "", id, "");
+		String query=genQuery(module, id, "");
 		db = new ServerDB();
 		String [][] queryResult = db.queryDB(query);
 		db.close();
@@ -143,7 +152,7 @@ public class Hypervisor {
 		return false;
 	}
 
-	private static String genQuery(String module, String action, String id, String extraWhere){
+	private static String genQuery(String module, String id, String extraWhere){
 		boolean where=false;
 		String query="SELECT "+getDBTableName_mod(module)+".* FROM "+getDBTableName_mod(module);
 		String privilegeQuery=privilegeQuery(module);
@@ -166,7 +175,6 @@ public class Hypervisor {
 				query+=" WHERE "+extraWhere;
 			}
 		}
-
 		return query;
 	}
 
