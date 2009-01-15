@@ -10,7 +10,7 @@
 			<s:hidden cssClass="textfield" name="%{top[0]}" label="%{top[2]}" value="%{top[1]}" />		
 		</s:if>
 		<s:elseif test='top[0].equals("motdepasse")'>
-			<s:password cssClass="label" name="%{top[0]}" label="%{top[2]}" value="%{top[1]}" showPassword="true" readonly="true"/>
+			<s:password cssClass="label" name="%{top[0]}" label="%{top[2]}" value="*****" showPassword="true" disabled="true"/>
 		</s:elseif>
 		<s:elseif test='top[0].equals("etat")'>
 			<s:if test='top[1].equals("1")'>
