@@ -2,7 +2,7 @@
 <jsp:include page="/pages/loginCheck.jsp" />
 <s:actionerror />
 <jsp:include page="/pages/button/detailBtn.jsp" />
-<s:form id="frm_edition" name="frm_edition" theme="ajax" action="save" method="POST" validate="true" target="document.getElementById('vue')" >
+<s:form id="frm_edition" name="frm_edition" theme="ajax" action="save" method="POST" validate="true" >
 	<tr>
 		<td colspan="2">
 		<s:actionerror />
@@ -41,7 +41,6 @@
 			<s:hidden name="%{top[0]}" value="%{top[1]}"/>
 		</s:elseif>
 	</s:iterator>
-
 
 	<jsp:include page="/pages/button/saveBtn.jsp" />
 </s:form>
