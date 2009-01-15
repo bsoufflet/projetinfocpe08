@@ -1,4 +1,6 @@
 package com.webdomotic.actions;
+
+import com.opensymphony.xwork2.ActionContext;
 import com.webdomotic.core.*;
 
 public class EditionDetail extends Vue {
@@ -18,6 +20,18 @@ public class EditionDetail extends Vue {
 		}
 		return SUCCESS;
 	}
+	
+	public String saveToDB(){
+		System.out.println("Action: Save");
+		if(Hypervisor.saveQuery(ActionContext.getContext().getParameters()))
+			return SUCCESS;
+		else{
+			addActionError("Erreur dans la sauvegarde");
+			return ERROR;
+		}
+	}
+	
+	
 	public void setFieldToDisplay(String[][] fieldToDisplay){
 		this.fieldToDisplay=fieldToDisplay;
 	}
