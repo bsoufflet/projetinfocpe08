@@ -2,7 +2,7 @@
 <jsp:include page="/pages/loginCheck.jsp" />
 <s:actionerror />
 <jsp:include page="/pages/button/detailBtn.jsp" />
-<s:form id="frm_edition" name="frm_edition" theme="ajax" action="save" method="POST" validate="true">
+<s:form id="frm_edition" name="frm_edition" theme="ajax" action="save" method="POST" validate="true" target="document.getElementById('vue')" >
 	<tr>
 		<td colspan="2">
 		<s:actionerror />
