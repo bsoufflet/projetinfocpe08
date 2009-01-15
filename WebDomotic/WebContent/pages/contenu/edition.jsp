@@ -1,7 +1,12 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <jsp:include page="/pages/loginCheck.jsp" />
 <s:actionerror />
-<jsp:include page="/pages/button/detailBtn.jsp" />
+<s:if test='selectedId.equals("0")'><!-- Cas : creation d'un nouveau donc pas de detail. -->
+	<jsp:include page="/pages/button/annulerBtn.jsp" />
+</s:if>
+<s:else>
+	<jsp:include page="/pages/button/detailBtn.jsp" />
+</s:else>
 <s:form id="frm_edition" name="frm_edition" theme="ajax" action="save" method="POST" validate="true" >
 	<tr>
 		<td colspan="2">
