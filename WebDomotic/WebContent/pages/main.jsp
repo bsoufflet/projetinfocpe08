@@ -6,6 +6,7 @@
 		<link rel="stylesheet" type="text/css" href="<s:url value="/css/main.css"/>"/>
 		<link rel="stylesheet" type="text/css" href="<s:url value="/javascript/yui/fonts/fonts-min.css"/>"/>
 		<link rel="stylesheet" type="text/css" href="<s:url value="/javascript/yui/datatable/assets/skins/sam/datatable.css"/>"/>
+		<link rel="stylesheet" type="text/css" href="<s:url value="/javascript/yui/paginator/assets/skins/sam/paginator.css"/>"/>
 		<link rel="stylesheet" type="text/css" href="<s:url value="/javascript/yui/button/assets/skins/sam/button.css"/>" />
 		<link rel="stylesheet" type="text/css" href="<s:url value="/javascript/yui/container/assets/skins/sam/container.css"/>" />
 
@@ -14,6 +15,7 @@
 		<script type="text/javascript" language="javascript" src="<s:url value="/javascript/yui/element/element-beta-min.js"/>"></script>
 		<script type="text/javascript" src="<s:url value="/javascript/yui/button/button-min.js"/>"></script>
 		<script type="text/javascript" src="<s:url value="/javascript/yui/container/container-min.js"/>"></script>
+		<script type="text/javascript" src="<s:url value="/javascript/yui/paginator/paginator-min.js"/>"></script>
 		<script type="text/javascript" language="javascript" src="<s:url value="/javascript/yui/datasource/datasource-min.js"/>"></script>
 		<script type="text/javascript" language="javascript" src="<s:url value="/javascript/yui/datatable/datatable-min.js"/>"></script>
 		<script type="text/javascript" language="javascript" src="<s:url value="/javascript/main.js"/>"></script>

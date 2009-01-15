@@ -53,8 +53,6 @@ public class Hypervisor {
 	 * Utiliser par Liste.java
 	 */
 	public static Object[] getDataJSArray(String module, String action, String id, String extraWhere){
-		Map session = ActionContext.getContext().getSession();
-		String isadmin = (String)session.get("isadmin");
 		String query = genQuery(module, action, id, extraWhere);
 		db = new ServerDB();
 		String [][] queryResult = db.queryDB(query);
@@ -95,7 +93,7 @@ public class Hypervisor {
 				mapping[i][0]=queryResult[0][i];
 				mapping[i][1]=getLabel_DB(queryResult[0][i]);
 				mapping[i][2]=getType_DB(queryResult[0][i]);
-				if(!isadmin.equals("true")){
+				if(!isAdmin()){
 					mapping[i][3]=getViewRight_DB(queryResult[0][i]);
 				}else{
 					mapping[i][3]="true";
@@ -124,9 +122,7 @@ public class Hypervisor {
 		return false;
 	}
 	private static Boolean isOwner(String id, String module){
-		Map session = ActionContext.getContext().getSession();
-		String isadmin = (String)session.get("isadmin");
-		if(isadmin.equals("true")){
+		if(isAdmin()){
 			return true;
 		}
 		String query=genQuery(module, "", id, "");
@@ -134,6 +130,14 @@ public class Hypervisor {
 		String [][] queryResult = db.queryDB(query);
 		db.close();
 		if(queryResult.length>1){
+			return true;
+		}
+		return false;
+	}
+	private static Boolean isAdmin(){
+		Map session = ActionContext.getContext().getSession();
+		String isadmin = (String)session.get("isadmin");
+		if(isadmin.equals("true")){
 			return true;
 		}
 		return false;
@@ -167,9 +171,8 @@ public class Hypervisor {
 	}
 
 	private static String privilegeQuery(String module){
-		Map session = ActionContext.getContext().getSession();
-		String isadmin = (String)session.get("isadmin");
-		if(!isadmin.equals("true")){
+		if(!isAdmin()){
+			Map session = ActionContext.getContext().getSession();
 			String userid = (String)session.get("userid");
 			if(module.equals("maison") || module.equals("profil") || module.equals("regle")){
 				return " WHERE utilisateur_id = '"+userid+"'";

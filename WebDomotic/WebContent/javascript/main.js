@@ -22,7 +22,14 @@ if (typeof(WEBDOMOTIC) == "undefined") {
 			myDataSource.responseType = YAHOO.util.DataSource.TYPE_JSARRAY;
 			myDataSource.connXhrMode = "queueRequests";
 			myDataSource.responseSchema = responseSchema;
-			this.myDataTable = new YAHOO.widget.DataTable("ListeDiv", myColumnDefs, myDataSource);
+			var oConfigs = {
+					paginator: new YAHOO.widget.Paginator({
+					rowsPerPage: 10,
+					template: YAHOO.widget.Paginator.TEMPLATE_ROWS_PER_PAGE,
+					rowsPerPageOptions: [5,10,20,50]
+					})
+	        };
+			this.myDataTable = new YAHOO.widget.DataTable("ListeDiv", myColumnDefs, myDataSource, oConfigs);
 			
 			//init the confirm popup for delete
 			this.confirmYUI();
