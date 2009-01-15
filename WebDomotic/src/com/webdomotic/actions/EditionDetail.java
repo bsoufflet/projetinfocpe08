@@ -13,7 +13,7 @@ public class EditionDetail extends Vue {
 			selectedId=userId;
 		}
 		if(selectedId != null && !selectedId.equals("")){
-			fieldToDisplay=Hypervisor.getDataArray(selectedModule, selectedAction, selectedId, "");
+			fieldToDisplay=Hypervisor.getDataArray(selectedModule, selectedId, "");
 		}else{
 			addActionError("Pas de ID et ce n'est pas une creation!");
 			return ERROR;
@@ -23,7 +23,7 @@ public class EditionDetail extends Vue {
 	
 	public String saveToDB(){
 		System.out.println("Action: Save");
-		if(Hypervisor.saveQuery(ActionContext.getContext().getParameters()))
+		if(Hypervisor.saveQuery(ActionContext.getContext().getParameters(),selectedModule))
 			return SUCCESS;
 		else{
 			addActionError("Erreur dans la sauvegarde");
