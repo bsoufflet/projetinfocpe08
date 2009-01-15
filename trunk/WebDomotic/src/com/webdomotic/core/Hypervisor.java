@@ -240,7 +240,7 @@ public class Hypervisor {
 			}else if(module.equals("piece") || module.equals("console")){
 				return " INNER JOIN maisons ON pieces.maison_id = maisons.id WHERE maisons.utilisateur_id = '"+userid+"'";
 			}else if(module.equals("peripherique")){
-				return " INNER JOIN pieces ON peripheriques.piece_id = piece.id INNER JOIN maisons ON pieces.maison_id = maisons.id WHERE maisons.utilisateur_id = '"+userid+"'";
+				return " INNER JOIN pieces ON peripheriques.piece_id = pieces.id INNER JOIN maisons ON pieces.maison_id = maisons.id WHERE maisons.utilisateur_id = '"+userid+"'";
 			}else if(module.equals("utilisateur")){
 				return " WHERE id = '"+userid+"'";
 			}else{
