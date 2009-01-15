@@ -1,7 +1,7 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <jsp:include page="/pages/loginCheck.jsp" />
 <jsp:include page="/pages/button/editionBtn.jsp" />
-
+<jsp:include page="/pages/button/supprimerBtn.jsp" />
 <s:form id="frm_detail" name="frm_detail">
 	<s:hidden name="selectedModule" value="%{selectedModule}"/>
 	

@@ -6,13 +6,17 @@
 		<link rel="stylesheet" type="text/css" href="<s:url value="/css/main.css"/>"/>
 		<link rel="stylesheet" type="text/css" href="<s:url value="/javascript/yui/fonts/fonts-min.css"/>"/>
 		<link rel="stylesheet" type="text/css" href="<s:url value="/javascript/yui/datatable/assets/skins/sam/datatable.css"/>"/>
-		
-		<script type="text/javascript" language="javascript" src="<s:url value="/javascript/main.js"/>"></script>
+		<link rel="stylesheet" type="text/css" href="<s:url value="/javascript/yui/button/assets/skins/sam/button.css"/>" />
+		<link rel="stylesheet" type="text/css" href="<s:url value="/javascript/yui/container/assets/skins/sam/container.css"/>" />
+
 		<script type="text/javascript" language="javascript" src="<s:url value="/javascript/yui/yahoo-dom-event/yahoo-dom-event.js"/>"></script>
 		<script type="text/javascript" language="javascript" src="<s:url value="/javascript/yui/connection/connection-min.js"/>"></script>
 		<script type="text/javascript" language="javascript" src="<s:url value="/javascript/yui/element/element-beta-min.js"/>"></script>
+		<script type="text/javascript" src="<s:url value="/javascript/yui/button/button-min.js"/>"></script>
+		<script type="text/javascript" src="<s:url value="/javascript/yui/container/container-min.js"/>"></script>
 		<script type="text/javascript" language="javascript" src="<s:url value="/javascript/yui/datasource/datasource-min.js"/>"></script>
 		<script type="text/javascript" language="javascript" src="<s:url value="/javascript/yui/datatable/datatable-min.js"/>"></script>
+		<script type="text/javascript" language="javascript" src="<s:url value="/javascript/main.js"/>"></script>
 		
 		<s:head theme="ajax" debug="false"/>
 	</head>
@@ -24,5 +28,6 @@
 		<s:div id="entete" theme="ajax" href="%{enteteurl}"></s:div>
 		<s:div id="menu" theme="ajax" href="%{menuurl}"></s:div>
 		<s:div id="vue" theme="ajax" href="%{vueurl}" listenTopics="montrer_vue" formId="frm_menu" executeScripts="true"></s:div>
+		<div id="container_yui_confirm"></div>
 	</body>
 </html>
