@@ -27,7 +27,12 @@
 			<s:select cssClass="textfield" name="%{top[0]}" label="%{top[2]}" headerKey="%{top[1]}" list="#{'client':'Client', 'administrateur':'Admin'}"  />
 		</s:elseif>
 		<s:elseif test='top[3].equals("object_compte")'>
-			<s:hidden name="%{top[0]}" value="%{top[1]}"/>
+			<s:if test='isAdmin.equals("true")'>
+				<s:textfield cssClass="label" name="%{top[0]}" label="%{top[2]}" value="%{top[1]}" />
+			</s:if>
+			<s:else>
+				<s:hidden cssClass="label" name="%{top[0]}" label="%{top[2]}" value="%{top[1]}" />
+			</s:else>
 		</s:elseif>
 		<s:elseif test='top[3].equals("bool")'>	
 			<s:checkbox cssClass="checkbox" name="%{top[0]}_chk" label="%{top[2]}" fieldValue="%{top[1]}" value="%{top[1]}"
