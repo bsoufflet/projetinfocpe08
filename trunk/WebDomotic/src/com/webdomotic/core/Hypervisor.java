@@ -108,35 +108,65 @@ public class Hypervisor {
 	}
 	
 	
-	public static boolean saveQuery(Map resquest,String module){
-		StringBuffer query = new StringBuffer("UPDATE "+getDBTableName_mod(module)+" SET ");
-		//build query
-		for(int i=0; i<Constants.g_mapping_DB_col.length; i++){
-			if(resquest.containsKey(Constants.g_mapping_DB_col[i][0])){
-				
-				if(Constants.g_mapping_DB_col[i][0].equals("motdepasse")){
-					if(((String[])resquest.get("passchange"))[0].equals("true")){
-						query.append(Constants.g_mapping_DB_col[i][0]+" = MD5("); //append column name
-						query.append("\'"+((String[])resquest.get(Constants.g_mapping_DB_col[i][0]))[0]+"\'),"); //append value
+	public static String saveQuery(Map resquest,String module){
+
+		String id = ((String[])resquest.get("id"))[0];
+		StringBuffer query;
+		if(id.equals("0")){
+			query = new StringBuffer("INSERT INTO "+getDBTableName_mod(module)+" (");
+			//build query
+			for(int i=0; i<Constants.g_mapping_DB_col.length; i++){
+				if(resquest.containsKey(Constants.g_mapping_DB_col[i][0])){
+
+					if(Constants.g_mapping_DB_col[i][0].equals("motdepasse")){
+						if(((String[])resquest.get("passchange"))[0].equals("true")){
+							query.append(Constants.g_mapping_DB_col[i][0]+" = MD5("); //append column name
+							query.append("\'"+fixAp(((String[])resquest.get(Constants.g_mapping_DB_col[i][0]))[0])+"\'),"); //append value
+						}
+					}else{
+						query.append(Constants.g_mapping_DB_col[i][0]+" = "); //append column name
+						query.append("\'"+fixAp(((String[])resquest.get(Constants.g_mapping_DB_col[i][0]))[0])+"\',"); //append value
 					}
-				}else{
-				
-					query.append(Constants.g_mapping_DB_col[i][0]+" = "); //append column name
-					query.append("\'"+((String[])resquest.get(Constants.g_mapping_DB_col[i][0]))[0]+"\',"); //append value
 				}
 			}
+			
+			/*INSERT INTO `webdomotic`.`utilisateurs` (
+					`id` ,
+					`login` ,
+					`motdepasse` ,
+					`nom` ,
+					`prenom` ,
+					`statut`
+					)
+					VALUES (
+					NULL , 'test', 'asda', 'asdsg', 'fdgd', 'ghjjk'
+					);*/
+		}else{
+			query = new StringBuffer("UPDATE "+getDBTableName_mod(module)+" SET ");
+			//build query
+			for(int i=0; i<Constants.g_mapping_DB_col.length; i++){
+				if(resquest.containsKey(Constants.g_mapping_DB_col[i][0])){
+
+					if(Constants.g_mapping_DB_col[i][0].equals("motdepasse")){
+						if(((String[])resquest.get("passchange"))[0].equals("true")){
+							query.append(Constants.g_mapping_DB_col[i][0]+" = MD5("); //append column name
+							query.append("\'"+fixAp(((String[])resquest.get(Constants.g_mapping_DB_col[i][0]))[0])+"\'),"); //append value
+						}
+					}else{
+						query.append(Constants.g_mapping_DB_col[i][0]+" = "); //append column name
+						query.append("\'"+fixAp(((String[])resquest.get(Constants.g_mapping_DB_col[i][0]))[0])+"\',"); //append value
+					}
+				}
+			}
+			query.deleteCharAt(query.lastIndexOf(","));
+			query.append(" WHERE id = "+id);
 		}
-		query.deleteCharAt(query.lastIndexOf(","));
-		query.append(" WHERE id = "+((String[])resquest.get("id"))[0]);
-		
-		System.out.println(query.toString());
-		
+
 		//send update query
 		db = new ServerDB();
-		int count = db.UpdateDB(query.toString());
+		db.UpdateDB(query.toString());
 		db.close();
-		return true;
-		
+		return id;
 	}
 	
 	
@@ -221,6 +251,9 @@ public class Hypervisor {
 		}
 	}
 
+	private static String fixAp(String s){
+		return s.replace("'"," ");
+	}
 
 	public static String getModuleName_mod(String input){
 		return searchMapping(Constants.g_mapping_mod, input, Constants.MODULE);
