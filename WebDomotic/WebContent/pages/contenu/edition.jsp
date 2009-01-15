@@ -19,7 +19,7 @@
 			<s:textfield cssClass="textfield" name="%{top[0]}" label="%{top[2]}" value="%{top[1]}" required="true"/>
 		</s:elseif>
 		<s:elseif test='top[3].equals("password")'>
-			<s:password cssClass="textfield" name="%{top[0]}" label="%{top[2]}"	value="%{top[1]}"
+			<s:password cssClass="textfield" name="%{top[0]}" label="%{top[2]}"	value="*****"
 			onchange="document.getElementById('passchange').value='true'" required="true" showPassword="true" />
 			<s:hidden name="passchange" id="passchange" value="false" />
 		</s:elseif>
