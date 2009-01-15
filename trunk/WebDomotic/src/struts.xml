@@ -6,7 +6,7 @@
 <struts>
 
     <constant name="struts.enable.DynamicMethodInvocation" value="false" />
-    <constant name="struts.devMode" value="true" />
+    <constant name="struts.devMode" value="false" />
     <package name="com.webdomotic.actions" extends="struts-default">
 		<action name="login" class="com.webdomotic.actions.Login">
 			<result name="input">/pages/login.jsp</result>
@@ -35,7 +35,12 @@
 		</action>
 		<action name="save" class="com.webdomotic.actions.EditionDetail" method="saveToDB">
 			<result name="error">/pages/contenu/detail.jsp</result>
-			<result>/pages/contenu/detail.jsp</result>
+			<result type="redirect-action">
+				<param name="actionName">vue</param>
+       			<param name="parse">true</param>
+        		<param name="selectedModule">${selectedModule}</param>
+				<param name="selectedAction">${selectedAction}</param>
+			</result>
 		</action>
 		<action name="supprimer" class="com.webdomotic.actions.Vue" method="supprimer">
 			<result name="error">/pages/contenu/supprimer.jsp</result>
