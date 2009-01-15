@@ -48,6 +48,7 @@ public final class ServerDB{
 		 * Query for update,insert,delete command
 		 */
 		public int UpdateDB(String query){
+			System.out.println("QUERY: "+query);
 			try {
 				Statement st = DBconnector.createStatement();
 				return st.executeUpdate(query);
