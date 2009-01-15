@@ -27,6 +27,16 @@ public class Vue extends ActionSupport {
 		
 		return SUCCESS;
 	}
+	public String supprimer() {
+		System.out.println("Vue - supprimer");
+		selectedAction="liste";
+		if(Hypervisor.deleteRow(selectedId,selectedModule)){
+			addActionMessage("Suppression reussi!");
+			return SUCCESS;
+		}
+		addActionError("Echec de la suppression!");
+		return ERROR;
+	}
 	public String getSelectedModule() {
 		return selectedModule;
 	}  

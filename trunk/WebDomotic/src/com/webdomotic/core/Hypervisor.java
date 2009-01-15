@@ -110,6 +110,34 @@ public class Hypervisor {
 
 		return returnObject;
 	}
+	public static Boolean deleteRow(String id, String module){
+		if(!isOwner(id, module)){
+			return false;
+		}
+		String query="DELETE FROM "+getDBTableName_mod(module)+" WHERE id = '"+id+"' LIMIT 1";
+		db = new ServerDB();
+		int queryResult = db.UpdateDB(query);
+		db.close();
+		if(queryResult > -1){
+			return true;
+		}
+		return false;
+	}
+	private static Boolean isOwner(String id, String module){
+		Map session = ActionContext.getContext().getSession();
+		String isadmin = (String)session.get("isadmin");
+		if(isadmin.equals("true")){
+			return true;
+		}
+		String query=genQuery(module, "", id, "");
+		db = new ServerDB();
+		String [][] queryResult = db.queryDB(query);
+		db.close();
+		if(queryResult.length>1){
+			return true;
+		}
+		return false;
+	}
 
 	private static String genQuery(String module, String action, String id, String extraWhere){
 		boolean where=false;

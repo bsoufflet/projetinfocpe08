@@ -24,6 +24,9 @@ if (typeof(WEBDOMOTIC) == "undefined") {
 			myDataSource.responseSchema = responseSchema;
 			this.myDataTable = new YAHOO.widget.DataTable("ListeDiv", myColumnDefs, myDataSource);
 			
+			//init the confirm popup for delete
+			this.confirmYUI();
+			
 			this.myDataTable.subscribe("buttonClickEvent", 
 			function(oArgs){
 				var button = oArgs.target.innerHTML;
@@ -35,7 +38,7 @@ if (typeof(WEBDOMOTIC) == "undefined") {
 					}else if(button == "Edition"){
 						webdomotic.montrer_vue('', 'edition');
 					}else if(button == "Supprimer"){
-						webdomotic.montrer_vue('', 'supprimer');
+						webdomotic.confirmYUIpopup.show();
 					}else{
 						document.getElementById('selectedId').value = "";
 						alert('main.js-buildYUIDataTable : le nom du bouton est inconnu!!');
@@ -65,6 +68,29 @@ if (typeof(WEBDOMOTIC) == "undefined") {
 		customObjectURLFormatter: function(elLiner, oRecord, oColumn, oData){
         	var id = oData;
         	elLiner.innerHTML = "<a href=\"javascript:document.getElementById('selectedId').value = '"+id+"';webdomotic.montrer_vue('"+oColumn.extra.replace('object_','')+"', 'detail');\">" + id + "</a>";
+		},
+		confirmYUI: function(){
+			var handleYes = function() {
+				webdomotic.montrer_vue('', 'supprimer');
+				this.hide();
+			};
+			var handleNo = function() {
+				this.hide();
+			};
+			this.confirmYUIpopup = new YAHOO.widget.SimpleDialog("confirmYUI", 
+				{
+					width: "300px",
+					fixedcenter: true,
+					visible: false,
+					draggable: false,
+					close: true,
+					text: "Etes vous sur de vouloir supprimer cet element?",
+					icon: YAHOO.widget.SimpleDialog.ICON_HELP,
+					constraintoviewport: true,
+					buttons: [ { text:"Oui", handler:handleYes, isDefault:true },{ text:"Non",  handler:handleNo } ]
+				});
+			this.confirmYUIpopup.setHeader("Etes vous sur?");
+			this.confirmYUIpopup.render('container_yui_confirm');
 		}
 	};
 }
