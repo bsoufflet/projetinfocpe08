@@ -3,18 +3,9 @@ package com.webdomotic.actions;
 import com.opensymphony.xwork2.ActionContext;
 import com.webdomotic.core.*;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import com.opensymphony.xwork2.ActionSupport;
-import org.apache.struts2.interceptor.ServletRequestAware;
-import org.apache.struts2.interceptor.ServletResponseAware;
-
-public class EditionDetail extends Vue implements ServletRequestAware,ServletResponseAware{
+public class EditionDetail extends Vue {
 
 	private String[][] fieldToDisplay;
-
-	private HttpServletRequest request;
-	private HttpServletResponse response;
 
 	public String execute() throws Exception {
 		System.out.println("EditionDetail Action - module:" + selectedModule);
@@ -24,6 +15,7 @@ public class EditionDetail extends Vue implements ServletRequestAware,ServletRes
 		if(selectedId != null && !selectedId.equals("")){
 			fieldToDisplay=Hypervisor.getDataArray(selectedModule, selectedId, "");
 		}else{
+			System.out.println("PROBLEM PAS DE ID");
 			addActionError("Pas de ID et ce n'est pas une creation!");
 			return ERROR;
 		}
@@ -32,14 +24,11 @@ public class EditionDetail extends Vue implements ServletRequestAware,ServletRes
 
 	public String saveToDB(){
 		System.out.println("Action: Save");
-		if(Hypervisor.saveQuery(ActionContext.getContext().getParameters(),selectedModule)){
-			selectedAction = "detail";
-			return SUCCESS;
-		}
-		else{
-			addActionError("Erreur dans la sauvegarde");
-			return ERROR;
-		}
+		selectedId = Hypervisor.saveQuery(ActionContext.getContext().getParameters(),selectedModule);
+		//System.out.println(selectedId);
+		selectedAction = "detail";
+		return SUCCESS;
+
 	}
 
 	public void setFieldToDisplay(String[][] fieldToDisplay){
@@ -47,21 +36,5 @@ public class EditionDetail extends Vue implements ServletRequestAware,ServletRes
 	}
 	public String[][] getFieldToDisplay(){
 		return fieldToDisplay;
-	}
-
-	public void setServletRequest(HttpServletRequest request){
-		this.request = request;
-	}
-
-	public HttpServletRequest getServletRequest(){
-		return request;
-	}
-
-	public void setServletResponse(HttpServletResponse response){
-		this.response = response;
-	}
-
-	public HttpServletResponse getServletResponse(){
-		return response;
 	}
 }
