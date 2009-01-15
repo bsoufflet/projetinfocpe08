@@ -13,9 +13,9 @@ border-style: solid;
 color: #242;
 background-color: #ada;
 width: 30%;
-margin-left:35%;
-margin-right:35%;
-margin-top:15%;
+margin-left:15px;
+margin-right:15px;
+margin-top:15px;
 } 
 
 table.wwFormTable th {
@@ -90,16 +90,40 @@ float: left;
 float: right;
 text-align: right;
 }
+
 #entete{
-	height:50px;
+	height:140px;
 	overflow:hidden;
-	border-bottom:1px solid blue;
+	background-image:url(bordure_haut.png);
+	background-repeat: repeat-x;
+	text-align: right;
+	font-size: large;
+}
+.logout{
+	margin-right:20px;
+}
+#coin{
+	background-image:url(coin.png);
+	position:absolute;
+	top: 133px;
+	height: 15px;
+	width: 150px;
+	background-repeat: no-repeat;
+}
+#logo{
+	text-align: center;
 }
 #menu{
 	width:150px;
 	float:left;
 	min-height: 1px;
+	height: 100%;
 	overflow:hidden;
+	background-image:url(bordure_gauche.png);
+	background-repeat: repeat-y;
+}
+.vuecss{
+margin-left : 160px;
 }
 #right{
 	padding:5px;
@@ -124,6 +148,7 @@ div.list:hover{
 }
 .textfield{
 }
+
 /*pour liste couleur ON OFF*/
 .yui-skin-sam .yui-dt tbody td.up {
 	background-color: #efe;

@@ -29,7 +29,7 @@
 		
 		<s:div id="entete" theme="ajax" href="%{enteteurl}"></s:div>
 		<s:div id="menu" theme="ajax" href="%{menuurl}"></s:div>
-		<s:div id="vue" theme="ajax" href="%{vueurl}" listenTopics="montrer_vue" formId="frm_menu" executeScripts="true"></s:div>
+		<s:div id="vue" cssClass="vuecss" theme="ajax" href="%{vueurl}" listenTopics="montrer_vue" formId="frm_menu" executeScripts="true"></s:div>
 		<div id="container_yui_confirm"></div>
 	</body>
 </html>
