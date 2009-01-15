@@ -108,25 +108,33 @@ public class Hypervisor {
 	}
 	
 	
-	public static boolean saveQuery(Map response,String module){
+	public static boolean saveQuery(Map resquest,String module){
 		StringBuffer query = new StringBuffer("UPDATE "+getDBTableName_mod(module)+" SET ");
 		//build query
 		for(int i=0; i<Constants.g_mapping_DB_col.length; i++){
-			if(response.containsKey(Constants.g_mapping_DB_col[i][0])){
+			if(resquest.containsKey(Constants.g_mapping_DB_col[i][0])){
 				
-				query.append(Constants.g_mapping_DB_col[i][0]+" = "); //append column name
-				query.append("\'"+(String)response.get(Constants.g_mapping_DB_col[i][0])+"\',"); //append value
+				if(Constants.g_mapping_DB_col[i][0].equals("motdepasse")){
+					if(((String[])resquest.get("passchange"))[0].equals("true")){
+						query.append(Constants.g_mapping_DB_col[i][0]+" = MD5("); //append column name
+						query.append("\'"+((String[])resquest.get(Constants.g_mapping_DB_col[i][0]))[0]+"\'),"); //append value
+					}
+				}else{
+				
+					query.append(Constants.g_mapping_DB_col[i][0]+" = "); //append column name
+					query.append("\'"+((String[])resquest.get(Constants.g_mapping_DB_col[i][0]))[0]+"\',"); //append value
+				}
 			}
 		}
 		query.deleteCharAt(query.lastIndexOf(","));
-		query.append(" WHERE id = "+response.get("id"));
+		query.append(" WHERE id = "+((String[])resquest.get("id"))[0]);
 		
 		System.out.println(query.toString());
 		
 		//send update query
-		/*db = new ServerDB();
+		db = new ServerDB();
 		int count = db.UpdateDB(query.toString());
-		db.close();*/
+		db.close();
 		return true;
 		
 	}
