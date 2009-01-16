@@ -1,13 +1,12 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <jsp:include page="/pages/loginCheck.jsp" />
 <s:actionerror />
-<s:if test='!selectedId.equals("0")'><!-- Cas : creation d'un nouveau donc pas de detail. -->
-	<jsp:include page="/pages/button/detailBtn.jsp" /><jsp:include page="/pages/button/annulerBtn.jsp" />
-</s:if>
-<s:else>
 	<jsp:include page="/pages/button/annulerBtn.jsp" />
-</s:else>
-<s:form id="frm_edition" name="frm_edition" theme="ajax" action="save" method="POST" validate="true" >
+<s:if test='!selectedId.equals("0")'><!-- Cas : creation d'un nouveau donc pas de detail. -->
+	<jsp:include page="/pages/button/annulerBtn.jsp" />
+</s:if>
+<!--  ATTENTION LE TARGET DU FORM DOIT ETRE LE MEME QUE LE SUBMIT -->
+<s:form id="frm_edition" name="frm_edition" theme="ajax" action="save" method="POST" validate="true" target="vue" >
 	<tr>
 		<td colspan="2">
 		<s:actionerror />
@@ -15,16 +14,20 @@
 		</td>
 	</tr>
 	<s:hidden name="selectedModule" value="%{selectedModule}"/>
-	
 	<s:iterator value="fieldToDisplay">
 		<s:if test='top[0].equals("id")'>
-			<s:hidden name="id" value="%{top[1]}"/>		
+			<s:if test='top[1].equals("")'>
+				<s:hidden name="id" value="0"/>
+			</s:if>
+			<s:else>
+				<s:hidden name="id" value="%{top[1]}"/>
+			</s:else>		
 		</s:if>
 		<s:elseif test='top[3].equals("text")||top[3].equals("object_maison")||top[3].equals("object_piece")'>
 			<s:textfield cssClass="textfield" name="%{top[0]}" label="%{top[2]}" value="%{top[1]}" required="true"/>
 		</s:elseif>
 		<s:elseif test='top[3].equals("password")'>
-			<s:password cssClass="textfield" name="%{top[0]}" label="%{top[2]}"	value="*****"
+			<s:password cssClass="textfield" name="%{top[0]}" label="%{top[2]}"	value="%{top[1]}"
 			onchange="document.getElementById('passchange').value='true'" required="true" showPassword="true" />
 			<s:hidden name="passchange" id="passchange" value="false" />
 		</s:elseif>
