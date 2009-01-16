@@ -108,51 +108,51 @@ public class Hypervisor {
 	}
 	
 	
-	public static String saveQuery(Map resquest,String module){
-		
-		
+	public static String saveQuery(Map request,String module){
+		/*if(!request.containsKey("id"))
+			return null;*/
+		//String id = (String)((String[])request.get("id"))[0];
 		StringBuffer query;
-		/*if(!resquest.containsKey("id")){
+		//test if new
+		/*if(id.equals("0"))
 			query = new StringBuffer("INSERT INTO "+getDBTableName_mod(module)+" SET ");
-		}else{
+		else
 			query = new StringBuffer("UPDATE "+getDBTableName_mod(module)+" SET ");
-		}*/
+		*/
 		query = new StringBuffer("UPDATE "+getDBTableName_mod(module)+" SET ");
 		//build query
 		for(int i=0; i<Constants.g_mapping_DB_col.length; i++){
-			if(resquest.containsKey(Constants.g_mapping_DB_col[i][0])){
+			if(request.containsKey(Constants.g_mapping_DB_col[i][0])){
 
 				if(Constants.g_mapping_DB_col[i][0].equals("motdepasse")){
-					if(((String[])resquest.get("passchange"))[0].equals("true")){
+					if(((String[])request.get("passchange"))[0].equals("true")){
 						query.append(Constants.g_mapping_DB_col[i][0]+" = MD5("); //append column name
-						query.append("\'"+fixAp(((String[])resquest.get(Constants.g_mapping_DB_col[i][0]))[0])+"\'),"); //append value
+						query.append("\'"+fixAp(((String[])request.get(Constants.g_mapping_DB_col[i][0]))[0])+"\'),"); //append value
 					}
 				}else{
 					query.append(Constants.g_mapping_DB_col[i][0]+" = "); //append column name
-					query.append("\'"+fixAp(((String[])resquest.get(Constants.g_mapping_DB_col[i][0]))[0])+"\',"); //append value
+					query.append("\'"+fixAp(((String[])request.get(Constants.g_mapping_DB_col[i][0]))[0])+"\',"); //append value
 				}
 			}
 		}
 		query.deleteCharAt(query.lastIndexOf(","));
-		/*if(resquest.containsKey("id")){
-			query.append(" WHERE id = "+((String[])resquest.get("id"))[0]);
+		//if not a new element
+		/*if(!id.equals("0")){
+			query.append(" WHERE id = "+((String[])request.get("id"))[0]);
 		}*/
-		query.append(" WHERE id = "+((String[])resquest.get("id"))[0]);
 		
-		
+		query.append(" WHERE id = "+((String[])request.get("id"))[0]);
 		//send update query
 		db = new ServerDB();
-		db.UpdateDB(query.toString());
-		db.queryDB("SELECT LAST_INSERT_ID( )");
+		String new_id = db.UpdateDB(query.toString());
 		db.close();
 		
-		return ((String[])resquest.get("id"))[0];
-		
-		/*if(resquest.containsKey("id")){
-			return ((String[])resquest.get("id"))[0];
+		/*if(id.equals("0")){
+			return new_id;
 		}
-		else
-			return "";*/
+		else*/
+			return ((String[])request.get("id"))[0];
+			
 		
 	}
 	
@@ -163,12 +163,12 @@ public class Hypervisor {
 		}
 		String query="DELETE FROM "+getDBTableName_mod(module)+" WHERE id = '"+id+"' LIMIT 1";
 		db = new ServerDB();
-		int queryResult = db.UpdateDB(query);
+		String st = db.UpdateDB(query);
 		db.close();
-		if(queryResult > -1){
+		if(st.equals(""))
+			return false;
+		else
 			return true;
-		}
-		return false;
 	}
 	private static Boolean isOwner(String id, String module){
 		if(isAdmin()){
