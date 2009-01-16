@@ -25,7 +25,7 @@
 		<script type="text/javascript" src="<s:url value="/javascript/yui/tabview/dispatcher-min.js"/>"></script> 
 		<script type="text/javascript" language="javascript" src="<s:url value="/javascript/main.js"/>"></script>
 
-		<s:head theme="ajax" debug="false"/>
+		<s:head theme="ajax" debug="true"/>
 	</head>
 	<body class=" yui-skin-sam">
 		<s:url id="enteteurl" value="/pages/entete.jsp" />

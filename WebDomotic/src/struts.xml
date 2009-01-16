@@ -6,6 +6,7 @@
 <struts>
 
     <constant name="struts.enable.DynamicMethodInvocation" value="false" />
+	<constant name="struts.serve.static" value="false" />
     <constant name="struts.devMode" value="false" />
     <package name="com.webdomotic.actions" extends="struts-default">
 		<action name="login" class="com.webdomotic.actions.Login">
