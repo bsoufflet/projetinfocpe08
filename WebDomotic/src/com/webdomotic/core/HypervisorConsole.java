@@ -23,31 +23,45 @@ public class HypervisorConsole extends Thread {
 	}
 	
 	private static void envoyerFichier(String nom_fichier) throws IOException {
-		String acquittement = "";
-		//FileInputStream fis = new FileInputStream(nom_fichier);
-		FileInputStream fis = new FileInputStream("test.txt");
+		String acquittement = null;
+		FileInputStream fis = new FileInputStream(nom_fichier);
 		int num = fis.available();
-
+		int byte_envoyes = 0;
 		filedata = new byte[num];
+		byte [] a_envoyer;
 		fis.read(filedata);
 		
+		System.out.println("Debut envoi");
 		ConsoleSocket socket = new ConsoleSocket("192.168.0.30", 2000);
 		socket.write('d');
 		socket.write(intToByteArray(filedata.length));
-		socket.write(filedata);
-		System.out.println("Fin envoi");
-		while(acquittement != "ok") {
-			acquittement = socket.read();
-			try {
-				sleep(100);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+		//Envoi des paquets :
+		while(byte_envoyes<num) {
+			System.out.println("byte_envoyes : "+byte_envoyes+" et num : "+num);
+			acquittement = null;
+			if(num - byte_envoyes > 64) { // On envoie 64 caractères
+				a_envoyer = new byte[64];
+				for(int i = 0 ; i < 64 ; i++) {
+					a_envoyer[i] = filedata[i+byte_envoyes];
+				}
+				byte_envoyes = byte_envoyes + 64;
 			}
-			System.out.println("Acquittement :" + acquittement);
+			else { // On envoie ce qui reste (dernier paquet)
+				a_envoyer = new byte[num - byte_envoyes];
+				for(int i = 0 ; i < num - byte_envoyes ; i++) {
+					a_envoyer[i] = filedata[i+byte_envoyes];
+				}
+				byte_envoyes = num;
+			}
+			System.out.println("ecriture : "+a_envoyer.length+"octets");
+			socket.write(a_envoyer);
+			a_envoyer = null;
+			// Attente de l'acquittement :
+			while(acquittement == null) {
+				acquittement = socket.read();
+				System.out.println("acquittement : "+acquittement);
+			}
 		}
-		System.out.println("Sortie");
-		//System.out.println(socket.read());
 	}
 	
 	public static byte[] intToByteArray(int value) {
