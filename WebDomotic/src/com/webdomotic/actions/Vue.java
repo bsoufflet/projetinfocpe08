@@ -22,7 +22,7 @@ public class Vue extends ActionSupport {
 		}
 		if(selectedAction==null || selectedAction.equals("")){
 			System.out.println("default to liste action");
-			selectedAction="liste";
+			selectedAction="accueil";
 		}
 		return SUCCESS;
 	}

@@ -33,6 +33,9 @@
 			<result name="error">/pages/contenu/detail.jsp</result>
 			<result>/pages/contenu/detail.jsp</result>
 		</action>
+		<action name="accueil" class="com.webdomotic.actions.Vue">
+			<result>/pages/contenu/accueil.jsp</result>
+		</action>
 		<action name="save" class="com.webdomotic.actions.EditionDetail" method="saveToDB">
 			<result name="error">/pages/contenu/detail.jsp</result>
 			<result type="redirect-action">
