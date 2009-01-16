@@ -14,16 +14,7 @@ if (typeof(WEBDOMOTIC) == "undefined") {
 			}
 			dojo.event.topic.publish("montrer_vue");
 		},
-		montrer_tab: function(selectedModule, selectedAction){
-			if(selectedModule != ""){
-				document.getElementById('selectedModule').value = selectedModule;
-			}
-			if(selectedAction != ""){
-				document.getElementById('selectedAction').value = selectedAction;
-			}
-			dojo.event.topic.publish("montrer_tab");
-		},
-		buildYUIDataTable: function(myColumnDefs,responseSchema,dataJSArray) {
+		buildYUIDataTable: function(myColumnDefs,responseSchema,dataJSArray,selectedModule) {
 			// Add the custom formatters to the shortcuts
 			YAHOO.widget.DataTable.Formatter.customEtat = this.customEtatFormatter;
 	        YAHOO.widget.DataTable.Formatter.customObjectURL = this.customObjectURLFormatter;
@@ -38,7 +29,7 @@ if (typeof(WEBDOMOTIC) == "undefined") {
 					rowsPerPageOptions: [5,10,20,50]
 					})
 	        };
-			this.myDataTable = new YAHOO.widget.DataTable("ListeDiv", myColumnDefs, myDataSource, oConfigs);
+			this.myDataTable = new YAHOO.widget.DataTable("ListeDiv_"+selectedModule, myColumnDefs, myDataSource, oConfigs);
 			
 			//init the confirm popup for delete
 			this.confirmYUI();
@@ -107,38 +98,6 @@ if (typeof(WEBDOMOTIC) == "undefined") {
 				});
 			this.confirmYUIpopup.setHeader("Etes vous sur?");
 			this.confirmYUIpopup.render('container_yui_confirm');
-		},
-		createTabMaison: function(){
-			var tabView = new YAHOO.widget.TabView("TabContainer");
-			var handleClickProfilFct=function handleClick(e) {
-				if(e.target.innerHTML == "Maison"){
-					webdomotic.montrer_tab('maison','liste');
-				}else if(e.target.innerHTML == "Piece"){
-					webdomotic.montrer_tab('piece','liste');
-				}else{
-					webdomotic.montrer_tab('peripherique','liste');
-				}
-			}
-			var tab0 = tabView.getTab(0);
-			tab0.addListener('click', handleClickProfilFct);
-			var tab1 = tabView.getTab(1);
-			tab1.addListener('click', handleClickProfilFct);
-			var tab2 = tabView.getTab(2);
-			tab2.addListener('click', handleClickProfilFct);	
-		},
-		createTabProfil: function(){
-			var tabView = new YAHOO.widget.TabView("TabContainer");
-			var handleClickProfilFct=function handleClickProfil(e) {
-				if(e.target.innerHTML == "Profil"){
-					webdomotic.montrer_tab('profil','liste');
-				}else{
-					webdomotic.montrer_tab('regle','liste');
-				}
-			}
-			var tab0 = tabView.getTab(0);
-			tab0.addListener('click', handleClickProfilFct);
-			var tab1 = tabView.getTab(1);
-			tab1.addListener('click', handleClickProfilFct);
 		}
 	};
 }
