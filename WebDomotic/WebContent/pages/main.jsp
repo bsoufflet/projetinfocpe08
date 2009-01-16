@@ -11,6 +11,7 @@
 		<link rel="stylesheet" type="text/css" href="<s:url value="/javascript/yui/button/assets/skins/sam/button.css"/>" />
 		<link rel="stylesheet" type="text/css" href="<s:url value="/javascript/yui/tabview/assets/skins/sam/tabview.css"/>" />
 
+		<script type="text/javascript" language="javascript" src="<s:url value="/javascript/yui/utilities/utilities.js"/>"></script>
 		<script type="text/javascript" language="javascript" src="<s:url value="/javascript/yui/yahoo-dom-event/yahoo-dom-event.js"/>"></script>
 		<script type="text/javascript" language="javascript" src="<s:url value="/javascript/yui/connection/connection-min.js"/>"></script>
 		<script type="text/javascript" language="javascript" src="<s:url value="/javascript/yui/element/element-beta-min.js"/>"></script>
@@ -20,8 +21,9 @@
 		<script type="text/javascript" src="<s:url value="/javascript/yui/tabview/tabview-min.js"/>"></script>
 		<script type="text/javascript" language="javascript" src="<s:url value="/javascript/yui/datasource/datasource-min.js"/>"></script>
 		<script type="text/javascript" language="javascript" src="<s:url value="/javascript/yui/datatable/datatable-min.js"/>"></script>
+		<script type="text/javascript" src="<s:url value="/javascript/yui/tabview/dispatcher-min.js"/>"></script> 
 		<script type="text/javascript" language="javascript" src="<s:url value="/javascript/main.js"/>"></script>
-		
+
 		<s:head theme="ajax" debug="false"/>
 	</head>
 	<body class=" yui-skin-sam">

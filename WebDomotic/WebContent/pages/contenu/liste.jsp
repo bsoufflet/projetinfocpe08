@@ -62,7 +62,7 @@
 			{ key:'delete_button' }
 		]
 	};
-	webdomotic.buildYUIDataTable(myColumnDefs,responseSchema,dataJSArray);
+	webdomotic.buildYUIDataTable(myColumnDefs,responseSchema,dataJSArray,'<s:property value="selectedModule"/>');
 </script>
 <jsp:include page="/pages/button/nouveauBtn.jsp" /><br><br>
-<div id="ListeDiv" class="yui-content"></div>
+<div id="ListeDiv_<s:property value="selectedModule"/>" class="yui-content"></div>
