@@ -1,7 +1,7 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <jsp:include page="/pages/loginCheck.jsp" />
 <s:actionerror />
-	<jsp:include page="/pages/button/annulerBtn.jsp" />
+	<jsp:include page="/pages/button/detailBtn.jsp" />
 <s:if test='!selectedId.equals("0")'><!-- Cas : creation d'un nouveau donc pas de detail. -->
 	<jsp:include page="/pages/button/annulerBtn.jsp" />
 </s:if>
