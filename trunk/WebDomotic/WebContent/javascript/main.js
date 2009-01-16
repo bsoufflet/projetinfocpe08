@@ -32,28 +32,9 @@ if (typeof(WEBDOMOTIC) == "undefined") {
 			this.myDataTable = new YAHOO.widget.DataTable("ListeDiv_"+selectedModule, myColumnDefs, myDataSource, oConfigs);
 			
 			//init the confirm popup for delete
-			this.confirmYUI();
+			this.confirmYUI(selectedModule);
 			
-			this.myDataTable.subscribe("buttonClickEvent", 
-			function(oArgs){
-				var button = oArgs.target.innerHTML;
-				var oRecord = this.getRecord(oArgs.target);
-				if(typeof(oRecord._oData.id)!="undefined" && oRecord._oData.id != ""){
-					document.getElementById('selectedId').value = oRecord._oData.id;
-					if(button == "Detail"){
-						webdomotic.montrer_vue('', 'detail');
-					}else if(button == "Edition"){
-						webdomotic.montrer_vue('', 'edition');
-					}else if(button == "Supprimer"){
-						webdomotic.confirmYUIpopup.show();
-					}else{
-						document.getElementById('selectedId').value = "";
-						alert('main.js-buildYUIDataTable : le nom du bouton est inconnu!!');
-					}
-				}else{
-					alert('main.js-buildYUIDataTable : Pas d ID disponible!!');
-				}
-			});
+
 		},
 		/*
 		 * Define a custom formatter for the Column labeled "flag"
@@ -76,9 +57,9 @@ if (typeof(WEBDOMOTIC) == "undefined") {
         	var id = oData;
         	elLiner.innerHTML = "<a href=\"javascript:document.getElementById('selectedId').value = '"+id+"';webdomotic.montrer_vue('"+oColumn.extra.replace('object_','')+"', 'detail');\">" + id + "</a>";
 		},
-		confirmYUI: function(){
+		confirmYUI: function(module){
 			var handleYes = function() {
-				webdomotic.montrer_vue('', 'supprimer');
+				webdomotic.montrer_vue(module, 'supprimer');
 				this.hide();
 			};
 			var handleNo = function() {

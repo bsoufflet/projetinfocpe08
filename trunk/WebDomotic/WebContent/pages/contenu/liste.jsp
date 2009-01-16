@@ -63,6 +63,26 @@
 		]
 	};
 	webdomotic.buildYUIDataTable(myColumnDefs,responseSchema,dataJSArray,'<s:property value="selectedModule"/>');
+	webdomotic.myDataTable.subscribe("buttonClickEvent", 
+			function(oArgs){
+				var button = oArgs.target.innerHTML;
+				var oRecord = this.getRecord(oArgs.target);
+				if(typeof(oRecord._oData.id)!="undefined" && oRecord._oData.id != ""){
+					document.getElementById('selectedId').value = oRecord._oData.id;
+					if(button == "Detail"){
+						webdomotic.montrer_vue('<s:property value="selectedModule"/>', 'detail');
+					}else if(button == "Edition"){
+						webdomotic.montrer_vue('<s:property value="selectedModule"/>', 'edition');
+					}else if(button == "Supprimer"){
+						webdomotic.confirmYUIpopup.show('<s:property value="selectedModule"/>');
+					}else{
+						document.getElementById('selectedId').value = "";
+						alert('main.js-buildYUIDataTable : le nom du bouton est inconnu!!');
+					}
+				}else{
+					alert('main.js-buildYUIDataTable : Pas d ID disponible!!');
+				}
+			});
 </script>
 <jsp:include page="/pages/button/nouveauBtn.jsp" /><br><br>
 <div id="ListeDiv_<s:property value="selectedModule"/>" class="yui-content"></div>
