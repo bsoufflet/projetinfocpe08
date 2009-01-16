@@ -47,14 +47,20 @@ public final class ServerDB{
 		/**
 		 * Query for update,insert,delete command
 		 */
-		public int UpdateDB(String query){
+		public String UpdateDB(String query){
 			System.out.println("QUERY: "+query);
 			try {
 				Statement st = DBconnector.createStatement();
-				return st.executeUpdate(query);
+				int return_st = st.executeUpdate(query);
+				if(return_st>-1){
+					String [][] last_id = queryDB("SELECT LAST_INSERT_ID()");
+					return last_id[1][0];
+				}else
+					return ""; 
+				
 			} catch (SQLException e) {
 				e.printStackTrace();
-				return -1;
+				return "";
 			}
 		}
 
