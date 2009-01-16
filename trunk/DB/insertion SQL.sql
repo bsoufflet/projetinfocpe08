@@ -92,42 +92,43 @@ VALUES (
 
 /* INSERTION DANS LA TABLE PERIPHERIQUE */
 
-INSERT INTO `peripheriques` ( `id` , `piece_id`, `nom` , `description` )
+INSERT INTO `peripheriques` ( `id` , `piece_id`, `nom`, `adresse`, `description` )
 VALUES (
-1, 1, 'interrupteur', 'peripherique pour reglage d une lumiere'
+1, 1, 'interrupteur', 'A02','peripherique pour reglage d une lumiere'
 );
-INSERT INTO `peripheriques` ( `id` , `piece_id`, `nom` , `description` )
+INSERT INTO `peripheriques` ( `id` , `piece_id`, `nom`, `adresse` , `description` )
 VALUES (
-2, 1, 'capteur de temperature', 'peripherique pour reglage de la temperature'
+2, 1, 'capteur de temperature', 'C13', 'peripherique pour reglage de la temperature'
 );
-INSERT INTO `peripheriques` ( `id` , `piece_id`, `nom` , `description` )
+INSERT INTO `peripheriques` ( `id` , `piece_id`, `nom`, `adresse` , `description` )
 VALUES (
-3, 2, 'capteur de luminosite', 'peripherique pour reglage d une lumiere'
+3, 2, 'capteur de luminosite', 'E12', 'peripherique pour reglage d une lumiere'
 );
-INSERT INTO `peripheriques` ( `id` , `piece_id`, `nom` , `description` )
+INSERT INTO `peripheriques` ( `id` , `piece_id`, `nom`, `adresse` , `description` )
 VALUES (
-4, 3, 'interrupteur', 'peripherique pour reglage d une lumiere'
+4, 3, 'interrupteur', 'A04', 'peripherique pour reglage d une lumiere'
 );
-INSERT INTO `peripheriques` ( `id` , `piece_id`, `nom` , `description` )
+INSERT INTO `peripheriques` ( `id` , `piece_id`, `nom`, `adresse` , `description` )
 VALUES (
-5, 4, 'interrupteur', 'peripherique pour reglage d une lumiere'
+5, 4, 'interrupteur', 'B01', 'peripherique pour reglage d une lumiere'
 );
-INSERT INTO `peripheriques` ( `id` , `piece_id`, `nom` , `description` )
+INSERT INTO `peripheriques` ( `id` , `piece_id`, `nom`, `adresse` , `description` )
 VALUES (
-6, 5, 'interrupteur', 'peripherique pour reglage d une lumiere'
+6, 5, 'interrupteur', 'B02', 'peripherique pour reglage d une lumiere'
 );
-INSERT INTO `peripheriques` ( `id` , `piece_id`, `nom` , `description` )
+INSERT INTO `peripheriques` ( `id` , `piece_id`, `nom`, `adresse` , `description` )
 VALUES (
-7, 6, 'interrupteur', 'peripherique pour reglage d une lumiere'
+7, 6, 'interrupteur', 'B03', 'peripherique pour reglage d une lumiere'
 );
-INSERT INTO `peripheriques` ( `id` , `piece_id`, `nom` , `description` )
+INSERT INTO `peripheriques` ( `id` , `piece_id`, `nom`, `adresse` , `description` )
 VALUES (
-8, 7, 'interrupteur', 'peripherique pour reglage d une lumiere'
+8, 7, 'interrupteur', 'C11', 'peripherique pour reglage d une lumiere'
 );
-INSERT INTO `peripheriques` ( `id` , `piece_id`, `nom` , `description` )
+INSERT INTO `peripheriques` ( `id` , `piece_id`, `nom`, `adresse` , `description` )
 VALUES (
-9, 5, 'radiateur', 'peripherique pour reglage de la temperature'
+9, 5, 'radiateur', 'A12', 'peripherique pour reglage de la temperature'
 );
+
 
 /* INSERTION DANS LA TABLE PROFILS */
 
@@ -171,93 +172,115 @@ VALUES (
 
 /* INSERTION DANS LA TABLE REGLES */
 
-INSERT INTO `regles` ( `id` , `utilisateur_id` , `nom` ,`description` )
+INSERT INTO `regles` ( `id` , `utilisateur_id` , `nom` ,`description`, `periode`, `etat` )
 VALUES (
-1, 1, 'regle1', 'blabla'
+1, 1, 'regle1', 'blabla', 'lundi,mardi,jeudi-13h30-60-10', 0 
 );
-INSERT INTO `regles` ( `id` , `utilisateur_id` , `nom` ,`description` )
+INSERT INTO `regles` ( `id` , `utilisateur_id` , `nom` ,`description`, `periode`, `etat` )
 VALUES (
-2, 1, 'regle2' , 'blablabla'
+2, 1, 'regle2' , 'blablabla', 'jeudi-12h09-120-0', 0
 );
-INSERT INTO `regles` ( `id` , `utilisateur_id` , `nom` ,`description` )
+INSERT INTO `regles` ( `id` , `utilisateur_id` , `nom` ,`description`, `periode`, `etat` )
 VALUES (
-3, 1, 'regle3', 'bla'
+3, 1, 'regle3', 'bla', 'jeudi-12h09-120-0', 1
 );
-INSERT INTO `regles` ( `id` , `utilisateur_id` , `nom` ,`description` )
+INSERT INTO `regles` ( `id` , `utilisateur_id` , `nom` ,`description`, `periode`, `etat` )
 VALUES (
-4, 2, 'regle1', 'blabla'
+4, 2, 'regle1', 'blabla', 'lundi,mardi,jeudi-13h30-60-10', 0
 );
-INSERT INTO `regles` ( `id` , `utilisateur_id` , `nom` ,`description` )
+INSERT INTO `regles` ( `id` , `utilisateur_id` , `nom` ,`description`, `periode`, `etat` )
 VALUES (
-5, 2, 'regle2' , 'blablabla'
+5, 2, 'regle2' , 'blablabla', 'lundi,jeudi-0h0-0-0', 1
 );
-INSERT INTO `regles` ( `id` , `utilisateur_id` , `nom` ,`description` )
+INSERT INTO `regles` ( `id` , `utilisateur_id` , `nom` ,`description`, `periode`, `etat` )
 VALUES (
-6, 2, 'regle3', 'bla'
+6, 2, 'regle3', 'bla', 'mardi-1h7-0-150', 1
 );
-INSERT INTO `regles` ( `id` , `utilisateur_id` , `nom` ,`description` )
+INSERT INTO `regles` ( `id` , `utilisateur_id` , `nom` ,`description`, `periode`, `etat` )
 VALUES (
-7, 3, 'regle1', 'blabla'
+7, 3, 'regle1', 'blabla', 'lundi,jeudi-0h0-0-0', 0
 );
-INSERT INTO `regles` ( `id` , `utilisateur_id` , `nom` ,`description` )
+INSERT INTO `regles` ( `id` , `utilisateur_id` , `nom` ,`description`, `periode`, `etat` )
 VALUES (
-8, 3, 'regle2' , 'blablabla'
+8, 3, 'regle2' , 'blablabla', 'lundi,mardi,jeudi-13h30-60-10', 0
 );
-INSERT INTO `regles` ( `id` , `utilisateur_id` , `nom` ,`description` )
+INSERT INTO `regles` ( `id` , `utilisateur_id` , `nom` ,`description`, `periode`, `etat` )
 VALUES (
-9, 3, 'regle3', 'bla'
+9, 3, 'regle3', 'bla', 'mardi-1h7-0-150', 1
 );
 
 
 
 /* INSERTION DANS LA TABLE PROFILS_REGLES */
 
-INSERT INTO `profils_regles` (`profil_id`, `regle_id`) 
+INSERT INTO `profils_regles` (`id`, `profil_id`, `regle_id`) 
 VALUES(
-1, 2
+1, 1, 2
 );
-INSERT INTO `profils_regles` (`profil_id`, `regle_id`) 
+INSERT INTO `profils_regles` (`id`, `profil_id`, `regle_id`) 
 VALUES(
-2, 3
+2, 2, 3
 );
-INSERT INTO `profils_regles` (`profil_id`, `regle_id`) 
+INSERT INTO `profils_regles` (`id`, `profil_id`, `regle_id`) 
 VALUES(
-3, 1
+3, 3, 1
 );
-INSERT INTO `profils_regles` (`profil_id`, `regle_id`) 
+INSERT INTO `profils_regles` (`id`, `profil_id`, `regle_id`) 
 VALUES(
-4, 4
+4, 4, 4
 );
-INSERT INTO `profils_regles` (`profil_id`, `regle_id`) 
+INSERT INTO `profils_regles` (`id`, `profil_id`, `regle_id`) 
 VALUES(
-5, 4
+5, 5, 4
 );
-INSERT INTO `profils_regles` (`profil_id`, `regle_id`) 
+INSERT INTO `profils_regles` (`id`, `profil_id`, `regle_id`) 
 VALUES(
-6, 5
+6, 6, 5
 );
-INSERT INTO `profils_regles` (`profil_id`, `regle_id`) 
+INSERT INTO `profils_regles` (`id`, `profil_id`, `regle_id`) 
 VALUES(
-6, 6
+7, 6, 6
 );
-INSERT INTO `profils_regles` (`profil_id`, `regle_id`) 
+INSERT INTO `profils_regles` (`id`, `profil_id`, `regle_id`) 
 VALUES(
-1, 3
+8, 1, 3
 );
-INSERT INTO `profils_regles` (`profil_id`, `regle_id`) 
+INSERT INTO `profils_regles` (`id`, `profil_id`, `regle_id`) 
 VALUES(
-7, 7
+9, 7, 7
 );
-INSERT INTO `profils_regles` (`profil_id`, `regle_id`) 
+INSERT INTO `profils_regles` (`id`, `profil_id`, `regle_id`) 
 VALUES(
-8, 8
+10, 8, 8
 );
-INSERT INTO `profils_regles` (`profil_id`, `regle_id`) 
+INSERT INTO `profils_regles` (`id`, `profil_id`, `regle_id`) 
 VALUES(
-9, 9
+11, 9, 9
 );
-INSERT INTO `profils_regles` (`profil_id`, `regle_id`) 
+INSERT INTO `profils_regles` (`id`, `profil_id`, `regle_id`) 
 VALUES(
-9, 7
+12, 9, 7
 );
- 
+
+/* Insertion dans la table regles_peripheriques */
+
+INSERT INTO `regles_peripheriques` ( `id` , `regle_id` , `peripherique_id` )
+VALUES (
+'1', '1', '1'
+);
+INSERT INTO `regles_peripheriques` ( `id` , `regle_id` , `peripherique_id` )
+VALUES (
+'2', '2', '1'
+);
+INSERT INTO `regles_peripheriques` ( `id` , `regle_id` , `peripherique_id` )
+VALUES (
+'3', '3', '3'
+);
+INSERT INTO `regles_peripheriques` ( `id` , `regle_id` , `peripherique_id` )
+VALUES (
+'4', '4', '6'
+);
+INSERT INTO `regles_peripheriques` ( `id` , `regle_id` , `peripherique_id` )
+VALUES (
+'5', '5', '5'
+);
