@@ -8,7 +8,7 @@
 	<s:form action="login" method="POST"  validate="true">
 		<tr>
 			<td colspan="2">
-			<h1>WebDomotic</h1>
+			<h1 class="login"><img src="logo.png" height="51" width="300"></h1>
 			<s:actionerror />
 			<s:fielderror />
 			</td>

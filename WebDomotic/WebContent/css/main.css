@@ -3,28 +3,33 @@
 body {
 font: 12px verdana, arial, helvetica, sans-serif;
 background-color:#FFFFFF;
+margin:0px;
 } 
 
 table.wwFormTable {
-font: 12px verdana, arial, helvetica, sans-serif;
-border-width: 1px;
-border-color: #030;
-border-style: solid;
-color: #242;
-background-color: #ada;
-width: 30%;
-margin-left:15px;
-margin-right:15px;
-margin-top:15px;
+	font: 12px verdana, arial, helvetica, sans-serif;
+	border:1px solid #7F7F7F;
+	border-collapse:collapse;
+	border-spacing:0;
+	color: black;
+	
+	width: 30%;
+	margin-left:35%;
+	margin-right:35%;
+	margin-top:15%;
 } 
 
 table.wwFormTable th {
 }
 
 table.wwFormTable tr td {
-background-color: #dfd;
-margin: 5px;
-padding: 5px;
+	background-color: #fff;
+	border-color:#CBCBCB;
+	border-style:solid;
+	border-width:1px;
+	margin:0;
+	padding:0;
+	text-align:center;
 }
 
 .tdLabel {
@@ -35,6 +40,7 @@ border-style: solid;
 */
 font-weight: bold;
 align: top;
+background:#D8D8DA url(sprite.png) repeat-x 0 0; /* header gradient */
 } 
 
 .label {
@@ -105,13 +111,17 @@ text-align: right;
 #coin{
 	background-image:url(coin.png);
 	position:absolute;
-	top: 133px;
+	top: 125px;
 	height: 15px;
 	width: 150px;
 	background-repeat: no-repeat;
 }
 #logo{
 	text-align: center;
+}
+.login{
+	text-align:center;
+	margin: 10px;
 }
 #menu{
 	width:150px;
@@ -135,9 +145,19 @@ margin-left : 160px;
 }
 div.list:hover{
 	cursor:pointer;
+	background-image:url(puce.jpg);
+ 	background-repeat:no-repeat;
+ 	background-position:0% 65%;
+ 	text-decoration: underline;
 }
 .list{
-	text-decoration: underline;
+	font-family: Verdana, Arial, Helvetica, Geneva, sans-serif;
+	font-size: 100%;
+	font-weight:bold;
+	color: #071359;
+	margin-left:5px;
+ 	padding-left:20px;
+ 	padding-top: 5px;
 }
 .disable{
 	font-weight:bold;
@@ -147,6 +167,16 @@ div.list:hover{
 .button{
 }
 .textfield{
+}
+.h1{
+	font: 40px verdana;
+	font-weight:bold;
+	text-decoration: underline;
+	color: #0C1B76;
+	background-image:url(petit_logo1.jpg);
+ 	background-repeat:no-repeat;
+ 	background-position:0% 65%;
+ 	padding-left: 60px;
 }
 
 /*pour liste couleur ON OFF*/
