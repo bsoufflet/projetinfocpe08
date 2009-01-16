@@ -1,6 +1,6 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <jsp:include page="/pages/loginCheck.jsp" />
-<h1><s:property value="selectedModuleLabel"/></h1>
+<h1 class="h1"><s:property value="selectedModuleLabel"/></h1>
 
 <s:if test='selectedModule.equals("maison") || selectedModule.equals("piece") || selectedModule.equals("peripherique")'>
 	<script>

@@ -10,6 +10,7 @@
 		<link rel="stylesheet" type="text/css" href="<s:url value="/javascript/yui/paginator/assets/skins/sam/paginator.css"/>"/>
 		<link rel="stylesheet" type="text/css" href="<s:url value="/javascript/yui/button/assets/skins/sam/button.css"/>" />
 		<link rel="stylesheet" type="text/css" href="<s:url value="/javascript/yui/tabview/assets/skins/sam/tabview.css"/>" />
+		<link rel="shortcut icon" type="image/png" href="css/icon.png"> 
 
 		<script type="text/javascript" language="javascript" src="<s:url value="/javascript/yui/utilities/utilities.js"/>"></script>
 		<script type="text/javascript" language="javascript" src="<s:url value="/javascript/yui/yahoo-dom-event/yahoo-dom-event.js"/>"></script>
@@ -33,7 +34,7 @@
 		
 		<s:div id="entete" theme="ajax" href="%{enteteurl}"></s:div>
 		<s:div id="menu" theme="ajax" href="%{menuurl}"></s:div>
-		<s:div id="vue" cssClass="vuecss yui-navset" theme="ajax" href="%{vueurl}" listenTopics="montrer_vue" formId="frm_menu" executeScripts="true"></s:div>
+		<s:div id="vue" cssClass="vuecss" theme="ajax" href="%{vueurl}" listenTopics="montrer_vue" formId="frm_menu" executeScripts="true"></s:div>
 		<div id="container_yui_confirm"></div>
 	</body>
 </html>
