@@ -44,7 +44,7 @@ if (typeof(WEBDOMOTIC) == "undefined") {
 		 * the background color to red.
 		 */
 		customEtatFormatter: function(elLiner, oRecord, oColumn, oData) {
-			if(oRecord.getData("statut") == "1") {
+			if(oRecord.getData("etat") == "1") {
 				YAHOO.util.Dom.replaceClass(elLiner.parentNode, "down", "up");
 				elLiner.innerHTML = 'ON';
 			}
