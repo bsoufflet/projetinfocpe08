@@ -1,25 +1,24 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <jsp:include page="/pages/loginCheck.jsp" />
 <h1 class="h1"><s:property value="selectedModuleLabel"/></h1>
-
 <s:if test='selectedModule.equals("maison") || selectedModule.equals("piece") || selectedModule.equals("peripherique")'>
 	<script>
 		(function(){webdomotic.tabView = new YAHOO.widget.TabView({id: 'MaisonTab'});
 		YAHOO.plugin.Dispatcher.delegate(new YAHOO.widget.Tab({
-	        label: 'Maison',
+	        label: 'Maisons',
 	        dataSrc: '<s:url action="%{selectedAction}"/>?selectedModule=maison&selectedId=<s:property value="selectedId"/>',
 	        active: (document.getElementById('selectedModule').value == 'maison')
 	        
 	    }), webdomotic.tabView);
 
 		YAHOO.plugin.Dispatcher.delegate(new YAHOO.widget.Tab({
-	        label: 'Piece',
+	        label: 'Pieces',
 	        dataSrc: '<s:url action="%{selectedAction}"/>?selectedModule=piece&selectedId=<s:property value="selectedId"/>',
 	        active: (document.getElementById('selectedModule').value == 'piece')
 	    }), webdomotic.tabView);
 
 		YAHOO.plugin.Dispatcher.delegate(new YAHOO.widget.Tab({
-	        label: 'Peripherique',
+	        label: 'Peripheriques',
 	        dataSrc: '<s:url action="%{selectedAction}"/>?selectedModule=peripherique&selectedId=<s:property value="selectedId"/>',
 		    active: (document.getElementById('selectedModule').value == 'peripherique')
 	    }), webdomotic.tabView);
