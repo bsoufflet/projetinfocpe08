@@ -6,7 +6,7 @@
 	<jsp:include page="/pages/button/detailBtn.jsp" />
 </s:if>
 <!--  ATTENTION LE TARGET DU FORM DOIT ETRE LE MEME QUE LE SUBMIT -->
-<s:form id="frm_edition" name="frm_edition" theme="ajax" action="save" method="POST" validate="true" target="vue" >
+<s:form id="frm_edition" name="frm_edition" theme="ajax" action="save" method="POST" validate="true" target="vue">
 	<tr>
 		<td colspan="2">
 		<s:actionerror />
@@ -14,6 +14,7 @@
 		</td>
 	</tr>
 	<s:hidden name="selectedModule" value="%{selectedModule}"/>
+	<s:hidden name="selectedId" value="%{selectedId}"/>
 	<s:iterator value="fieldToDisplay">
 		<s:if test='top[0].equals("id")'>
 			<s:if test='top[1].equals("")'>
@@ -39,9 +40,10 @@
 				<s:textfield cssClass="label" name="%{top[0]}" label="%{top[2]}" value="%{top[1]}" />
 			</s:if>
 			<s:else>
-				<s:hidden cssClass="label" name="%{top[0]}" label="%{top[2]}" value="%{top[1]}" />
+				<s:hidden cssClass="label" name="%{top[0]}" label="%{top[2]}" value="%{userId}" />
 			</s:else>
 		</s:elseif>
+		
 		<s:elseif test='top[3].equals("bool")'>	
 			<s:checkbox cssClass="checkbox" name="%{top[0]}_chk" label="%{top[2]}" fieldValue="%{top[1]}" value="%{top[1]}"
 			onchange="if(document.getElementById('frm_edition_etat_chk').checked == true){document.getElementById('frm_edition_etat').value ='1'; }
@@ -52,3 +54,8 @@
 
 	<jsp:include page="/pages/button/saveBtn.jsp" />
 </s:form>
+<script>
+webdomotic.init_edition();
+</script>
+
+
