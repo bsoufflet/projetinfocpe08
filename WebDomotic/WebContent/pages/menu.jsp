@@ -4,7 +4,7 @@
 
 	<div class="list" onclick="webdomotic.montrer_vue('accueil', 'accueil');return false;">Accueil</div>
 	<div class="list" onclick="webdomotic.montrer_vue('compte', 'detail');return false;">Mon Compte</div>
-	<div class="list" onclick="webdomotic.montrer_vue('maison', 'detail');return false;">Ma Maison</div>
+	<div class="list" onclick="webdomotic.montrer_vue('maison', 'liste');return false;">Ma Maison</div>
 	<div class="list" onclick="webdomotic.montrer_vue('profil', 'liste');return false;">Mes Profils</div>
 	<div class="list" onclick="webdomotic.montrer_vue('aide', 'detail');return false;">Aide</div>
 	<div class="list" onclick="webdomotic.montrer_vue('outil', 'detail');return false;">Outils</div>
