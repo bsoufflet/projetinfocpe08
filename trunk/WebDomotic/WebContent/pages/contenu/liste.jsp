@@ -41,11 +41,6 @@
 			formatter:YAHOO.widget.DataTable.formatButton
 		},
 		{
-			key:"edit_button",
-			label:"",
-			formatter:YAHOO.widget.DataTable.formatButton
-		},
-		{
 			key:"delete_button",
 			label:"",
 			formatter:YAHOO.widget.DataTable.formatButton
@@ -58,7 +53,6 @@
 				{ key:'<s:property value="top[0]"/>' },
 			//</s:iterator>
 			{ key:'detail_button' },
-			{ key:'edit_button' },
 			{ key:'delete_button' }
 		]
 	};
@@ -71,10 +65,8 @@
 					document.getElementById('selectedId').value = oRecord._oData.id;
 					if(button == "Detail"){
 						webdomotic.montrer_vue('<s:property value="selectedModule"/>', 'detail');
-					}else if(button == "Edition"){
-						webdomotic.montrer_vue('<s:property value="selectedModule"/>', 'edition');
 					}else if(button == "Supprimer"){
-						webdomotic.confirmYUIpopup.show('<s:property value="selectedModule"/>');
+						webdomotic.confirmYUIpopup.show();
 					}else{
 						document.getElementById('selectedId').value = "";
 						alert('main.js-buildYUIDataTable : le nom du bouton est inconnu!!');

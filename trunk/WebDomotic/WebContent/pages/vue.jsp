@@ -16,7 +16,7 @@
 	        dataSrc: '<s:url action="%{selectedAction}"/>?selectedModule=piece&selectedId=<s:property value="selectedId"/>',
 	        active: (document.getElementById('selectedModule').value == 'piece')
 	    }), webdomotic.tabView);
-
+		//delegate permet d'executer le javascript de la reponse ajax
 		YAHOO.plugin.Dispatcher.delegate(new YAHOO.widget.Tab({
 	        label: 'Peripheriques',
 	        dataSrc: '<s:url action="%{selectedAction}"/>?selectedModule=peripherique&selectedId=<s:property value="selectedId"/>',

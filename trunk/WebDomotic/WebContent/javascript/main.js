@@ -72,6 +72,7 @@ if (typeof(WEBDOMOTIC) == "undefined") {
 					visible: false,
 					draggable: false,
 					close: true,
+					modal:true,
 					text: "Etes vous sur de vouloir supprimer cet element?",
 					icon: YAHOO.widget.SimpleDialog.ICON_HELP,
 					constraintoviewport: true,
@@ -80,11 +81,53 @@ if (typeof(WEBDOMOTIC) == "undefined") {
 			this.confirmYUIpopup.setHeader("Etes vous sur?");
 			this.confirmYUIpopup.render('container_yui_confirm');
 		},
+		createYUIEditionForm: function(container,nouveau){
+			if(typeof(this.editionDialog)!="undefined" && this.editionDialog.body != null){
+				this.editionDialog.destroy();
+			}
+			//Define various event handlers for Dialog
+			var handleSubmit = function() {
+				this.submit();
+			};
+			var handleCancel = function() {
+				this.cancel();
+			};
+			//Instantiate the Dialog
+			this.editionDialog = new YAHOO.widget.Dialog(container, 
+						{ width : "30em",
+						  fixedcenter : true,
+						  modal:true,
+						  visible : false, 
+						  constraintoviewport : true,
+						  buttons : [ { text:"Submit", handler:handleSubmit, isDefault:true },
+									  { text:"Cancel", handler:handleCancel } ]
+						 } );
+			var handleSuccess = function(o) {
+				var response = o.responseText;
+				webdomotic.editionDialog.hide();
+				document.getElementById('vue').innerHTML=response;
+			};
+			
+			var handleFailure = function(o) {
+				alert("Submission failed: " + o.status);
+			};
+			
+			this.editionDialog.callback = { success: handleSuccess,
+														 failure: handleFailure };
+			this.editionDialog.render(document.body);
+			
+			// Si c'est une creation on cache le formulaire de detail car il est vide 
+			// et on montre directement le formulaire d'edition/creation
+			if(nouveau){
+				document.getElementById('frm_detail').style.display="none";
+				this.editionDialog.show();
+			}
+		},
 		init_edition: function(){
-			if(document.getElementById('frm_edition_etat_chk').checked == true)
-				document.getElementById('frm_edition_etat').value ='1';
+			if(document.getElementById('etat_chk').checked == true)
+				document.getElementById('etat').value ='1';
 			else
-				document.getElementById('frm_edition_etat').value ='0';
+				document.getElementById('etat').value ='0';
 		}
 	};
 }
