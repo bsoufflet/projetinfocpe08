@@ -79,6 +79,12 @@ if (typeof(WEBDOMOTIC) == "undefined") {
 				});
 			this.confirmYUIpopup.setHeader("Etes vous sur?");
 			this.confirmYUIpopup.render('container_yui_confirm');
+		},
+		init_edition: function(){
+			if(document.getElementById('frm_edition_etat_chk').checked == true)
+				document.getElementById('frm_edition_etat').value ='1';
+			else
+				document.getElementById('frm_edition_etat').value ='0';
 		}
 	};
 }
