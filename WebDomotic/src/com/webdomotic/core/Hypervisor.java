@@ -195,9 +195,9 @@ public class Hypervisor {
 		query+=privilegeQuery;       
 		if(id!=null && !id.equals("")){
 			if(where){
-				query+=" AND id='"+id+"'";
+				query+=" AND "+getDBTableName_mod(module)+".id='"+id+"'";
 			}else{
-				query+=" WHERE id='"+id+"'";
+				query+=" WHERE "+getDBTableName_mod(module)+".id='"+id+"'";
 				where=true;
 			}
 		}
@@ -218,10 +218,10 @@ public class Hypervisor {
 			if(module.equals("maison") || module.equals("profil") || module.equals("regle")){
 				return " WHERE utilisateur_id = '"+userid+"'";
 			}else if(module.equals("piece") || module.equals("console")){
-				return " INNER JOIN maisons ON pieces.maison_id = maisons.id WHERE maisons.utilisateur_id = '"+userid+"'";
+				return " INNER JOIN maisons ON "+getDBTableName_mod(module)+".maison_id = maisons.id WHERE maisons.utilisateur_id = '"+userid+"'";
 			}else if(module.equals("peripherique")){
 				return " INNER JOIN pieces ON peripheriques.piece_id = pieces.id INNER JOIN maisons ON pieces.maison_id = maisons.id WHERE maisons.utilisateur_id = '"+userid+"'";
-			}else if(module.equals("utilisateur")){
+			}else if(module.equals("compte")){
 				return " WHERE id = '"+userid+"'";
 			}else{
 				return "";
