@@ -24,11 +24,10 @@ public class EditionDetail extends Vue {
 
 	public String saveToDB(){
 		System.out.println("Action: Save");
-		selectedId = Hypervisor.saveQuery(ActionContext.getContext().getParameters(),selectedModule);
-		//System.out.println(selectedId);
+		selectedId = Hypervisor.saveQuery(ActionContext.getContext().getParameters(),selectedModule,selectedId);
 		selectedAction = "detail";
+		//return "test";
 		return SUCCESS;
-
 	}
 
 	public void setFieldToDisplay(String[][] fieldToDisplay){
