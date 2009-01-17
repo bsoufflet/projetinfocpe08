@@ -108,18 +108,15 @@ public class Hypervisor {
 	}
 	
 	
-	public static String saveQuery(Map request,String module){
-		/*if(!request.containsKey("id"))
-			return null;*/
-		//String id = (String)((String[])request.get("id"))[0];
+	public static String saveQuery(Map request,String module, String id){
+
 		StringBuffer query;
 		//test if new
-		/*if(id.equals("0"))
+		if(id.equals("0"))
 			query = new StringBuffer("INSERT INTO "+getDBTableName_mod(module)+" SET ");
 		else
 			query = new StringBuffer("UPDATE "+getDBTableName_mod(module)+" SET ");
-		*/
-		query = new StringBuffer("UPDATE "+getDBTableName_mod(module)+" SET ");
+		
 		//build query
 		for(int i=0; i<Constants.g_mapping_DB_col.length; i++){
 			if(request.containsKey(Constants.g_mapping_DB_col[i][0])){
@@ -137,23 +134,19 @@ public class Hypervisor {
 		}
 		query.deleteCharAt(query.lastIndexOf(","));
 		//if not a new element
-		/*if(!id.equals("0")){
+		if(!id.equals("0")){
 			query.append(" WHERE id = "+((String[])request.get("id"))[0]);
-		}*/
+		}
 		
-		query.append(" WHERE id = "+((String[])request.get("id"))[0]);
 		//send update query
 		db = new ServerDB();
 		String new_id = db.UpdateDB(query.toString());
 		db.close();
 		
-		/*if(id.equals("0")){
+		if(id.equals("0"))
 			return new_id;
-		}
-		else*/
+		else
 			return ((String[])request.get("id"))[0];
-			
-		
 	}
 	
 	
