@@ -194,3 +194,13 @@ div.list:hover{
     background:#D8D8D8 url(sprite.png) repeat-x scroll 0% 50%;
     cursor: default;
 }
+/*Style pour le popup d'edition*/
+label { 
+	display:block;
+	float:left;
+	width:45%;
+	clear:left; 
+}
+.clear { 
+	clear:both;
+}
