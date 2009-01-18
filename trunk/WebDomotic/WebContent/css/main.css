@@ -17,7 +17,29 @@ table.wwFormTable {
 	margin-left:35%;
 	margin-right:35%;
 	margin-top:15%;
-} 
+}
+
+table.tableau {
+	font: 12px verdana, arial, helvetica, sans-serif;
+	border:1px solid #7F7F7F;
+	border-collapse:collapse;
+	border-spacing:0;
+	color: black;
+	
+	width: 30%;
+	margin-left:15px;
+	margin-right:15px;
+	margin-top:15px;
+}
+table.tableau tr td {
+	background-color: #fff;
+	border-color:#CBCBCB;
+	border-style:solid;
+	border-width:1px;
+	margin:0;
+	padding:5px;
+	text-align:center;
+}
 
 table.wwFormTable th {
 }
@@ -28,7 +50,7 @@ table.wwFormTable tr td {
 	border-style:solid;
 	border-width:1px;
 	margin:0;
-	padding:0;
+	padding:0px;
 	text-align:center;
 }
 
@@ -40,7 +62,7 @@ border-style: solid;
 */
 font-weight: bold;
 align: top;
-background:#D8D8DA url(sprite.png) repeat-x 0 0; /* header gradient */
+background:#D8D8DA url(sprite.png) repeat-x 0 0;
 } 
 
 .label {
@@ -178,6 +200,12 @@ div.list:hover{
  	background-position:0% 65%;
  	padding-left: 60px;
 }
+h2{
+	font-family: Verdana, Arial, Helvetica, Geneva, sans-serif;
+	font-size: 15px;
+	color:#0C1B76;
+	padding: 5px;
+}
 
 /*pour liste couleur ON OFF*/
 .yui-skin-sam .yui-dt tbody td.up {
@@ -198,7 +226,6 @@ div.list:hover{
 label { 
 	display:block;
 	float:left;
-	width:45%;
 	clear:left; 
 }
 .clear { 
