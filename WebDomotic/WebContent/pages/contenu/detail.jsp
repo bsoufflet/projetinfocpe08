@@ -7,7 +7,7 @@
 </s:if>
 <jsp:include page="/pages/button/annulerBtn.jsp" />
 
-<s:form id="frm_detail" name="frm_detail">
+<s:form id="frm_detail" cssClass="tableau" name="frm_detail">
 	<s:hidden name="selectedModule" value="%{selectedModule}"/>
 	
 	<s:iterator value="fieldToDisplay">
