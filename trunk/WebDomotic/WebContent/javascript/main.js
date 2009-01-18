@@ -78,7 +78,7 @@ if (typeof(WEBDOMOTIC) == "undefined") {
 					constraintoviewport: true,
 					buttons: [ { text:"Oui", handler:handleYes, isDefault:true },{ text:"Non",  handler:handleNo } ]
 				});
-			this.confirmYUIpopup.setHeader("Etes vous sur?");
+			this.confirmYUIpopup.setHeader("Suppression?");
 			this.confirmYUIpopup.render('container_yui_confirm');
 		},
 		createYUIEditionForm: function(container,nouveau){
