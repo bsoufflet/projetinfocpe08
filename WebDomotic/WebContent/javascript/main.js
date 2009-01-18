@@ -102,6 +102,8 @@ if (typeof(WEBDOMOTIC) == "undefined") {
 						  buttons : [ { text:"Submit", handler:handleSubmit, isDefault:true },
 									  { text:"Cancel", handler:handleCancel } ]
 						 } );
+			this.editionDialog.validate=webdomotic.validate;
+
 			var handleSuccess = function(o) {
 				var response = o.responseText;
 				webdomotic.editionDialog.hide();
@@ -186,6 +188,9 @@ if (typeof(WEBDOMOTIC) == "undefined") {
 				document.getElementById('etat').value ='1';
 			else
 				document.getElementById('etat').value ='0';
+		},
+		validate: function(){
+			return FIC_checkForm(webdomotic.editionDialog.form);
 		}
 	};
 }

@@ -23,6 +23,7 @@
 		<script type="text/javascript" language="javascript" src="<s:url value="/javascript/yui/datasource/datasource-min.js"/>"></script>
 		<script type="text/javascript" language="javascript" src="<s:url value="/javascript/yui/datatable/datatable-min.js"/>"></script>
 		<script type="text/javascript" src="<s:url value="/javascript/yui/tabview/dispatcher-min.js"/>"></script> 
+		<script type="text/javascript" language="javascript" src="<s:url value="/javascript/jsvalidate.js"/>"></script>
 		<script type="text/javascript" language="javascript" src="<s:url value="/javascript/main.js"/>"></script>
 
 		<s:head theme="ajax" debug="false"/>
