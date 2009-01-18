@@ -18,7 +18,7 @@
 		</s:if>
 		<s:elseif test='top[3].equals("text")||top[3].equals("object_maison")||top[3].equals("object_piece")'>
 			<label for='<s:property value="top[0]"/>'><s:property value="top[2]"/>:</label>
-			<input type="textbox" name='<s:property value="top[0]"/>' value='<s:property value="top[1]"/>'/>
+			<input type="textbox" name='<s:property value="top[0]"/>' value='<s:property value="top[1]"/>' class="required"/>
 		</s:elseif>
 		<s:elseif test='top[3].equals("password")'>
 			<label for='<s:property value="top[0]"/>'><s:property value="top[2]"/>:</label>

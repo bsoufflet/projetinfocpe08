@@ -204,3 +204,29 @@ label {
 .clear { 
 	clear:both;
 }
+/*Validation des formulaire d'edition*/
+.validation-failed { /* for textboxes, textareas, passwords */
+	border:1px dashed #F33;
+	background-color:#FCC;
+}
+
+.validation-failed-cr { /* for checkboxes and radios */
+
+}
+
+.validation-failed-sel { /* for selects */
+
+}
+
+.validation-passed { /* for textboxes, textareas, passwords */
+	border:1px solid #6C6;
+	background-color:#CFF;
+}
+
+.validation-passed-cr { /* for checkboxes and radios */
+
+}
+
+.validation-passed-sel { /* for selects */
+
+}
