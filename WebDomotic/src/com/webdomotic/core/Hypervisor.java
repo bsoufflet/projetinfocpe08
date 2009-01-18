@@ -154,18 +154,24 @@ public class Hypervisor {
 		if(!isOwner(id, module)){
 			return false;
 		}
-		db = new ServerDB();
 		String query="";
 		String StringRelatedModules=getRelatedModules_mod(module);
 		if(!StringRelatedModules.equals("")){
 			String[] relatedModules=StringRelatedModules.split(",");
 			for(int i=0; i<relatedModules.length; i++){
-				query="DELETE FROM "+getDBTableName_mod(relatedModules[i])+" WHERE "+getRelationField_mod(module)+"='"+id+"'";
-				String st = db.UpdateDB(query);
-				if(st.equals(""))return false;
+				db = new ServerDB();
+				String [][] queryResult = db.queryDB("SELECT id FROM "+getDBTableName_mod(relatedModules[i])+" WHERE "+getRelationField_mod(module)+"='"+id+"'");
+				db.close();
+				if(queryResult.length>1){
+					for(int j=1; j<queryResult.length; j++){
+						if(deleteRow(queryResult[j][0], relatedModules[i]) == false) return false;
+					}
+				}
+				
 			}
 		}
-		query="DELETE FROM "+getDBTableName_mod(module)+" WHERE id='"+id+"' LIMIT 1";
+		query="DELETE FROM "+getDBTableName_mod(module)+" WHERE id='"+id+"'";
+		db = new ServerDB();
 		String st = db.UpdateDB(query);
 		db.close();
 		if(st.equals(""))

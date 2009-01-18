@@ -67,13 +67,13 @@ if (typeof(WEBDOMOTIC) == "undefined") {
 			};
 			this.confirmYUIpopup = new YAHOO.widget.SimpleDialog("confirmYUI", 
 				{
-					width: "300px",
+					width: "450px",
 					fixedcenter: true,
 					visible: false,
 					draggable: false,
 					close: true,
 					modal:true,
-					text: "Etes vous sur de vouloir supprimer cet element et les elements associes?",
+					text: "Etes vous sur de vouloir supprimer cet element?<BR> ATTENTION : Tous les elements associes seront egalement supprimes?",
 					icon: YAHOO.widget.SimpleDialog.ICON_HELP,
 					constraintoviewport: true,
 					buttons: [ { text:"Oui", handler:handleYes, isDefault:true },{ text:"Non",  handler:handleNo } ]
