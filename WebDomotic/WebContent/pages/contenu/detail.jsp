@@ -1,7 +1,7 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <jsp:include page="/pages/loginCheck.jsp" />
 
-<s:if test='!selectedId.equals("0")'>
+<s:if test='!selectedId.equals("0") && !selectedId.equals("")'>
 	<jsp:include page="/pages/button/editionBtn.jsp" />
 	<jsp:include page="/pages/button/supprimerBtn.jsp" />
 </s:if>

@@ -76,5 +76,5 @@
 				}
 			});
 </script>
-<jsp:include page="/pages/button/nouveauBtn.jsp" /><br><br>
+<input type="button" class="button" name="nouveau_button" id="nouveau_button" value="Nouveau" onclick="document.getElementById('selectedId').value='0';webdomotic.montrer_vue('<s:property value="selectedModule"/>', 'detail');return false;"/><br><br>
 <div id="ListeDiv_<s:property value="selectedModule"/>" class="yui-content"></div>

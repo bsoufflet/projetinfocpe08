@@ -2,4 +2,4 @@
 <jsp:include page="/pages/loginCheck.jsp" />
 <s:actionerror />
 <s:actionmessage />
-<s:action name="%{selectedAction}" executeResult="true"/>
+<s:action name="liste" executeResult="true"/>

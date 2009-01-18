@@ -21,23 +21,25 @@ public interface Constants {
 	final static int LABEL					=	1;
 	final static int ADMIN_LABEL			=	2;
 	final static int DB_TABLE				=	3;
+	final static int RELATED_MODULES		=	4;
+	final static int RELATION_FIELD			=	5;
 	
 	/**
 	 * Mapping for modules
 	 */
 	final static String[][] g_mapping_mod =	{
-							/*Module_name, 	Label, 				admin_label, 		DB_Table*/
+							/*Module_name, 	Label, 				admin_label, 		DB_Table			related_modules			relation_field*/
 		
-							{"console",		"Ma console",		"Consoles",			"consoles"},
-							{"maison",		"Ma maison",		"Maisons",			"maisons"},
-							{"peripherique","Mes périphériques","Périphériques",	"peripheriques"},
-							{"piece",		"Mes pièces",		"Pièces",			"pieces"},
-							{"profil",		"Mes profils",		"Profils",			"profils"},
-							{"regle",		"Mes règles",		"Règles",			"regles"},
-							{"accueil",		"Accueil",			"Accueil",			""},
-							{"outil",		"Mes outils",		"Outils",			""},
-							{"aide",		"Aide",				"Aide",				""},
-							{"compte",		"Mon compte",		"Comptes utilisateurs","utilisateurs"}
+							{"console",		"Ma console",		"Consoles",			"consoles",			"",						""},
+							{"maison",		"Ma maison",		"Maisons",			"maisons",			"piece,console",		"maison_id"},
+							{"peripherique","Mes périphériques","Périphériques",	"peripheriques",	"",						""},
+							{"piece",		"Mes pièces",		"Pièces",			"pieces",			"peripherique",			"piece_id"},
+							{"profil",		"Mes profils",		"Profils",			"profils",			"",						""},
+							{"regle",		"Mes règles",		"Règles",			"regles",			"",						""},
+							{"accueil",		"Accueil",			"Accueil",			"",					"",						""},
+							{"outil",		"Mes outils",		"Outils",			"",					"",						""},
+							{"aide",		"Aide",				"Aide",				"",					"",						""},
+							{"compte",		"Mon compte",		"Comptes utilisateurs","utilisateurs",	"maison,profil,regle",	"utilisateur_id"}
 										};
 
 	/**

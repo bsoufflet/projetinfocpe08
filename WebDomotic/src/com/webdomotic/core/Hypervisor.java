@@ -154,8 +154,18 @@ public class Hypervisor {
 		if(!isOwner(id, module)){
 			return false;
 		}
-		String query="DELETE FROM "+getDBTableName_mod(module)+" WHERE id = '"+id+"' LIMIT 1";
 		db = new ServerDB();
+		String query="";
+		String StringRelatedModules=getRelatedModules_mod(module);
+		if(!StringRelatedModules.equals("")){
+			String[] relatedModules=StringRelatedModules.split(",");
+			for(int i=0; i<relatedModules.length; i++){
+				query="DELETE FROM "+getDBTableName_mod(relatedModules[i])+" WHERE "+getRelationField_mod(module)+"='"+id+"'";
+				String st = db.UpdateDB(query);
+				if(st.equals(""))return false;
+			}
+		}
+		query="DELETE FROM "+getDBTableName_mod(module)+" WHERE id='"+id+"' LIMIT 1";
 		String st = db.UpdateDB(query);
 		db.close();
 		if(st.equals(""))
@@ -250,7 +260,14 @@ public class Hypervisor {
 	public static String getDBTableName_mod(String input){
 		return searchMapping(Constants.g_mapping_mod, input, Constants.DB_TABLE);
 	}
-
+	
+	public static String getRelatedModules_mod(String input){
+		return searchMapping(Constants.g_mapping_mod, input, Constants.RELATED_MODULES);
+	}
+	
+	public static String getRelationField_mod(String input){
+		return searchMapping(Constants.g_mapping_mod, input, Constants.RELATION_FIELD);
+	}
 
 	public static String getFieldName_DB(String input){
 		return searchMapping(Constants.g_mapping_DB_col, input, Constants.FIELD_NAME);

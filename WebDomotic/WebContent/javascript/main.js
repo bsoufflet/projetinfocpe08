@@ -73,7 +73,7 @@ if (typeof(WEBDOMOTIC) == "undefined") {
 					draggable: false,
 					close: true,
 					modal:true,
-					text: "Etes vous sur de vouloir supprimer cet element?",
+					text: "Etes vous sur de vouloir supprimer cet element et les elements associes?",
 					icon: YAHOO.widget.SimpleDialog.ICON_HELP,
 					constraintoviewport: true,
 					buttons: [ { text:"Oui", handler:handleYes, isDefault:true },{ text:"Non",  handler:handleNo } ]
@@ -105,7 +105,7 @@ if (typeof(WEBDOMOTIC) == "undefined") {
 			var handleSuccess = function(o) {
 				var response = o.responseText;
 				webdomotic.editionDialog.hide();
-				document.getElementById('vue').innerHTML=response;
+				YAHOO.plugin.Dispatcher.process( 'vue', response );
 			};
 			
 			var handleFailure = function(o) {
@@ -121,6 +121,64 @@ if (typeof(WEBDOMOTIC) == "undefined") {
 			if(nouveau){
 				document.getElementById('frm_detail').style.display="none";
 				this.editionDialog.show();
+			}
+		},
+		createMaisonTabs: function(actionURL, selectedId){
+			webdomotic.tabView = new YAHOO.widget.TabView({id: 'YUITab'});
+			YAHOO.plugin.Dispatcher.delegate(new YAHOO.widget.Tab({
+		        label: 'Maisons',
+		        dataSrc: actionURL+'?selectedModule=maison&selectedId='+selectedId,
+		        active: (document.getElementById('selectedModule').value == 'maison')
+		        
+		    }), webdomotic.tabView);
+
+			YAHOO.plugin.Dispatcher.delegate(new YAHOO.widget.Tab({
+		        label: 'Pieces',
+		        dataSrc: actionURL+'?selectedModule=piece&selectedId='+selectedId,
+		        active: (document.getElementById('selectedModule').value == 'piece')
+		    }), webdomotic.tabView);
+			//delegate permet d'executer le javascript de la reponse ajax
+			YAHOO.plugin.Dispatcher.delegate(new YAHOO.widget.Tab({
+		        label: 'Peripheriques',
+		        dataSrc: actionURL+'?selectedModule=peripherique&selectedId='+selectedId,
+			    active: (document.getElementById('selectedModule').value == 'peripherique')
+		    }), webdomotic.tabView);
+			YAHOO.util.Event.onContentReady('TabContainer', function() {
+				webdomotic.tabView.appendTo('TabContainer');
+			});
+			if(document.getElementById('selectedAction').value == "supprimer"){
+				document.getElementById('selectedAction').value = "liste";
+			}
+			// Desactivation des Tabs si la vue n'est pas une liste
+			if(document.getElementById('selectedAction').value != "liste"){
+				webdomotic.tabView.get('tabs')[0].set('disabled', true);
+				webdomotic.tabView.get('tabs')[1].set('disabled', true);
+				webdomotic.tabView.get('tabs')[2].set('disabled', true);
+			}
+		},
+		createProfilTabs: function(actionURL, selectedId){
+			webdomotic.tabView = new YAHOO.widget.TabView({id: 'ProfilTab'});
+			YAHOO.plugin.Dispatcher.delegate(new YAHOO.widget.Tab({
+		        label: 'Profil',
+		        dataSrc: actionURL+'?selectedModule=profil&selectedId='+selectedId,
+		        active: (document.getElementById('selectedModule').value == 'profil')
+		    }), webdomotic.tabView);
+
+			YAHOO.plugin.Dispatcher.delegate(new YAHOO.widget.Tab({
+		        label: 'Regle',
+		        dataSrc: actionURL+'?selectedModule=regle&selectedId='+selectedId,
+		        active: (document.getElementById('selectedModule').value == 'regle')
+		    }), webdomotic.tabView);
+		    
+			YAHOO.util.Event.onContentReady('TabContainer', function() {
+				webdomotic.tabView.appendTo('TabContainer');
+			});
+			if(document.getElementById('selectedAction').value == "supprimer"){
+				document.getElementById('selectedAction').value = "liste";
+			}
+			if(document.getElementById('selectedAction').value != "liste"){
+				webdomotic.tabView.get('tabs')[0].set('disabled', true);
+				webdomotic.tabView.get('tabs')[1].set('disabled', true);
 			}
 		},
 		init_edition: function(){
