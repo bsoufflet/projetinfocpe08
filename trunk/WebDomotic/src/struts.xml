@@ -47,7 +47,6 @@
 		</action>
 		<action name="supprimer" class="com.webdomotic.actions.Vue" method="supprimer">
 			<result name="error">/pages/contenu/supprimer.jsp</result>
-			<result>/pages/contenu/supprimer.jsp</result>
 		</action>
     </package>
 </struts>
