@@ -226,8 +226,10 @@ h2{
 label { 
 	display:block;
 	float:left;
-	clear:left; 
+	clear:left;
+	width:45%;
 }
+
 .clear { 
 	clear:both;
 }
