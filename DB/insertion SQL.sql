@@ -174,39 +174,39 @@ VALUES (
 
 INSERT INTO `regles` ( `id` , `utilisateur_id` , `nom` ,`description`, `periode`, `etat` )
 VALUES (
-1, 1, 'regle1', 'blabla', 'lundi,mardi,jeudi-13h30-60-10', 0 
+1, 1, 'regle1', 'blabla', '2,3,5-13h30-60-10', 0 
 );
 INSERT INTO `regles` ( `id` , `utilisateur_id` , `nom` ,`description`, `periode`, `etat` )
 VALUES (
-2, 1, 'regle2' , 'blablabla', 'jeudi-12h09-120-0', 0
+2, 1, 'regle2' , 'blablabla', '5-12h09-120-0', 0
 );
 INSERT INTO `regles` ( `id` , `utilisateur_id` , `nom` ,`description`, `periode`, `etat` )
 VALUES (
-3, 1, 'regle3', 'bla', 'jeudi-12h09-120-0', 1
+3, 1, 'regle3', 'bla', '5-12h09-120-0', 1
 );
 INSERT INTO `regles` ( `id` , `utilisateur_id` , `nom` ,`description`, `periode`, `etat` )
 VALUES (
-4, 2, 'regle1', 'blabla', 'lundi,mardi,jeudi-13h30-60-10', 0
+4, 2, 'regle1', 'blabla', '2,3,5-13h30-60-10', 0
 );
 INSERT INTO `regles` ( `id` , `utilisateur_id` , `nom` ,`description`, `periode`, `etat` )
 VALUES (
-5, 2, 'regle2' , 'blablabla', 'lundi,jeudi-0h0-0-0', 1
+5, 2, 'regle2' , 'blablabla', '2,5-0h0-0-0', 1
 );
 INSERT INTO `regles` ( `id` , `utilisateur_id` , `nom` ,`description`, `periode`, `etat` )
 VALUES (
-6, 2, 'regle3', 'bla', 'mardi-1h7-0-150', 1
+6, 2, 'regle3', 'bla', '3-1h7-0-150', 1
 );
 INSERT INTO `regles` ( `id` , `utilisateur_id` , `nom` ,`description`, `periode`, `etat` )
 VALUES (
-7, 3, 'regle1', 'blabla', 'lundi,jeudi-0h0-0-0', 0
+7, 3, 'regle1', 'blabla', '2,5-0h0-0-0', 0
 );
 INSERT INTO `regles` ( `id` , `utilisateur_id` , `nom` ,`description`, `periode`, `etat` )
 VALUES (
-8, 3, 'regle2' , 'blablabla', 'lundi,mardi,jeudi-13h30-60-10', 0
+8, 3, 'regle2' , 'blablabla', '2,3,5-13h30-60-10', 0
 );
 INSERT INTO `regles` ( `id` , `utilisateur_id` , `nom` ,`description`, `periode`, `etat` )
 VALUES (
-9, 3, 'regle3', 'bla', 'mardi-1h7-0-150', 1
+9, 3, 'regle3', 'bla', '3-1h7-0-150', 1
 );
 
 
