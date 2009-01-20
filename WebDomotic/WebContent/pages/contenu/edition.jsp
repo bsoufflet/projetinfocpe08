@@ -20,15 +20,15 @@
 			<input type="hidden" name='<s:property value="top[0]"/>' value='<s:property value="top[1]"/>' />
 			<div class="clear"></div>
 			<label for="jours_periode">Jours:</label>
-			<input type="checkbox" name="jours_periode" value="lundi" /> Lu
-			<input type="checkbox" name="jours_periode" value="mardi" /> Ma
-			<input type="checkbox" name="jours_periode" value="mercredi" /> Me
-			<input type="checkbox" name="jours_periode" value="jeudi" /> Je
+			<input type="checkbox" name="jours_periode" value="2" /> Lu
+			<input type="checkbox" name="jours_periode" value="3" /> Ma
+			<input type="checkbox" name="jours_periode" value="4" /> Me
+			<input type="checkbox" name="jours_periode" value="5" /> Je
 			<div class="clear"></div>
 			<label for="jours_periode" style="visibility:hidden">:</label>
-			<input type="checkbox" name="jours_periode" value="vendredi" /> Ve
-			<input type="checkbox" name="jours_periode" value="samedi" /> Sa
-			<input type="checkbox" name="jours_periode" value="dimanche" /> Di
+			<input type="checkbox" name="jours_periode" value="6" /> Ve
+			<input type="checkbox" name="jours_periode" value="7" /> Sa
+			<input type="checkbox" name="jours_periode" value="1" /> Di
 			<div class="clear"></div>
 			<label for="heure_periode">Heure de debut:</label>
 			<input type="textbox" name='heure_periode' class='validate-number' value='' size='2' maxlength='2' class="required"/> Heures 
