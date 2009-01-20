@@ -35,7 +35,7 @@
 			<result>/pages/contenu/accueil.jsp</result>
 		</action>
 		<action name="save" class="com.webdomotic.actions.EditionDetail" method="saveToDB">
-			<result name="error">/pages/contenu/detail.jsp</result>
+			<result name="error">/pages/contenu/supprimer.jsp</result>
 			<result name="test">/pages/contenu/sauvegarder.jsp</result>
 			<result type="redirect-action">
 				<param name="actionName">vue</param>

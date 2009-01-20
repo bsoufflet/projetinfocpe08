@@ -107,26 +107,34 @@ public class Hypervisor {
 		return returnObject;
 	}
 	
-	
-	public static String saveQuery(Map request,String module, String id){
+	/**
+	 * saves query and returns the new/updated ID
+	 */
+	public static String saveQuery(Map request,String module, String itemId){
 
 		StringBuffer query;
 		//test if new
-		if(id.equals("0"))
+		if(itemId.equals("0"))
 			query = new StringBuffer("INSERT INTO "+getDBTableName_mod(module)+" SET ");
 		else
 			query = new StringBuffer("UPDATE "+getDBTableName_mod(module)+" SET ");
-		
+
 		//build query
 		for(int i=0; i<Constants.g_mapping_DB_col.length; i++){
 			if(request.containsKey(Constants.g_mapping_DB_col[i][0])){
-
 				if(Constants.g_mapping_DB_col[i][0].equals("motdepasse")){
 					if(((String[])request.get("passchange"))[0].equals("true")){
 						query.append(Constants.g_mapping_DB_col[i][0]+" = MD5("); //append column name
 						query.append("\'"+fixAp(((String[])request.get(Constants.g_mapping_DB_col[i][0]))[0])+"\'),"); //append value
 					}
-				}else{
+				}else if(Constants.g_mapping_DB_col[i][0].contains("_id")){
+					if(!isOwner(((String[])request.get(Constants.g_mapping_DB_col[i][0]))[0], getModuleName_mod((Constants.g_mapping_DB_col[i][0])))){
+						return "-1";
+					}else{
+						query.append(Constants.g_mapping_DB_col[i][0]+" = "); //append column name
+						query.append("\'"+fixAp(((String[])request.get(Constants.g_mapping_DB_col[i][0]))[0])+"\',"); //append value
+					}
+				}else{//general names
 					query.append(Constants.g_mapping_DB_col[i][0]+" = "); //append column name
 					query.append("\'"+fixAp(((String[])request.get(Constants.g_mapping_DB_col[i][0]))[0])+"\',"); //append value
 				}
@@ -134,7 +142,7 @@ public class Hypervisor {
 		}
 		query.deleteCharAt(query.lastIndexOf(","));
 		//if not a new element
-		if(!id.equals("0")){
+		if(!itemId.equals("0")){
 			query.append(" WHERE id = "+((String[])request.get("id"))[0]);
 		}
 		
@@ -143,7 +151,7 @@ public class Hypervisor {
 		String new_id = db.UpdateDB(query.toString());
 		db.close();
 		
-		if(id.equals("0"))
+		if(itemId.equals("0"))
 			return new_id;
 		else
 			return ((String[])request.get("id"))[0];
@@ -154,7 +162,6 @@ public class Hypervisor {
 		if(!isOwner(id, module)){
 			return false;
 		}
-		String query="";
 		String StringRelatedModules=getRelatedModules_mod(module);
 		if(!StringRelatedModules.equals("")){
 			String[] relatedModules=StringRelatedModules.split(",");
@@ -170,7 +177,7 @@ public class Hypervisor {
 				
 			}
 		}
-		query="DELETE FROM "+getDBTableName_mod(module)+" WHERE id='"+id+"'";
+		String query="DELETE FROM "+getDBTableName_mod(module)+" WHERE id='"+id+"'";
 		db = new ServerDB();
 		String st = db.UpdateDB(query);
 		db.close();

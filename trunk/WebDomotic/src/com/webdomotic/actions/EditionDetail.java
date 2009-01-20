@@ -25,6 +25,10 @@ public class EditionDetail extends Vue {
 	public String saveToDB(){
 		System.out.println("Action: Save");
 		selectedId = Hypervisor.saveQuery(ActionContext.getContext().getParameters(),selectedModule,selectedId);
+		if(selectedId.equals("-1")){
+			addActionError("Cet item ne vous appartiens pas");
+			return ERROR;
+		}
 		selectedAction = "detail";
 		//return "test";
 		return SUCCESS;
