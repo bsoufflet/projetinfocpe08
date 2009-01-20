@@ -1,6 +1,8 @@
-package com.webdomotic.core;
+package com.webdomotic.examples;
 
 import java.io.FileInputStream;
+
+import com.webdomotic.core.ConsoleSocket;
 
 
 public class ExampleSocket {

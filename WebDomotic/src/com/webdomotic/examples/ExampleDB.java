@@ -1,4 +1,6 @@
-package com.webdomotic.core;
+package com.webdomotic.examples;
+
+import com.webdomotic.core.ServerDB;
 
 
 public class ExampleDB {
