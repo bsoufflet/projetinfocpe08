@@ -15,8 +15,16 @@
 			<s:else>
 				<input type="hidden" name="id" value='<s:property value="top[1]"/>'/>
 			</s:else>		
-		</s:if>
-		<s:elseif test='top[0].equals("periode")'>
+		</s:if><s:elseif test='top[3].equals("object_compte")'>
+			<s:if test='isAdmin.equals("true")'>
+				<label for='<s:property value="top[0]"/>'><s:property value="top[2]"/>:</label>
+				<input type="textbox" name='<s:property value="top[0]"/>' value='<s:property value="top[1]"/>' />
+			</s:if>
+			<s:else>
+				<input type="hidden" name='<s:property value="top[0]"/>' value='<s:property value="userId"/>' />
+			</s:else>
+		</s:elseif>
+		<s:elseif test='top[3].equals("periode")'>
 			<input type="hidden" name='<s:property value="top[0]"/>' value='<s:property value="top[1]"/>' />
 			<div class="clear"></div>
 			<label for="jours_periode">Jours:</label>
@@ -57,16 +65,6 @@
 				<option value="administrateur">Admin</option>
 			</select>
 		</s:elseif>
-		<s:elseif test='top[3].equals("object_compte")'>
-			<s:if test='isAdmin.equals("true")'>
-				<label for='<s:property value="top[0]"/>'><s:property value="top[2]"/>:</label>
-				<input type="textbox" name='<s:property value="top[0]"/>' value='<s:property value="top[1]"/>' />
-			</s:if>
-			<s:else>
-				<input type="hidden" name='<s:property value="top[0]"/>' value='<s:property value="userId"/>' />
-			</s:else>
-		</s:elseif>
-		
 		<s:elseif test='top[3].equals("bool")'>
 			<div class="clear"></div>
 			<label for='<s:property value="top[0]"/>'><s:property value="top[2]"/>:</label>
