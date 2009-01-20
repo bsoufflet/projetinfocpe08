@@ -81,7 +81,7 @@ if (typeof(WEBDOMOTIC) == "undefined") {
 			this.confirmYUIpopup.setHeader("Suppression?");
 			this.confirmYUIpopup.render('container_yui_confirm');
 		},
-		createYUIEditionForm: function(container,nouveau){
+		createYUIEditionForm: function(container,nouveau,module){
 			if(typeof(this.editionDialog)!="undefined" && this.editionDialog.body != null){
 				this.editionDialog.destroy();
 			}
@@ -121,7 +121,7 @@ if (typeof(WEBDOMOTIC) == "undefined") {
 			// Si c'est une creation on cache le formulaire de detail car il est vide 
 			// et on montre directement le formulaire d'edition/creation
 			if(nouveau){
-				document.getElementById('frm_detail').style.display="none";
+				document.getElementById('frm_detail_'+module).style.display="none";
 				this.editionDialog.show();
 			}
 		},
@@ -227,6 +227,7 @@ if (typeof(WEBDOMOTIC) == "undefined") {
 		init_periode: function(form, destination){
 			if(destination == "edition"){
 				var periode=document.getElementById(form).periode.value;
+				if(periode=="")return false;
 				var periodeArray=periode.split("-");
 				var jourArray=periodeArray[0].split(",");
 				var heureArray=periodeArray[1].split("h");
@@ -243,6 +244,7 @@ if (typeof(WEBDOMOTIC) == "undefined") {
 				}
 			}else{
 				var periode=document.getElementById(form+"_periode").innerHTML;
+				if(periode=="")return false;
 				var periodeArray=periode.split("-");
 				document.getElementById(form+"_periode").innerHTML="<u>Jours:</u> "+periodeArray[0]+"<br><u>Heure:</u> "+periodeArray[1]+"<br><u>Duree:</u> "+periodeArray[2]+" Minutes<br><u>Repetition toutes les:</u>"+periodeArray[3]+" Minutes";
 			}

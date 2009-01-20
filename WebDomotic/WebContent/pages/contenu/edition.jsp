@@ -39,7 +39,7 @@
 			<div class="clear"></div>
 			<label for="repetition_periode">Repetition toutes les:</label>
 			<input type="textbox" name='repetition_periode' class='validate-number' value='' size='4' maxlength='4'/> Minutes
-			<script>webdomotic.init_periode('frm_edition_<s:property value="selectedModule"/>', 'edition');</script>
+			<script>setTimeout("webdomotic.init_periode('frm_edition_<s:property value="selectedModule"/>', 'edition')",500);</script>
 		</s:elseif>
 		<s:elseif test='top[3].equals("text")||top[3].equals("object_maison")||top[3].equals("object_piece")'>
 			<label for='<s:property value="top[0]"/>'><s:property value="top[2]"/>:</label>
@@ -80,9 +80,9 @@
 </div>
 <script>
 //<s:if test='selectedId.equals("0")'>
-	YAHOO.util.Event.onDOMReady(webdomotic.createYUIEditionForm("EditFrmContainer_<s:property value="selectedModule"/>",true));
+	YAHOO.util.Event.onDOMReady(webdomotic.createYUIEditionForm("EditFrmContainer_<s:property value="selectedModule"/>",true,'<s:property value="selectedModule"/>'));
 //</s:if>
 //<s:else>
-	YAHOO.util.Event.onDOMReady(webdomotic.createYUIEditionForm("EditFrmContainer_<s:property value="selectedModule"/>",false));
+	YAHOO.util.Event.onDOMReady(webdomotic.createYUIEditionForm("EditFrmContainer_<s:property value="selectedModule"/>",false,'<s:property value="selectedModule"/>'));
 //</s:else>
 </script>

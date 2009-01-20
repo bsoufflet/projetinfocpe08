@@ -73,6 +73,7 @@ public interface Constants {
 							{"ville",			"Ville",					"text",				"true",				"true"},
 							{"description",		"Description",				"text",				"true",				"true"},
 							{"superficie",		"Superficie",				"text",				"true",				"true"},
+							{"periode",			"Période",					"periode",			"true",				"true"},
 							{"maison_id",		"Maison",					"object_maison",	"true",				"true"},
 							{"utilisateur_id",	"Utilisateur",				"object_compte",	"true",				"false"},
 							{"piece_id",		"Pièce",					"object_piece",		"true",				"true"},
