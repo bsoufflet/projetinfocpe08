@@ -1,8 +1,6 @@
 @CHARSET "UTF-8";
 
 body {
-font: 12px verdana, arial, helvetica, sans-serif;
-background-color:#FFFFFF;
 margin:0px;
 } 
 
@@ -26,7 +24,7 @@ table.tableau {
 	border-spacing:0;
 	color: black;
 	
-	width: 30%;
+	width: 40%;
 	margin-left:15px;
 	margin-right:15px;
 	margin-top:15px;
@@ -38,7 +36,6 @@ table.tableau tr td {
 	border-width:1px;
 	margin:0;
 	padding:5px;
-	text-align:center;
 }
 
 table.wwFormTable th {
@@ -60,12 +57,14 @@ border-width: 1px;
 border-color: #afa;
 border-style: solid;
 */
+text-align: left;
 font-weight: bold;
 align: top;
 background:#D8D8DA url(sprite.png) repeat-x 0 0;
 } 
 
 .label {
+	width: 100%;
 } 
 
 .errorMessage {

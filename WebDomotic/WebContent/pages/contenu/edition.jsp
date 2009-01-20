@@ -4,7 +4,7 @@
 <div id='EditFrmContainer_<s:property value="selectedModule"/>'> 
 <div class="hd"></div> 
 <div class="bd"> 
-<form action="save.action" method="POST">
+<form action="save.action" method="POST" id='frm_edition_<s:property value="selectedModule"/>'>
 	<input type="hidden" name="selectedModule" value="<s:property value="selectedModule"/>"/>
 	<input type="hidden" name="selectedId" value="<s:property value="selectedId"/>"/>
 	<s:iterator value="fieldToDisplay">
@@ -16,6 +16,31 @@
 				<input type="hidden" name="id" value='<s:property value="top[1]"/>'/>
 			</s:else>		
 		</s:if>
+		<s:elseif test='top[0].equals("periode")'>
+			<input type="hidden" name='<s:property value="top[0]"/>' value='<s:property value="top[1]"/>' />
+			<div class="clear"></div>
+			<label for="jours_periode">Jours:</label>
+			<input type="checkbox" name="jours_periode" value="lundi" /> Lu
+			<input type="checkbox" name="jours_periode" value="mardi" /> Ma
+			<input type="checkbox" name="jours_periode" value="mercredi" /> Me
+			<input type="checkbox" name="jours_periode" value="jeudi" /> Je
+			<div class="clear"></div>
+			<label for="jours_periode" style="visibility:hidden">:</label>
+			<input type="checkbox" name="jours_periode" value="vendredi" /> Ve
+			<input type="checkbox" name="jours_periode" value="samedi" /> Sa
+			<input type="checkbox" name="jours_periode" value="dimanche" /> Di
+			<div class="clear"></div>
+			<label for="heure_periode">Heure de debut:</label>
+			<input type="textbox" name='heure_periode' class='validate-number' value='' size='2' maxlength='2' class="required"/> Heures 
+			<input type="textbox" name='minute_periode' class='validate-number' value='' size='2' maxlength='2' class="required"/> Minutes
+			<div class="clear"></div>
+			<label for="duree_periode">Duree: (0:illimite)</label>
+			<input type="textbox" name='duree_periode' class='validate-number' value='' size='4' maxlength='4'/> Minutes
+			<div class="clear"></div>
+			<label for="repetition_periode">Repetition toutes les:</label>
+			<input type="textbox" name='repetition_periode' class='validate-number' value='' size='4' maxlength='4'/> Minutes
+			<script>webdomotic.init_periode('frm_edition_<s:property value="selectedModule"/>', 'edition');</script>
+		</s:elseif>
 		<s:elseif test='top[3].equals("text")||top[3].equals("object_maison")||top[3].equals("object_piece")'>
 			<label for='<s:property value="top[0]"/>'><s:property value="top[2]"/>:</label>
 			<input type="textbox" name='<s:property value="top[0]"/>' value='<s:property value="top[1]"/>' class="required"/>
