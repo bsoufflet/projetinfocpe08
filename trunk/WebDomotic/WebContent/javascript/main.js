@@ -246,7 +246,24 @@ if (typeof(WEBDOMOTIC) == "undefined") {
 				var periode=document.getElementById(form+"_periode").innerHTML;
 				if(periode=="")return false;
 				var periodeArray=periode.split("-");
-				document.getElementById(form+"_periode").innerHTML="<u>Jours:</u> "+periodeArray[0]+"<br><u>Heure:</u> "+periodeArray[1]+"<br><u>Duree:</u> "+periodeArray[2]+" Minutes<br><u>Repetition toutes les:</u>"+periodeArray[3]+" Minutes";
+				var jourArray=periodeArray[0].split(",");
+				var weekday=new Array(7);
+				weekday[0]="Dimanche";
+				weekday[1]="Lundi";
+				weekday[2]="Mardi";
+				weekday[3]="Mercredi";
+				weekday[4]="Jeudi";
+				weekday[5]="Vendredi";
+				weekday[6]="Samedi";
+				var jourString="";
+				for(var k=0;k<jourArray.length;k++){
+					if(k==0){
+						jourString+=weekday[jourArray[k]];
+					}else{
+						jourString+=", "+ weekday[jourArray[k]];
+					}
+				}
+				document.getElementById(form+"_periode").innerHTML="<u>Jours:</u> "+jourString+"<br><u>Heure:</u> "+periodeArray[1]+"<br><u>Duree:</u> "+periodeArray[2]+" Minutes<br><u>Repetition toutes les:</u>"+periodeArray[3]+" Minutes";
 			}
 		}
 	};
