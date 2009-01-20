@@ -26,4 +26,4 @@
 .checkboxLabel {}
 .checkboxErrorLabel {color:red; }
 .required {border:1px solid #F33;}
-.tdLabel {text-align:right; vertical-align:top; } 
+.tdLabel {text-align:left; vertical-align:top; } 

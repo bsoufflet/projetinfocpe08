@@ -190,7 +190,62 @@ if (typeof(WEBDOMOTIC) == "undefined") {
 				document.getElementById('etat').value ='0';
 		},
 		validate: function(){
-			return FIC_checkForm(webdomotic.editionDialog.form);
+			var retour=FIC_checkForm(webdomotic.editionDialog.form);
+			if(typeof(this.form.periode)!="undefined"){
+				var periodeRetour = webdomotic.createPeriodeString(this.form);
+				if(!periodeRetour)return false;
+				this.form.periode.value=periodeRetour;
+			}
+			return retour;
+		},
+		createPeriodeString: function(form){
+			var checked=false;
+			var returnString="";
+			for(var i=0; i<form.jours_periode.length; i++){
+				if(form.jours_periode[i].checked){
+					if(checked){returnString+=","+form.jours_periode[i].value;}
+					else{returnString+=form.jours_periode[i].value;}
+					checked=true;
+				}
+			}
+			// pas de jour coche donc erreur.
+			if(!checked){alert("Erreur:Aucun jour n'est selectionne!");return false;}
+			//set default value
+			if(form.duree_periode.value == "")form.duree_periode.value="0";
+			if(form.repetition_periode.value == "")form.repetition_periode.value="0";
+			//check type and value
+			if(parseInt(form.heure_periode.value,10)>23 || 
+				parseInt(form.heure_periode.value,10)<0 || 
+				parseInt(form.minute_periode.value,10)>59 || 
+				parseInt(form.minute_periode.value,10)<0 ||
+				parseInt(form.repetition_periode.value)<0 ||
+				parseInt(form.duree_periode.value)<0){alert("Erreur: Un champ d'entier est en dehors des limites!");return false;}
+			//build the string
+			returnString+="-"+parseInt(form.heure_periode.value)+"h"+parseInt(form.minute_periode.value)+"-"+parseInt(form.repetition_periode.value)+"-"+parseInt(form.duree_periode.value);
+			return returnString;
+		},
+		init_periode: function(form, destination){
+			if(destination == "edition"){
+				var periode=document.getElementById(form).periode.value;
+				var periodeArray=periode.split("-");
+				var jourArray=periodeArray[0].split(",");
+				var heureArray=periodeArray[1].split("h");
+				document.getElementById(form).heure_periode.value=heureArray[0];
+				document.getElementById(form).minute_periode.value=heureArray[1];
+				document.getElementById(form).duree_periode.value=periodeArray[3];
+				document.getElementById(form).repetition_periode.value=periodeArray[2];
+				for(var i=0; i<jourArray.length; i++){
+					for(var j=0; j<document.getElementById(form).jours_periode.length; j++){
+						if(jourArray[i]==document.getElementById(form).jours_periode[j].value){
+							document.getElementById(form).jours_periode[j].checked=true;
+						}
+					}
+				}
+			}else{
+				var periode=document.getElementById(form+"_periode").innerHTML;
+				var periodeArray=periode.split("-");
+				document.getElementById(form+"_periode").innerHTML="<u>Jours:</u> "+periodeArray[0]+"<br><u>Heure:</u> "+periodeArray[1]+"<br><u>Duree:</u> "+periodeArray[2]+" Minutes<br><u>Repetition toutes les:</u>"+periodeArray[3]+" Minutes";
+			}
 		}
 	};
 }
