@@ -95,7 +95,7 @@ CREATE TABLE peripheriques (
   id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
   piece_id INTEGER UNSIGNED NOT NULL,
   nom VARCHAR(30) NULL,
-  adresse VARCHAR(3) NULL,
+  identifiant VARCHAR(3) NULL,
   description VARCHAR(60) NULL,
   PRIMARY KEY(id),
   FOREIGN KEY(piece_id)

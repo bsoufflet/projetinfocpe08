@@ -92,39 +92,39 @@ VALUES (
 
 /* INSERTION DANS LA TABLE PERIPHERIQUE */
 
-INSERT INTO `peripheriques` ( `id` , `piece_id`, `nom`, `adresse`, `description` )
+INSERT INTO `peripheriques` ( `id` , `piece_id`, `nom`, `identifiant`, `description` )
 VALUES (
 1, 1, 'interrupteur', 'A02','peripherique pour reglage d une lumiere'
 );
-INSERT INTO `peripheriques` ( `id` , `piece_id`, `nom`, `adresse` , `description` )
+INSERT INTO `peripheriques` ( `id` , `piece_id`, `nom`, `identifiant` , `description` )
 VALUES (
 2, 1, 'capteur de temperature', 'C13', 'peripherique pour reglage de la temperature'
 );
-INSERT INTO `peripheriques` ( `id` , `piece_id`, `nom`, `adresse` , `description` )
+INSERT INTO `peripheriques` ( `id` , `piece_id`, `nom`, `identifiant` , `description` )
 VALUES (
 3, 2, 'capteur de luminosite', 'E12', 'peripherique pour reglage d une lumiere'
 );
-INSERT INTO `peripheriques` ( `id` , `piece_id`, `nom`, `adresse` , `description` )
+INSERT INTO `peripheriques` ( `id` , `piece_id`, `nom`, `identifiant` , `description` )
 VALUES (
 4, 3, 'interrupteur', 'A04', 'peripherique pour reglage d une lumiere'
 );
-INSERT INTO `peripheriques` ( `id` , `piece_id`, `nom`, `adresse` , `description` )
+INSERT INTO `peripheriques` ( `id` , `piece_id`, `nom`, `identifiant` , `description` )
 VALUES (
 5, 4, 'interrupteur', 'B01', 'peripherique pour reglage d une lumiere'
 );
-INSERT INTO `peripheriques` ( `id` , `piece_id`, `nom`, `adresse` , `description` )
+INSERT INTO `peripheriques` ( `id` , `piece_id`, `nom`, `identifiant` , `description` )
 VALUES (
 6, 5, 'interrupteur', 'B02', 'peripherique pour reglage d une lumiere'
 );
-INSERT INTO `peripheriques` ( `id` , `piece_id`, `nom`, `adresse` , `description` )
+INSERT INTO `peripheriques` ( `id` , `piece_id`, `nom`, `identifiant` , `description` )
 VALUES (
 7, 6, 'interrupteur', 'B03', 'peripherique pour reglage d une lumiere'
 );
-INSERT INTO `peripheriques` ( `id` , `piece_id`, `nom`, `adresse` , `description` )
+INSERT INTO `peripheriques` ( `id` , `piece_id`, `nom`, `identifiant` , `description` )
 VALUES (
 8, 7, 'interrupteur', 'C11', 'peripherique pour reglage d une lumiere'
 );
-INSERT INTO `peripheriques` ( `id` , `piece_id`, `nom`, `adresse` , `description` )
+INSERT INTO `peripheriques` ( `id` , `piece_id`, `nom`, `identifiant` , `description` )
 VALUES (
 9, 5, 'radiateur', 'A12', 'peripherique pour reglage de la temperature'
 );
