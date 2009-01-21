@@ -64,7 +64,16 @@ if (typeof(WEBDOMOTIC) == "undefined") {
 		},
 		customObjectURLFormatter: function(elLiner, oRecord, oColumn, oData){
         	var id = oData;
-        	elLiner.innerHTML = "<a href=\"javascript:document.getElementById('selectedId').value = '"+id+"';webdomotic.montrer_vue('"+oColumn.extra.replace('object_','')+"', 'detail');\">" + id + "</a>";
+			var handleSuccess = function(o){
+				if(o.responseText !== undefined){ 
+					elLiner.innerHTML="<a href=\"javascript:document.getElementById('selectedId').value = '"+id+"';webdomotic.montrer_vue('"+oColumn.extra.replace('object_','')+"', 'detail');\">" + o.responseText + "</a>";
+				} 
+			};
+			var handleFailure = function(o){
+				alert('Ajax Failure : fillobjectnameURL');
+			};
+			var callback = { success:handleSuccess, failure: handleFailure};
+			YAHOO.util.Connect.asyncRequest('POST', document.getElementById('fillobjectnameURL').value, callback, 'module='+oColumn.field+'&id='+id+'&selectedAction=detail');
 		},
 		
 		
