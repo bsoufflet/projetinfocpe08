@@ -21,6 +21,7 @@ if (typeof(WEBDOMOTIC) == "undefined") {
 			// Add the custom formatters to the shortcuts
 			YAHOO.widget.DataTable.Formatter.customEtat = this.customEtatFormatter;
 	        YAHOO.widget.DataTable.Formatter.customObjectURL = this.customObjectURLFormatter;
+	        YAHOO.widget.DataTable.Formatter.customPeriode = this.customPeriodeFormatter;
 			var myDataSource = new YAHOO.util.DataSource(dataJSArray);
 			myDataSource.responseType = YAHOO.util.DataSource.TYPE_JSARRAY;
 			myDataSource.connXhrMode = "queueRequests";
@@ -53,8 +54,14 @@ if (typeof(WEBDOMOTIC) == "undefined") {
 				elLiner.innerHTML = 'OFF';
 			}
 		},
-		
-		
+		customPeriodeFormatter: function(elLiner, oRecord, oColumn, oData) {
+			if(oData != "") {
+				var initObj=new Object();
+				initObj.context="liste";
+				initObj.formId=oData;
+				elLiner.innerHTML = webdomotic.init_periode(initObj);
+			}
+		},
 		customObjectURLFormatter: function(elLiner, oRecord, oColumn, oData){
         	var id = oData;
         	elLiner.innerHTML = "<a href=\"javascript:document.getElementById('selectedId').value = '"+id+"';webdomotic.montrer_vue('"+oColumn.extra.replace('object_','')+"', 'detail');\">" + id + "</a>";
@@ -327,7 +334,11 @@ if (typeof(WEBDOMOTIC) == "undefined") {
 					}
 				}
 			}else{
-				var periode=document.getElementById(initObj.formId+"_periode").innerHTML;
+				if(initObj.context == "detail"){
+					var periode=document.getElementById(initObj.formId+"_periode").innerHTML;
+				}else{
+					var periode=initObj.formId;
+				}
 				if(periode=="")return false;
 				var periodeArray=periode.split("-");
 				var jourArray=periodeArray[0].split(",");
@@ -347,7 +358,15 @@ if (typeof(WEBDOMOTIC) == "undefined") {
 						jourString+=", "+ weekday[jourArray[k]];
 					}
 				}
-				document.getElementById(initObj.formId+"_periode").innerHTML="<u>Jours:</u> "+jourString+"<br><u>Heure:</u> "+periodeArray[1]+"<br><u>Duree:</u> "+periodeArray[2]+" Minutes<br><u>Repetition toutes les:</u>"+periodeArray[3]+" Minutes";
+				var returnString="<u>Jours:</u> "+jourString+"<br>" +
+					"<u>Heure:</u> "+periodeArray[1]+"<br>" +
+					"<u>Durée:</u> "+periodeArray[2]+" Minutes<br>" +
+					"<u>Répétition toutes les:</u>"+periodeArray[3]+" Minutes";
+				if(initObj.context == "detail"){
+					document.getElementById(initObj.formId+"_periode").innerHTML=returnString;
+				}else{//liste
+					return returnString;
+				}
 			}
 		}
 	};

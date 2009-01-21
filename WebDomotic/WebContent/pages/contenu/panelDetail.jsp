@@ -13,7 +13,7 @@
 		//<s:if test='!top[0].equals("motdepasse")'>
 		{	
 			key:'<s:property value="top[0]"/>' 
-			,label:'<s:property value="top[1]"/>'
+			,label:"<s:property value="top[1]"/>"
 		    ,sortable:true
 			//<s:if test='top[2] != null'>
 				//<s:if test='top[2].equals("number")'>

@@ -2,6 +2,7 @@
 <jsp:include page="/pages/loginCheck.jsp" />
 <html>
 	<head>
+		<meta http-equiv=Content-Type content="text/html; charset=utf-8" /> 
 		<title>Login Success</title>
 		
 		<link rel="stylesheet" type="text/css" href="<s:url value="/javascript/yui/fonts/fonts-min.css"/>"/>
