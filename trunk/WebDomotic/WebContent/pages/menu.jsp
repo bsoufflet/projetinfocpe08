@@ -2,7 +2,7 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <jsp:include page="/pages/loginCheck.jsp" />
 <s:if test="!isAdmin.equals('true')">
-
+	<div style="height: 140px;"></div>
 	<div class="list" onclick="webdomotic.montrer_vue('accueil', 'accueil');return false;">Accueil</div>
 	<div class="list" onclick="webdomotic.montrer_vue('compte', 'detail');return false;">Mon Compte</div>
 	<div class="list" onclick="webdomotic.montrer_vue('maison', 'liste');return false;">Ma Maison</div>
@@ -13,6 +13,7 @@
 	
 </s:if>
 <s:else>
+	<div style="height: 140px;"></div>
 	<div class="list" onclick="webdomotic.montrer_vue('accueil', 'accueil');return false;">Accueil</div>
 	<div class="list" onclick="webdomotic.montrer_vue('compte', 'liste');return false;">Comptes</div>
 	<div class="list" onclick="webdomotic.montrer_vue('maison', 'liste');return false;">Maisons</div>
