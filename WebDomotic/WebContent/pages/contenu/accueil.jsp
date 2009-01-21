@@ -13,6 +13,6 @@ N&rsquo;h&eacute;sitez pas &agrave; naviguer dans les onglets pour profiter de t
 		<th class="maison"><h2><img src="<s:url value="css/maison.jpg"/>" height="330" width="500"></h2><br />
 		</th>	
 	</tr>
-</table> 
+</table>
 
 
