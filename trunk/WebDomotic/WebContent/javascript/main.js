@@ -244,13 +244,13 @@ if (typeof(WEBDOMOTIC) == "undefined") {
 		createProfilTabs: function(actionURL, selectedId){
 			webdomotic.tabView = new YAHOO.widget.TabView({id: 'ProfilTab'});
 			YAHOO.plugin.Dispatcher.delegate(new YAHOO.widget.Tab({
-		        label: 'Profil',
+		        label: 'Profils',
 		        dataSrc: actionURL+'?selectedModule=profil&selectedId='+selectedId,
 		        active: (document.getElementById('selectedModule').value == 'profil')
 		    }), webdomotic.tabView);
 
 			YAHOO.plugin.Dispatcher.delegate(new YAHOO.widget.Tab({
-		        label: 'Regle',
+		        label: 'Regles',
 		        dataSrc: actionURL+'?selectedModule=regle&selectedId='+selectedId,
 		        active: (document.getElementById('selectedModule').value == 'regle')
 		    }), webdomotic.tabView);
