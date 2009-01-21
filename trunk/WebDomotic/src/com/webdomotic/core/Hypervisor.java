@@ -186,7 +186,7 @@ public class Hypervisor {
 	 * tous les elements d'un module.
 	 * Cette fonction ne renvoie que les elements appartenant a 'utilisateur courant.
 	 */
-	public static String[][] getData(String module){
+	public static synchronized String[][] getData(String module){
 		String query = genQuery(module, "", "");
 		db = new ServerDB();
 		String [][] queryResult = db.queryDB(query);
