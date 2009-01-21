@@ -11,6 +11,12 @@ public class Hypervisor {
 	}
 	/**
 	 * Action Edition et Detail
+	 * Cette fonction retourne les donnees necessaires pour la creation 
+	 * des formulaire de detail et d'edition.
+	 * Elle retourne les donnees pour 1 element.
+	 * 
+	 * Retourne pour 1 ID et 1 module et pour chaque champ de la DB:
+	 * nom		valeur		label		type	editRight
 	 */
 	public static String[][] getDataArray(String module, String id, String extraWhere){
 
@@ -106,7 +112,12 @@ public class Hypervisor {
 		}
 		return returnObject;
 	}
-
+	/**
+	 * Retourne un tableau d'objet contenant un string formate en JS Array pour YUI et un tableau 2D
+	 * contenant le nom, le label, le type et le view right.
+	 * 
+	 * Utilise par le panel de detail (regle)
+	 */
 	public static Object[] getDataPanelJSArray(String module, String id){
 		String query="SELECT peripherique_id FROM regles_peripheriques WHERE regle_id='"+id+"'";
 		db = new ServerDB();
@@ -170,6 +181,11 @@ public class Hypervisor {
 		}
 		return returnObject;
 	}
+	/**
+	 * Cette methode retourne un tableau [id, nom, identifiant(seulement pour peripherique)] contenant
+	 * tous les elements d'un module.
+	 * Cette fonction ne renvoie que les elements appartenant a 'utilisateur courant.
+	 */
 	public static String[][] getData(String module){
 		String query = genQuery(module, "", "");
 		db = new ServerDB();
@@ -244,7 +260,7 @@ public class Hypervisor {
 		else
 			return ((String[])request.get("id"))[0];
 	}
-	/*
+	/**
 	 * Cette methode permet de sauver une nouvelle relation n-n.
 	 * Le formulaire doit posseder un champ relationship_name et les deux champs de la relation n-n.
 	 * Return: ID de la record cree
@@ -260,7 +276,10 @@ public class Hypervisor {
 		db.close();
 		return new_id;
 	}
-	
+	/**
+	 * Supprime de la DB l'element d'id id et de module module et 
+	 * tous les elements associes (par une relation 1-n) a cet element.
+	 */
 	public static Boolean deleteRow(String id, String module){
 		if(!isOwner(id, module)){
 			return false;
@@ -290,7 +309,8 @@ public class Hypervisor {
 			return true;
 	}
 	
-	/*
+	/**
+	 * Cette methode supprime une relation n-n entre les champs id1 et id2 dans la relation relationship_name
 	 * ATTENTION: cette fonction n'est pas prete a recevoir d'autres relation que regles_peripheriques
 	 */
 	public static Boolean deleteRelationship(String id2, String id1, String relationship_name){
@@ -303,7 +323,11 @@ public class Hypervisor {
 		else
 			return true;
 	}
-	
+	/*
+	 * Retourne true si l'utilisateur courant possede l'element id du module module.
+	 * Retourne false sinon
+	 * Retourne true si l'utilisateur est admin.
+	 */
 	private static Boolean isOwner(String id, String module){
 		if(isAdmin()){
 			return true;
@@ -317,6 +341,9 @@ public class Hypervisor {
 		}
 		return false;
 	}
+	/**
+	 * Retourne true si l'utilisateur courant est administrateur.
+	 */
 	private static Boolean isAdmin(){
 		Map session = ActionContext.getContext().getSession();
 		String isadmin = (String)session.get("isadmin");
@@ -325,7 +352,11 @@ public class Hypervisor {
 		}
 		return false;
 	}
-
+	/**
+	 * Cette methode retourne un string contenant la query permettant de retouver l'element id ou
+	 * tous les elements si id est null du module module.
+	 * Cette methode prend en compte les droits d'acces a l'element via isowner.
+	 */
 	private static String genQuery(String module, String id, String extraWhere){
 		boolean where=false;
 		String query="SELECT "+getDBTableName_mod(module)+".* FROM "+getDBTableName_mod(module);
@@ -351,7 +382,9 @@ public class Hypervisor {
 		}
 		return query;
 	}
-
+	/**
+	 * Cette methode renvoie le string a rajouter a une query pour qu'elle n'affiche que les elements possedes.
+	 */
 	private static String privilegeQuery(String module){
 		if(!isAdmin()){
 			Map session = ActionContext.getContext().getSession();
@@ -371,7 +404,9 @@ public class Hypervisor {
 			return "";
 		}
 	}
-
+	/**
+	 * Bizarre...
+	 */
 	private static String fixAp(String s){
 		return s.replace("'"," ");
 	}
