@@ -76,7 +76,10 @@ public final class ServerDB{
 			}
 		}
 		
-		
+		/**
+		 * returns a String[][] with the query results
+		 * first row is the columns name (String[0][])
+		 */
 		private String[][] resultToArray(ResultSet rs) throws SQLException{
 			
 			//need to check was null
@@ -105,7 +108,6 @@ public final class ServerDB{
 					result[i][j] = rs.getString(j+1);
 				}	
 			}
-		
 			return result;
 		}
 
