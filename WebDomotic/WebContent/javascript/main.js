@@ -283,7 +283,17 @@ if (typeof(WEBDOMOTIC) == "undefined") {
 			else
 				document.getElementById('etat').value ='0';
 		},
-
+		
+		validate: function(){
+			var retour=FIC_checkForm(webdomotic.editionDialog.form);
+			if(typeof(this.form.periode)!="undefined"){
+				var periodeRetour = webdomotic.createPeriodeString(this.form);
+				if(!periodeRetour)return false;
+				this.form.periode.value=periodeRetour;
+			}
+			return retour;
+		},
+		
 		fill_object_names:function(initObj){
 			var handleSuccess = function(o){
 				if(o.responseText !== undefined){ 
