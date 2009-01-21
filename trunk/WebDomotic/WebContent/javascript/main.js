@@ -2,6 +2,7 @@ if (typeof(WEBDOMOTIC) == "undefined") {
 	WEBDOMOTIC = function(){
 	};
 	WEBDOMOTIC.prototype = {
+			
 		/*
 		 * Affiche la vue correspondant au bon module dans la partie droite.
 		 */
@@ -14,6 +15,8 @@ if (typeof(WEBDOMOTIC) == "undefined") {
 			}
 			dojo.event.topic.publish("montrer_vue");
 		},
+		
+		
 		buildYUIDataTable: function(myColumnDefs,responseSchema,dataJSArray,selectedModule) {
 			// Add the custom formatters to the shortcuts
 			YAHOO.widget.DataTable.Formatter.customEtat = this.customEtatFormatter;
@@ -30,12 +33,9 @@ if (typeof(WEBDOMOTIC) == "undefined") {
 					})
 	        };
 			this.myDataTable = new YAHOO.widget.DataTable("ListeDiv_"+selectedModule, myColumnDefs, myDataSource, oConfigs);
-			
-			//init the confirm popup for delete
-			this.confirmYUI(selectedModule);
-			
-
 		},
+		
+		
 		/*
 		 * Define a custom formatter for the Column labeled "flag"
 		 * draws an up icon and adds class "up" to the cell to affect
@@ -53,10 +53,14 @@ if (typeof(WEBDOMOTIC) == "undefined") {
 				elLiner.innerHTML = 'OFF';
 			}
 		},
+		
+		
 		customObjectURLFormatter: function(elLiner, oRecord, oColumn, oData){
         	var id = oData;
         	elLiner.innerHTML = "<a href=\"javascript:document.getElementById('selectedId').value = '"+id+"';webdomotic.montrer_vue('"+oColumn.extra.replace('object_','')+"', 'detail');\">" + id + "</a>";
 		},
+		
+		
 		confirmYUI: function(module){
 			var handleYes = function() {
 				webdomotic.montrer_vue(module, 'supprimer');
@@ -73,7 +77,7 @@ if (typeof(WEBDOMOTIC) == "undefined") {
 					draggable: false,
 					close: true,
 					modal:true,
-					text: "Etes vous sur de vouloir supprimer cet element?<BR> ATTENTION : Tous les elements associes seront egalement supprimes?",
+					text: "Etes vous sur de vouloir supprimer cet element?<BR> <b>ATTENTION : Tous les elements associes seront egalement supprimes?</b>",
 					icon: YAHOO.widget.SimpleDialog.ICON_HELP,
 					constraintoviewport: true,
 					buttons: [ { text:"Oui", handler:handleYes, isDefault:true },{ text:"Non",  handler:handleNo } ]
@@ -81,6 +85,35 @@ if (typeof(WEBDOMOTIC) == "undefined") {
 			this.confirmYUIpopup.setHeader("Suppression?");
 			this.confirmYUIpopup.render('container_yui_confirm');
 		},
+		
+		
+		confirmYUIPanel: function(module){
+			var handleYes = function() {
+				document.getElementById('actionType').value = "relationship";
+				webdomotic.montrer_vue(module, 'supprimer');
+				this.hide();
+			};
+			var handleNo = function() {
+				this.hide();
+			};
+			this.confirmYUIPanelpopup = new YAHOO.widget.SimpleDialog("confirmYUIPanel", 
+				{
+					width: "470px",
+					fixedcenter: true,
+					visible: false,
+					draggable: false,
+					close: true,
+					modal:true,
+					text: "Etes vous sur de vouloir supprimer La relation entre ces deux elements?<BR> Aucun des deux elements ne sera supprime.",
+					icon: YAHOO.widget.SimpleDialog.ICON_HELP,
+					constraintoviewport: true,
+					buttons: [ { text:"Oui", handler:handleYes, isDefault:true },{ text:"Non",  handler:handleNo } ]
+				});
+			this.confirmYUIPanelpopup.setHeader("Suppression de la relation?");
+			this.confirmYUIPanelpopup.render('container_yui_confirm_panel');
+		},
+		
+		
 		createYUIEditionForm: function(container,nouveau,module){
 			if(typeof(this.editionDialog)!="undefined" && this.editionDialog.body != null){
 				this.editionDialog.destroy();
@@ -125,6 +158,46 @@ if (typeof(WEBDOMOTIC) == "undefined") {
 				this.editionDialog.show();
 			}
 		},
+		
+		
+		createYUIPanelForm: function(container,module){
+			if(typeof(this.panelDialog)!="undefined" && this.panelDialog.body != null){
+				this.panelDialog.destroy();
+			}
+			//Define various event handlers for Dialog
+			var handleSubmit = function() {
+				this.submit();
+			};
+			var handleCancel = function() {
+				this.cancel();
+			};
+			//Instantiate the Dialog
+			this.panelDialog = new YAHOO.widget.Dialog(container, 
+						{ width : "30em",
+						  fixedcenter : true,
+						  modal:true,
+						  visible : false, 
+						  constraintoviewport : true,
+						  buttons : [ { text:"Submit", handler:handleSubmit, isDefault:true },
+									  { text:"Cancel", handler:handleCancel } ]
+						 } );
+
+			var handleSuccess = function(o) {
+				var response = o.responseText;
+				webdomotic.panelDialog.hide();
+				YAHOO.plugin.Dispatcher.process( 'vue', response );
+			};
+			
+			var handleFailure = function(o) {
+				alert("Submission failed: " + o.status);
+			};
+			
+			this.panelDialog.callback = { success: handleSuccess,
+														 failure: handleFailure };
+			this.panelDialog.render(document.body);
+		},
+		
+		
 		createMaisonTabs: function(actionURL, selectedId){
 			webdomotic.tabView = new YAHOO.widget.TabView({id: 'YUITab'});
 			YAHOO.plugin.Dispatcher.delegate(new YAHOO.widget.Tab({
@@ -158,6 +231,9 @@ if (typeof(WEBDOMOTIC) == "undefined") {
 				webdomotic.tabView.get('tabs')[2].set('disabled', true);
 			}
 		},
+		
+		
+		
 		createProfilTabs: function(actionURL, selectedId){
 			webdomotic.tabView = new YAHOO.widget.TabView({id: 'ProfilTab'});
 			YAHOO.plugin.Dispatcher.delegate(new YAHOO.widget.Tab({
@@ -183,12 +259,16 @@ if (typeof(WEBDOMOTIC) == "undefined") {
 				webdomotic.tabView.get('tabs')[1].set('disabled', true);
 			}
 		},
+		
+		
 		init_edition: function(){
 			if(document.getElementById('etat_chk').checked == true)
 				document.getElementById('etat').value ='1';
 			else
 				document.getElementById('etat').value ='0';
 		},
+		
+		
 		validate: function(){
 			var retour=FIC_checkForm(webdomotic.editionDialog.form);
 			if(typeof(this.form.periode)!="undefined"){
@@ -198,6 +278,8 @@ if (typeof(WEBDOMOTIC) == "undefined") {
 			}
 			return retour;
 		},
+		
+		
 		createPeriodeString: function(form){
 			var checked=false;
 			var returnString="";
@@ -224,37 +306,39 @@ if (typeof(WEBDOMOTIC) == "undefined") {
 			returnString+="-"+parseInt(form.heure_periode.value)+"h"+parseInt(form.minute_periode.value)+"-"+parseInt(form.repetition_periode.value)+"-"+parseInt(form.duree_periode.value);
 			return returnString;
 		},
-		init_periode: function(form, destination){
-			if(destination == "edition"){
-				var periode=document.getElementById(form).periode.value;
+		
+		
+		init_periode: function(initObj){
+			if(initObj.context == "edition"){
+				var periode=document.getElementById(initObj.formId).periode.value;
 				if(periode=="")return false;
 				var periodeArray=periode.split("-");
 				var jourArray=periodeArray[0].split(",");
 				var heureArray=periodeArray[1].split("h");
-				document.getElementById(form).heure_periode.value=heureArray[0];
-				document.getElementById(form).minute_periode.value=heureArray[1];
-				document.getElementById(form).duree_periode.value=periodeArray[3];
-				document.getElementById(form).repetition_periode.value=periodeArray[2];
+				document.getElementById(initObj.formId).heure_periode.value=heureArray[0];
+				document.getElementById(initObj.formId).minute_periode.value=heureArray[1];
+				document.getElementById(initObj.formId).duree_periode.value=periodeArray[3];
+				document.getElementById(initObj.formId).repetition_periode.value=periodeArray[2];
 				for(var i=0; i<jourArray.length; i++){
-					for(var j=0; j<document.getElementById(form).jours_periode.length; j++){
-						if(jourArray[i]==document.getElementById(form).jours_periode[j].value){
-							document.getElementById(form).jours_periode[j].checked=true;
+					for(var j=0; j<document.getElementById(initObj.formId).jours_periode.length; j++){
+						if(jourArray[i]==document.getElementById(initObj.formId).jours_periode[j].value){
+							document.getElementById(initObj.formId).jours_periode[j].checked=true;
 						}
 					}
 				}
 			}else{
-				var periode=document.getElementById(form+"_periode").innerHTML;
+				var periode=document.getElementById(initObj.formId+"_periode").innerHTML;
 				if(periode=="")return false;
 				var periodeArray=periode.split("-");
 				var jourArray=periodeArray[0].split(",");
 				var weekday=new Array(7);
-				weekday[0]="Dimanche";
-				weekday[1]="Lundi";
-				weekday[2]="Mardi";
-				weekday[3]="Mercredi";
-				weekday[4]="Jeudi";
-				weekday[5]="Vendredi";
-				weekday[6]="Samedi";
+				weekday[1]="Dimanche";
+				weekday[2]="Lundi";
+				weekday[3]="Mardi";
+				weekday[4]="Mercredi";
+				weekday[5]="Jeudi";
+				weekday[6]="Vendredi";
+				weekday[7]="Samedi";
 				var jourString="";
 				for(var k=0;k<jourArray.length;k++){
 					if(k==0){
@@ -263,7 +347,7 @@ if (typeof(WEBDOMOTIC) == "undefined") {
 						jourString+=", "+ weekday[jourArray[k]];
 					}
 				}
-				document.getElementById(form+"_periode").innerHTML="<u>Jours:</u> "+jourString+"<br><u>Heure:</u> "+periodeArray[1]+"<br><u>Duree:</u> "+periodeArray[2]+" Minutes<br><u>Repetition toutes les:</u>"+periodeArray[3]+" Minutes";
+				document.getElementById(initObj.formId+"_periode").innerHTML="<u>Jours:</u> "+jourString+"<br><u>Heure:</u> "+periodeArray[1]+"<br><u>Duree:</u> "+periodeArray[2]+" Minutes<br><u>Repetition toutes les:</u>"+periodeArray[3]+" Minutes";
 			}
 		}
 	};

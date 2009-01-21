@@ -69,6 +69,7 @@ public interface Constants {
 							{"mac",				"Adresse MAC",				"text",				"false",			"true"},
 							{"port",			"Port",						"text",				"true",				"true"},
 							{"adresse",			"Adresse",					"text",				"true",				"true"},
+							{"identifiant",		"Identifiant",				"text",				"true",				"true"},
 							{"codepostal",		"Code postal",				"text",				"true",				"true"},
 							{"ville",			"Ville",					"text",				"true",				"true"},
 							{"description",		"Description",				"text",				"true",				"true"},
@@ -77,6 +78,27 @@ public interface Constants {
 							{"maison_id",		"Maison",					"object_maison",	"true",				"true"},
 							{"utilisateur_id",	"Utilisateur",				"object_compte",	"true",				"false"},
 							{"piece_id",		"Pièce",					"object_piece",		"true",				"true"},
+							
+												};
+	
+	
+	/**
+	 * Columns name mapping for n-n relationships
+	 */
+	final static int RELATIONSHIP_NAME		=	0;
+	final static int FIELD1					=	1;
+	final static int FIELD2					=	2;
+	//final static int DB_TABLE				=	3;
+	
+	
+	/**
+	 * Mapping for columns for n-n relationships
+	 */
+	final static String[][] g_mapping_DB_rel =	{
+							/*Relationship_name, 			Field1, 			Field2					DB_table*/
+		
+							{"regles_peripheriques",		"regle_id",			"peripherique_id",		"regles_peripheriques"},
+							{"profils_regles",				"profil_id",		"regle_id",				"profils_regles"},
 							
 												};
 

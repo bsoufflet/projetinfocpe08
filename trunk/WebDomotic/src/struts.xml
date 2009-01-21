@@ -45,6 +45,16 @@
 				<param name="selectedId">${selectedId}</param>
 			</result>
 		</action>
+		<action name="addRelationship" class="com.webdomotic.actions.EditionDetail" method="addRelationship">
+			<result name="error">/pages/contenu/supprimer.jsp</result>
+			<result type="redirect-action">
+				<param name="actionName">vue</param>
+       			<param name="parse">true</param>
+        		<param name="selectedModule">${selectedModule}</param>
+				<param name="selectedAction">${selectedAction}</param>
+				<param name="selectedId">${selectedId}</param>
+			</result>
+		</action>
 		<action name="supprimer" class="com.webdomotic.actions.Vue" method="supprimer">
 			<result name="error">/pages/contenu/supprimer.jsp</result>
 		</action>

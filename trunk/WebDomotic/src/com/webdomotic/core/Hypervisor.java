@@ -106,6 +106,94 @@ public class Hypervisor {
 		}
 		return returnObject;
 	}
+
+	public static Object[] getDataPanelJSArray(String module, String id){
+		String query="SELECT peripherique_id FROM regles_peripheriques WHERE regle_id='"+id+"'";
+		db = new ServerDB();
+		String [][] queryResult = db.queryDB(query);
+		db.close();
+		Object[] returnObject = new Object[2];
+		if(queryResult.length<=1){
+			query="SELECT * FROM peripheriques WHERE 1=2";
+		}else{
+			query="SELECT * FROM peripheriques WHERE ";
+			for(int i=1; i<queryResult.length; i++){
+				query+="id='"+queryResult[i][0]+"' OR ";
+			}
+			query=query.substring(0, query.lastIndexOf(" OR "));
+		}
+		db = new ServerDB();
+		String[][] queryResult2 = db.queryDB(query);
+		db.close();
+		if(queryResult2.length>1){
+			//build JSArray
+			StringBuffer js_array = new StringBuffer("[");
+			for(int i=1; i<queryResult2.length;i++){
+				js_array.append("{");
+				for(int j=0; j<queryResult2[0].length; j++){
+					js_array.append(queryResult2[0][j]+": ");
+					js_array.append("\'"+queryResult2[i][j]+"\', ");
+				}
+				js_array.append("delete_button: \'Supprimer\' ");
+				//js_array.deleteCharAt(js_array.lastIndexOf(","));
+				js_array.append("},");
+
+			}
+			js_array.deleteCharAt(js_array.lastIndexOf(","));
+			js_array.append("]");
+
+			returnObject[0]=js_array.toString();
+		}
+		else{
+			System.err.println("getDataJSArray: Pas de donnees retournee.");
+			returnObject[0]="";
+		}
+
+		if(queryResult2[0].length>0){
+			//build mapping
+			String [][] mapping = new String[queryResult2[0].length][4];
+			//for all the columns
+			for(int i=0; i<queryResult2[0].length; i++){
+				mapping[i][0]=queryResult2[0][i];
+				mapping[i][1]=getLabel_DB(queryResult2[0][i]);
+				mapping[i][2]=getType_DB(queryResult2[0][i]);
+				if(!isAdmin()){
+					mapping[i][3]=getViewRight_DB(queryResult2[0][i]);
+				}else{
+					mapping[i][3]="true";
+				}
+			}
+			returnObject[1]=mapping;
+		}else{
+			System.err.println("getDataJSArray: Pas de Header de colonne retourne.");
+			returnObject[1]=null;
+		}
+		return returnObject;
+	}
+	public static String[][] getData(String module){
+		String query = genQuery(module, "", "");
+		db = new ServerDB();
+		String [][] queryResult = db.queryDB(query);
+		db.close();
+		String[][] retourArray = new String[queryResult.length-1][3];
+		if(queryResult.length>1){
+			for(int i=1; i<queryResult.length; i++){
+				for(int j=0; j<queryResult[0].length; j++){
+					if(queryResult[0][j].equals("id")){
+						retourArray[i-1][0]=queryResult[i][j];
+					}else if(queryResult[0][j].equals("nom")){
+						retourArray[i-1][1]=queryResult[i][j];
+					}else if(queryResult[0][j].equals("identifiant")){
+						retourArray[i-1][2]=queryResult[i][j];
+					}
+				}
+			}
+		}else{
+			System.err.println("getData: Pas de donnees retourne.");
+			retourArray=null;
+		}
+		return retourArray;
+	}
 	
 	/**
 	 * saves query and returns the new/updated ID
@@ -156,7 +244,22 @@ public class Hypervisor {
 		else
 			return ((String[])request.get("id"))[0];
 	}
-	
+	/*
+	 * Cette methode permet de sauver une nouvelle relation n-n.
+	 * Le formulaire doit posseder un champ relationship_name et les deux champs de la relation n-n.
+	 * Return: ID de la record cree
+	 */
+	public static String addRelationship(Map request){
+		String rel_name=((String[])request.get("relationship_name"))[0];
+		String query="INSERT INTO "+getDBTable_Rel(rel_name)+
+			" SET "+getField1_Rel(rel_name)+"='"+((String[])request.get(getField1_Rel(rel_name)))[0]+"', "+
+			getField2_Rel(rel_name)+"='"+((String[])request.get(getField2_Rel(rel_name)))[0]+"'";
+		//send update query
+		db = new ServerDB();
+		String new_id = db.UpdateDB(query);
+		db.close();
+		return new_id;
+	}
 	
 	public static Boolean deleteRow(String id, String module){
 		if(!isOwner(id, module)){
@@ -186,6 +289,21 @@ public class Hypervisor {
 		else
 			return true;
 	}
+	
+	/*
+	 * ATTENTION: cette fonction n'est pas prete a recevoir d'autres relation que regles_peripheriques
+	 */
+	public static Boolean deleteRelationship(String id2, String id1, String relationship_name){
+		String query="DELETE FROM "+getDBTable_Rel(relationship_name)+" WHERE "+getField1_Rel(relationship_name)+"='"+id1+"' AND "+getField2_Rel(relationship_name)+"='"+id2+"'";
+		db = new ServerDB();
+		String st = db.UpdateDB(query);
+		db.close();
+		if(st.equals(""))
+			return false;
+		else
+			return true;
+	}
+	
 	private static Boolean isOwner(String id, String module){
 		if(isAdmin()){
 			return true;
@@ -301,8 +419,15 @@ public class Hypervisor {
 	public static String getViewRight_DB(String input){
 		return searchMapping(Constants.g_mapping_DB_col, input, Constants.VIEW_RIGHT);
 	}
-
-
+	public static String getField1_Rel(String input){
+		return searchMapping(Constants.g_mapping_DB_rel, input, Constants.FIELD1);
+	}
+	public static String getField2_Rel(String input){
+		return searchMapping(Constants.g_mapping_DB_rel, input, Constants.FIELD2);
+	}
+	public static String getDBTable_Rel(String input){
+		return searchMapping(Constants.g_mapping_DB_rel, input, Constants.DB_TABLE);
+	}
 
 	private static String searchMapping(String[][] mapping_table, String input,int return_type){
 
