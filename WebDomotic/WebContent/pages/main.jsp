@@ -4,7 +4,8 @@
 <html>
 	<head>
 		<meta http-equiv=Content-Type content="text/html; charset=utf-8" /> 
-		<title>Login Success</title>
+		
+		<title>WebDomotic</title>
 		
 		<link rel="stylesheet" type="text/css" href="<s:url value="/javascript/yui/fonts/fonts-min.css"/>"/>
 		<link rel="stylesheet" type="text/css" href="<s:url value="/javascript/yui/paginator/assets/skins/sam/paginator.css"/>"/>
