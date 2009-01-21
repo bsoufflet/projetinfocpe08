@@ -11,8 +11,12 @@ public class Vue extends ActionSupport {
 	protected String selectedModuleLabel;
 	protected String selectedAction;
 	protected String selectedId;
+	protected String lastId;
+	protected String actionType;
 	protected String isAdmin;
 	protected String userId;
+	protected String dataJSArray;
+	protected String[][] columnDefs;
 	
 	public String execute() throws Exception {
 		System.out.println("Vue - module:" + selectedModule + " - action:" + selectedAction);
@@ -28,12 +32,27 @@ public class Vue extends ActionSupport {
 	}
 	public String supprimer() {
 		System.out.println("Vue - supprimer");
+		
+		if(actionType.equals("relationship")){
+			// c'est une suppression de relation
+			selectedAction="detail";
+			if(Hypervisor.deleteRelationship(lastId,selectedId,"regles_peripheriques")){
+				System.out.println("Vue - supprimer - Suppression de la relation - Succes");
+				addActionMessage("Suppression de la relation reussi!");
+				return SUCCESS;
+			}else{
+				addActionError("Echec de la suppression de la relation!");
+				System.out.println("Vue - supprimer relation - ECHEC");
+				return ERROR;
+			}
+		}
 		selectedAction="liste";
 		if(Hypervisor.deleteRow(selectedId,selectedModule)){
 			addActionMessage("Suppression reussi!");
 			return SUCCESS;
 		}
 		addActionError("Echec de la suppression!");
+		System.out.println("Vue - supprimer - ECHEC");
 		return ERROR;
 	}
 	public String getSelectedModule() {
@@ -60,6 +79,18 @@ public class Vue extends ActionSupport {
 	public String getSelectedId(){
 		return selectedId;
 	}
+	public void setLastId(String lastId){
+		this.lastId=lastId;
+	}
+	public String getLastId(){
+		return lastId;
+	}
+	public void setActionType(String actionType){
+		this.actionType=actionType;
+	}
+	public String getActionType(){
+		return actionType;
+	}
 	public void setIsAdmin(String isAdmin){
 		this.isAdmin=(String)ActionContext.getContext().getSession().get("isadmin");
 	}
@@ -71,5 +102,17 @@ public class Vue extends ActionSupport {
 	}
 	public String getUserId(){
 		return (String)ActionContext.getContext().getSession().get("userid");
+	}
+	public void setDataJSArray(String dataJSArray){
+		this.dataJSArray=dataJSArray;
+	}
+	public String getDataJSArray(){
+		return dataJSArray;
+	}
+	public void setColumnDefs(String[][] columnDefs){
+		this.columnDefs=columnDefs;
+	}
+	public String[][] getColumnDefs(){
+		return columnDefs;
 	}
 }

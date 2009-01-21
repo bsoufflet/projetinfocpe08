@@ -35,7 +35,12 @@
 		</s:elseif>
 		<s:elseif test='top[0].equals("periode")'>
 			<s:label cssClass="label" name="%{top[0]}" label="%{top[2]}" value="%{top[1]}" />
-			<script>webdomotic.init_periode('frm_detail_<s:property value="selectedModule"/>', 'detail');</script>
+			<script>
+			var initObj=new Object();
+			initObj.formId='frm_detail_<s:property value="selectedModule"/>';
+			initObj.context='detail';
+			YAHOO.util.Event.onContentReady('frm_detail_<s:property value="selectedModule"/>',webdomotic.init_periode, initObj);
+			</script>
 		</s:elseif>
 		
 		<s:else>
@@ -45,5 +50,8 @@
 	</s:iterator>
 	
 </s:form>
+<s:if test='selectedModule.equals("regle")'>
+	<jsp:include page="/pages/contenu/panelDetail.jsp" />
+</s:if>
 <jsp:include page="/pages/contenu/edition.jsp" />
 

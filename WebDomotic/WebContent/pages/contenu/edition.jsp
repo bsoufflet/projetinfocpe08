@@ -13,19 +13,20 @@
 				<input type="hidden" name="id" value="0"/>
 			</s:if>
 			<s:else>
-				<input type="hidden" name="id" value='<s:property value="top[1]"/>'/>
+				<input type="hidden" name="id" value='<s:property value="top[1]"/>' class="required validate-number"/>
 			</s:else>		
-		</s:if><s:elseif test='top[3].equals("object_compte")'>
+		</s:if>
+		<s:elseif test='top[3].equals("object_compte")'>
 			<s:if test='isAdmin.equals("true")'>
 				<label for='<s:property value="top[0]"/>'><s:property value="top[2]"/>:</label>
-				<input type="textbox" name='<s:property value="top[0]"/>' value='<s:property value="top[1]"/>' />
+				<input type="textbox" name='<s:property value="top[0]"/>' value='<s:property value="top[1]"/>' class="required validate-number"/>
 			</s:if>
 			<s:else>
-				<input type="hidden" name='<s:property value="top[0]"/>' value='<s:property value="userId"/>' />
+				<input type="hidden" name='<s:property value="top[0]"/>' value='<s:property value="userId"/>' class="required validate-number"/>
 			</s:else>
 		</s:elseif>
 		<s:elseif test='top[3].equals("periode")'>
-			<input type="hidden" name='<s:property value="top[0]"/>' value='<s:property value="top[1]"/>' />
+			<input type="hidden" name='<s:property value="top[0]"/>' value='<s:property value="top[1]"/>' class="required"/>
 			<div class="clear"></div>
 			<label for="jours_periode">Jours:</label>
 			<input type="checkbox" name="jours_periode" value="2" /> Lu
@@ -47,7 +48,19 @@
 			<div class="clear"></div>
 			<label for="repetition_periode">Repetition toutes les:</label>
 			<input type="textbox" name='repetition_periode' class='validate-number' value='' size='4' maxlength='4'/> Minutes
-			<script>setTimeout("webdomotic.init_periode('frm_edition_<s:property value="selectedModule"/>', 'edition')",500);</script>
+			<script>
+			var initEdObj=new Object();
+			initEdObj.formId='frm_edition_<s:property value="selectedModule"/>';
+			initEdObj.context='edition';
+			YAHOO.util.Event.onContentReady('frm_detail_<s:property value="selectedModule"/>',webdomotic.init_periode, initEdObj);
+
+			</script>
+		</s:elseif>
+		<s:elseif test='top[0].equals("identifiant")'>
+			<div class="clear"></div>
+			<label for='<s:property value="top[0]"/>'><s:property value="top[2]"/> (3 caracteres):</label>
+			<input type="textbox" name='<s:property value="top[0]"/>' value='<s:property value="top[1]"/>' class="required validate-alphanum" size='3' maxlength='3'/>
+			<div class="clear"></div>
 		</s:elseif>
 		<s:elseif test='top[3].equals("text")||top[3].equals("object_maison")||top[3].equals("object_piece")'>
 			<label for='<s:property value="top[0]"/>'><s:property value="top[2]"/>:</label>

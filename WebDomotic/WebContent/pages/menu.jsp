@@ -24,4 +24,6 @@
 	<s:hidden name="selectedModule" id="selectedModule"/>
 	<s:hidden name="selectedAction" id="selectedAction"/>
 	<s:hidden name="selectedId" id="selectedId"/>
+	<s:hidden name="lastId" id="lastId"/>
+	<s:hidden name="actionType" id="actionType"/>
 </s:form>

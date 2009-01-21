@@ -1,10 +1,14 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <jsp:include page="/pages/loginCheck.jsp" />
 <h1 class="h1"><s:property value="selectedModuleLabel"/></h1>
-<s:if test='selectedAction.equals("supprimer")'>
+<s:if test='selectedAction.equals("supprimer") && actionType.equals("relationship")'>
+	<s:action name="vue!supprimer"/>
+	<s:set name="selectedAction" value="%{'detail'}"/>
+</s:if>
+<s:elseif test='selectedAction.equals("supprimer")'>
 	<s:action name="vue!supprimer"/>
 	<s:set name="selectedAction" value="%{'liste'}"/>
-</s:if>
+</s:elseif>
 <s:else>
 	<s:set name="selectedAction" value="selectedAction"/>
 </s:else>
