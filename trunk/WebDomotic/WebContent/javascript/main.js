@@ -266,27 +266,30 @@ if (typeof(WEBDOMOTIC) == "undefined") {
 				webdomotic.tabView.get('tabs')[1].set('disabled', true);
 			}
 		},
-		
-		
-		init_edition: function(){
+
+
+		init_edition_etat: function(){
 			if(document.getElementById('etat_chk').checked == true)
 				document.getElementById('etat').value ='1';
 			else
 				document.getElementById('etat').value ='0';
 		},
-		
-		
-		validate: function(){
-			var retour=FIC_checkForm(webdomotic.editionDialog.form);
-			if(typeof(this.form.periode)!="undefined"){
-				var periodeRetour = webdomotic.createPeriodeString(this.form);
-				if(!periodeRetour)return false;
-				this.form.periode.value=periodeRetour;
-			}
-			return retour;
+
+		fill_object_names:function(initObj){
+			var handleSuccess = function(o){
+				if(o.responseText !== undefined){ 
+					document.getElementById(initObj.container).innerHTML=o.responseText;
+				} 
+			};
+			var handleFailure = function(o){
+			};
+
+			var callback = { success:handleSuccess, failure: handleFailure};
+
+			YAHOO.util.Connect.asyncRequest('POST', initObj.action, callback, initObj.data);
 		},
-		
-		
+
+
 		createPeriodeString: function(form){
 			var checked=false;
 			var returnString="";

@@ -18,6 +18,13 @@
 		<s:elseif test='top[3].equals("object_compte")'>
 			<s:if test='isAdmin.equals("true")'>
 				<s:label cssClass="label" name="%{top[0]}" label="%{top[2]}" value="%{top[1]}" />
+			<script>
+			var initObj=new Object();
+			initObj.action='<s:url action="fillobjectname"></s:url>';
+			initObj.data='module=<s:property value="top[0]"/>&id=<s:property value="top[1]"/>&selectedAction=detail';
+			initObj.container='frm_detail_<s:property value="selectedModule"/>_<s:property value="top[0]"/>';
+			YAHOO.util.Event.onContentReady('frm_detail_<s:property value="selectedModule"/>',webdomotic.fill_object_names, initObj);
+			</script>
 			</s:if>
 			<s:else>
 				<s:hidden cssClass="label" name="%{top[0]}" label="%{top[2]}" value="%{top[1]}" />
@@ -43,7 +50,16 @@
 			YAHOO.util.Event.onContentReady('frm_detail_<s:property value="selectedModule"/>',webdomotic.init_periode, initObj);
 			</script>
 		</s:elseif>
-		
+		<s:elseif test='top[3].equals("object_maison")||top[3].equals("object_piece")'>
+			<s:label cssClass="label" name="%{top[0]}" label="%{top[2]}" value="%{top[1]}" />
+			<script>
+			var initObj=new Object();
+			initObj.action='<s:url action="fillobjectname"></s:url>';
+			initObj.data='module=<s:property value="top[0]"/>&id=<s:property value="top[1]"/>&selectedAction=detail';
+			initObj.container='frm_detail_<s:property value="selectedModule"/>_<s:property value="top[0]"/>';
+			YAHOO.util.Event.onContentReady('frm_detail_<s:property value="selectedModule"/>',webdomotic.fill_object_names, initObj);
+			</script>
+		</s:elseif>
 		<s:else>
 			<s:label cssClass="label" name="%{top[0]}" label="%{top[2]}" value="%{top[1]}" />
 		</s:else>

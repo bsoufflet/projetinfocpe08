@@ -45,6 +45,9 @@
 				<param name="selectedId">${selectedId}</param>
 			</result>
 		</action>
+		<action name="fillobjectname" class="com.webdomotic.actions.EditionDetail" method="getObjectName">
+			<result>/pages/contenu/selectObjectName.jsp</result>
+		</action>
 		<action name="addRelationship" class="com.webdomotic.actions.EditionDetail" method="addRelationship">
 			<result name="error">/pages/contenu/supprimer.jsp</result>
 			<result type="redirect-action">
