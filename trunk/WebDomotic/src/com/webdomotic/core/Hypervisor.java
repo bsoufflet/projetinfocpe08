@@ -17,6 +17,8 @@ public class Hypervisor {
 	 * 
 	 * Retourne pour 1 ID et 1 module et pour chaque champ de la DB:
 	 * nom		valeur		label		type	editRight
+	 * nom		valeur		label		type	editRight
+	 * nom		valeur		label		type	editRight
 	 */
 	public static String[][] getDataArray(String module, String id, String extraWhere){
 
@@ -56,6 +58,8 @@ public class Hypervisor {
 	 * Retourne un tableau d'objet contenant un string formate en JS Array pour YUI et un tableau 2D
 	 * contenant le nom, le label, le type et le view right.
 	 * 
+	 * Object[0]=(String)JavaScriptArray cf yui
+	 * Object[1]=(String[][])={nom, label, type, view right}
 	 * Utilise par Liste.java
 	 */
 	public static Object[] getDataJSArray(String module, String id, String extraWhere){
@@ -184,7 +188,7 @@ public class Hypervisor {
 	/**
 	 * Cette methode retourne un tableau [id, nom, identifiant(seulement pour peripherique)] contenant
 	 * tous les elements d'un module.
-	 * Cette fonction ne renvoie que les elements appartenant a 'utilisateur courant.
+	 * Cette fonction ne renvoie que les elements appartenant a l'utilisateur courant.
 	 */
 	public static synchronized String[][] getData(String module){
 		String query = genQuery(module, "", "");
@@ -323,7 +327,7 @@ public class Hypervisor {
 		else
 			return true;
 	}
-	/*
+	/**
 	 * Retourne true si l'utilisateur courant possede l'element id du module module.
 	 * Retourne false sinon
 	 * Retourne true si l'utilisateur est admin.
@@ -405,7 +409,7 @@ public class Hypervisor {
 		}
 	}
 	/**
-	 * Bizarre...
+	 * remplace les ' par des " "
 	 */
 	private static String fixAp(String s){
 		return s.replace("'"," ");
