@@ -74,6 +74,7 @@
 </script>
 
 <br>
+<input type="hidden" id="fillobjectnameURL" value='<s:url action="fillobjectname"></s:url>'/>
 <input type="button" class="button" name="ajouter_button" id="ajouter_button" value="Ajouter" onclick="webdomotic.panelDialog.show();"/>
 <div id="ListeDiv_<s:property value="selectedModule"/>" class="yui-content"></div>
 <div id="container_yui_confirm_panel"></div>
