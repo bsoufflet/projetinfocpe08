@@ -28,7 +28,7 @@ public class HypervisorConsole extends Thread {
 		
 	}
 	
-	public static void test_peripherique(String peripherique, int ordre) throws IOException {
+	public static void testPeripherique(String peripherique, int ordre) throws IOException {
 		String ligne = String.valueOf(timestamp/1000) + ";" + peripherique + ";" + ordre;
 		System.out.println(ligne);
 		filedata = ligne.getBytes();
