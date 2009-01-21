@@ -13,12 +13,18 @@ CFLAGS = -g -Dlinux -D__linux__ -Dunix -D__uClinux__ -DEMBED -I$(INCLUDEDIR_UCLI
 
 LDFLAGS = -L$(UCLIBC_DIR)/. -L$(UCLIBC_DIR)/lib
 
-SRC_WR = parser.c
-OBJ_WR = parser.o
+SRCt_WR = parser.c
+OBJt_WR = parser.o
+SRCu_WR = liaison_serie.c
+OBJu_WR = liaison_serie.o
+SRCv_WR = x10.c
+OBJv_WR = x10.o
 
-all :
-	$(CC) $(CFLAGS) -c -o $(OBJ_WR) $(SRC_WR)
-	$(CC) $(CFLAGS) -Wl,-elf2flt $(RUNTIME) $(LDFLAGS) -o parser $(OBJ_WR) -lc
+all :	
+	$(CC) $(CFLAGS) -c -o $(OBJu_WR) $(SRCu_WR)
+	$(CC) $(CFLAGS) -c -o $(OBJv_WR) $(SRCv_WR)
+	$(CC) $(CFLAGS) -c -o $(OBJt_WR) $(SRCt_WR)
+	$(CC) $(CFLAGS) -Wl,-elf2flt $(RUNTIME) $(LDFLAGS) -o parser $(OBJu_WR) $(OBJv_WR) $(OBJt_WR) -lc
 
 
 clean :
