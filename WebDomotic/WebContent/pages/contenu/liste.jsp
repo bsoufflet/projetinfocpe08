@@ -82,5 +82,6 @@
 				}
 			});
 </script>
+<input type="hidden" id="fillobjectnameURL" value='<s:url action="fillobjectname"></s:url>'/>
 <input type="button" class="button" name="nouveau_button" id="nouveau_button" value="Nouveau" onclick="document.getElementById('selectedId').value='0';webdomotic.montrer_vue('<s:property value="selectedModule"/>', 'detail');return false;"/><br><br>
 <div id="ListeDiv_<s:property value="selectedModule"/>" class="yui-content"></div>
