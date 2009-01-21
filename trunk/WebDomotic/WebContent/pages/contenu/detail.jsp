@@ -27,10 +27,10 @@
 		</s:elseif>
 		<s:elseif test='top[0].equals("etat")'>
 			<s:if test='top[1].equals("1")'>
-				<s:label cssClass="label" name="%{top[0]}" label="%{top[2]}" value="Activé" />
+				<s:label cssClass="label" name="%{top[0]}" label="%{top[2]}" value="ActivÃ©" />
 			</s:if>
 			<s:else>
-				<s:label cssClass="label" name="%{top[0]}" label="%{top[2]}" value="Désactivé" />
+				<s:label cssClass="label" name="%{top[0]}" label="%{top[2]}" value="DÃ©sactivÃ©" />
 			</s:else>
 		</s:elseif>
 		<s:elseif test='top[0].equals("periode")'>

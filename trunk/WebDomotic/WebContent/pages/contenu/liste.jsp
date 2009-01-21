@@ -26,6 +26,9 @@
 					,formatter:"customObjectURL"
 					,extra:'<s:property value="top[2]"/>'
 				//</s:elseif>
+				//<s:elseif test='top[2].equals("periode")'>
+					,formatter:"customPeriode"
+				//</s:elseif>
 				//<s:else>
 				//</s:else>
 			//</s:if>
