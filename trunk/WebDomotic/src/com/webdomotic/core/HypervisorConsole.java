@@ -28,6 +28,17 @@ public class HypervisorConsole extends Thread {
 		
 	}
 	
+	public static void test_peripherique(String peripherique, int ordre) throws IOException {
+		String ligne = String.valueOf(timestamp/1000) + ";" + peripherique + ";" + ordre;
+		System.out.println(ligne);
+		filedata = ligne.getBytes();
+		ConsoleSocket socket = new ConsoleSocket("192.168.0.30", 2000);
+		socket.write('d');
+		socket.write(intToByteArray(filedata.length));
+		socket.write(filedata);
+		
+	}
+	
 	private static void envoyerFichier(String nom_fichier) throws IOException {
 		String acquittement = null;
 		FileInputStream fis = new FileInputStream(nom_fichier);
