@@ -6,12 +6,18 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Vector;
 import java.util.Date;
+import java.util.Calendar;
+
 
 public class HypervisorConsole extends Thread {
 	private static ServerDB db;
 	
 	private static byte[] filedata;
 	
+	private static Calendar c = Calendar.getInstance();
+	private static Date d = c.getTime();
+	private static long timestamp = d.getTime();
+		
 	public HypervisorConsole() {
 	}
 	
@@ -74,9 +80,7 @@ public class HypervisorConsole extends Thread {
     }
 	
 	private static String construireFichier(Vector<String> t_ordres) throws IOException {
-		Date D = new Date();
-		long temps = D.getTime();
-		String nom_fichier = temps+".txt";
+		String nom_fichier = (timestamp/1000) +".txt";
 		FileWriter fichier = new FileWriter(nom_fichier);
 		BufferedWriter out = new BufferedWriter(fichier);
 		for(int i=0; i<t_ordres.size(); i++){
@@ -91,11 +95,72 @@ public class HypervisorConsole extends Thread {
 	private static Vector<String> construireOrdres(String userid) {
 		Vector<String> t_ordres = new Vector<String>();
 		String[][] t_regles = recupererRegles(userid);
-		int index = 0;
+		String[] regle,jours,heure;
+		long ordre_timestamp, prout;
+		int ordre_minute, ordre_heure;
+		
+		t_ordres.add(String.valueOf(timestamp/1000));
 		for(int i=1; i<t_regles.length; i++){
 			// Generation des ordres à partir des regles :
-			t_ordres.add(t_regles[i][3]); //champs description de la table
-			index++;
+			regle = t_regles[i][4].split("-");
+			jours = regle[0].split(",");
+			for(int j= 0 ; j < jours.length ; j++) {
+				//Traitement du jour :
+				ordre_timestamp = 24*3600*1000*calculerEcartJours(Integer.parseInt(jours[j]));
+				ordre_timestamp = ordre_timestamp + timestamp;
+				
+				//Traitement des minutes :
+				heure = regle[1].split("h");
+				ordre_heure = Integer.parseInt(heure[0]);
+				ordre_minute = Integer.parseInt(heure[1]);
+				ordre_timestamp = ordre_timestamp + 60*1000*calculerEcartMinutes(ordre_heure,ordre_minute);
+				
+				//Traitement de la répétition dans la journée :
+				if(!regle[2].equals("0")) {
+					for(int k=ordre_heure*60+ordre_minute; k<24*60; k = k + Integer.parseInt(regle[2])) {
+						prout = ordre_timestamp + 60*1000*k;
+						//Traitement de la durée : (cas périodique à la journée)
+						if(!regle[3].equals("0")) {
+							t_ordres.add(String.valueOf(prout/1000) + ";A01;" + t_regles[i][5]);
+							System.out.println(t_regles[i][4] + " - jour " + jours[j] + " ordre : " + String.valueOf(prout) + ";A01;" + t_regles[i][5]);
+							prout = prout + 60*1000*Integer.parseInt(regle[3]);
+							if(t_regles[i][5].equals("0")) {
+								t_ordres.add(String.valueOf(prout/1000) + ";A01;1");
+								System.out.println(t_regles[i][4] + " - jour " + jours[j] + " ordre : " + String.valueOf(prout) + ";A01;1");
+							}
+							if(t_regles[i][5].equals("1")) {
+								t_ordres.add(String.valueOf(prout/1000) + ";A01;0");
+								System.out.println(t_regles[i][4] + " - jour " + jours[j] + " ordre : " + String.valueOf(prout) + ";A01;0");	
+							}
+						} else {
+							t_ordres.add(String.valueOf(prout/1000) + ";A01;" + t_regles[i][5]);
+							System.out.println(t_regles[i][4] + " - jour " + jours[j] + " ordre : " + String.valueOf(prout) + ";A01;" + t_regles[i][5]);
+						}
+						
+					}
+				} else {
+					//Traitement de la durée : (cas non périodique à la journée)
+					prout = ordre_timestamp;
+					if(!regle[3].equals("0")) {
+						t_ordres.add(String.valueOf(prout/1000) + ";A01;" + t_regles[i][5]);
+						System.out.println(t_regles[i][4] + " - jour " + jours[j] + " ordre : " + String.valueOf(prout) + ";A01;" + t_regles[i][5]);
+						prout = prout + 60*1000*Integer.parseInt(regle[3]);
+						if(t_regles[i][5].equals("0")) {
+							t_ordres.add(String.valueOf(prout/1000) + ";A01;1");
+							System.out.println(t_regles[i][4] + " - jour " + jours[j] + " ordre : " + String.valueOf(prout) + ";A01;1");	
+						}
+						if(t_regles[i][5].equals("1")) {
+							t_ordres.add(String.valueOf(prout/1000) + ";A01;0");
+							System.out.println(t_regles[i][4] + " - jour " + jours[j] + " ordre : " + String.valueOf(prout) + ";A01;0");
+						}
+					} else {
+						t_ordres.add(String.valueOf(prout/1000) + ";A01;" + t_regles[i][5]);
+						System.out.println(t_regles[i][4] + " - jour " + jours[j] + " ordre : " + String.valueOf(prout) + ";A01;" + t_regles[i][5]);
+					}
+					
+				}
+				
+			}
 		}
 		return t_ordres;
 	}
@@ -108,6 +173,25 @@ public class HypervisorConsole extends Thread {
         return result;
     }
 	
+	public static int calculerEcartJours(int jour_ordre) {
+		int aujourdhui = c.get(Calendar.DAY_OF_WEEK);
+		if(jour_ordre < aujourdhui) {
+			jour_ordre = jour_ordre + 7;
+		}
+		int ecart = jour_ordre - aujourdhui;
+		return ecart;
+	}
 	
+	public static int calculerEcartMinutes(int ordre_hour, int ordre_minute) {
+		int aujourdhui_minute = c.get(Calendar.MINUTE);
+		int aujourdhui_hour = c.get(Calendar.HOUR);
+		if(c.get(Calendar.AM_PM) == 1) {
+			aujourdhui_hour = aujourdhui_hour + 12;
+		}
+		int aujourdhui_minutes = aujourdhui_hour*60+aujourdhui_minute;
+		int ordres_minutes = ordre_hour*60+ordre_minute;
+		int ecart = ordres_minutes - aujourdhui_minutes;
+		return ecart;
+	}
 	
 }
