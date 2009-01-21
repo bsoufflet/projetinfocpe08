@@ -34,6 +34,9 @@
 		<action name="accueil" class="com.webdomotic.actions.Vue">
 			<result>/pages/contenu/accueil.jsp</result>
 		</action>
+		<action name="outil" class="com.webdomotic.actions.Vue">
+			<result>/pages/contenu/outil.jsp</result>
+		</action>
 		<action name="save" class="com.webdomotic.actions.EditionDetail" method="saveToDB">
 			<result name="error">/pages/contenu/supprimer.jsp</result>
 			<result name="test">/pages/contenu/sauvegarder.jsp</result>
@@ -60,6 +63,10 @@
 		</action>
 		<action name="supprimer" class="com.webdomotic.actions.Vue" method="supprimer">
 			<result name="error">/pages/contenu/supprimer.jsp</result>
+		</action>
+		<action name="testPeripherique" class="com.webdomotic.actions.Outil" method="testPeripherique">
+			<result name="error">/pages/contenu/main.jsp</result>
+			<result name="success">/pages/contenu/aide.jsp</result>
 		</action>
     </package>
 </struts>
