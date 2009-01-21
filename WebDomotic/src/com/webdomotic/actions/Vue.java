@@ -30,6 +30,7 @@ public class Vue extends ActionSupport {
 		}
 		return SUCCESS;
 	}
+	
 	public String supprimer() {
 		System.out.println("Vue - supprimer");
 		

@@ -1,5 +1,7 @@
 package com.webdomotic.actions;
 
+import java.util.Map;
+
 import com.opensymphony.xwork2.ActionContext;
 import com.webdomotic.core.*;
 
@@ -7,6 +9,7 @@ public class EditionDetail extends Vue {
 	
 	private String[][] fieldToDisplay;
 	private String[][] resultPeriph;
+	private Object[] resultGetObject = new Object[4];
 
 	public String execute() throws Exception {
 		System.out.println("EditionDetail Action - module:" + selectedModule);
@@ -31,6 +34,24 @@ public class EditionDetail extends Vue {
 		}
 		return SUCCESS;
 	}
+	
+	public String getObjectName(){
+		
+		Map request = ActionContext.getContext().getParameters();
+		
+		resultGetObject[0] = Hypervisor.getData(Hypervisor.getModuleName_mod(((String[])request.get("module"))[0]));
+		resultGetObject[1] = ""+((String[])request.get("id"))[0];//pour le selected par defaut
+		resultGetObject[2] = ""+((String[])request.get("module"))[0];//pour le name du select
+		if(request.containsKey("selectedAction")){
+			resultGetObject[3] = ""+((String[])request.get("selectedAction"))[0];// pour differencier l'action	
+		}else{
+			resultGetObject[3] = "";
+		}
+		 
+		return SUCCESS;
+	}
+	
+	
 	public String saveToDB(){
 		System.out.println("Action: Save");
 		selectedId = Hypervisor.saveQuery(ActionContext.getContext().getParameters(),selectedModule,selectedId);
@@ -66,4 +87,11 @@ public class EditionDetail extends Vue {
 	public String[][] getResultPeriph(){
 		return resultPeriph;
 	}
+	public void setResultGetObject(Object[] resultGetObject){
+		this.resultGetObject=resultGetObject;
+	}
+	public Object[] getResultGetObject(){
+		return resultGetObject;
+	}
+	
 }
