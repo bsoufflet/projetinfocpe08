@@ -34,9 +34,7 @@ int cb (unsigned char msg,SOCKET sock)			//fonction de callback
 
 	char acc;
 	int taille, frame;
-	char *data;
-
-	frame = 64; //taille d'une frame socket en reception
+	char data[64];
 
 	switch (msg)
 	{
@@ -62,24 +60,32 @@ int cb (unsigned char msg,SOCKET sock)			//fonction de callback
 				printf ("dans 'd'\n");
 				f_test=fopen("ordre.txt", "w");	// ouverture du fichier en ecriture
 				CNX_recoit_int (sock, &taille);
-				printf ("taille = %d\n", taille);
+				frame = 64; 	//taille d'une frame socket en reception
+				printf ("taille = %d frame %d\n", taille, frame);
 				
 				// decouper la taille en plusieurs frame
 				if (taille >= frame)
 				{
-					for (i=taille; i==i%frame; i= i-frame)
+					i=taille;
+					printf ("taille = %d i mod frame = %d\n", taille, i%frame);
+					do
+				//	for (i=taille; i<=(i%frame); i= i-frame)
 					{
+						printf ("dans for i = %d\n", i);
 						CNX_recoit (sock, data, frame);
 						printf ("%s\n", data);
-						fprintf (f_test, "%s\n", data);
-						CNX_envoi (sock, "ok", 2);
-					}
+						fwrite (data,1, frame, f_test);
+						CNX_envoi (sock, "ok\n", 3);
+						i=i-frame;
+					}while (i > (i%frame));
+					
 					if (i!=0)
 					{
+						printf ("dans if i = %d\n", i);
 						CNX_recoit (sock, data, i);
 						printf ("%s\n", data);
-						fprintf (f_test, "%s\n", data);
-						CNX_envoi (sock, "ok", 2);
+						fwrite (data,1, i, f_test);
+						CNX_envoi (sock, "ok\n", 3);
 					}
 				}
 				else
@@ -87,12 +93,12 @@ int cb (unsigned char msg,SOCKET sock)			//fonction de callback
 					CNX_recoit (sock, data, taille);
 					printf ("%s\n", data);
 					fprintf (f_test, "%s\n", data);
-					CNX_envoi (sock, "ok", 2);
+					CNX_envoi (sock, "ok\n", 3);
 				}
 				fclose (f_test);
 
 				printf ("apres envoi string\n");
-				fclose (f_test);
+			//	fclose (f_test);
 		//	}
 		/*	else	//probleme de login
 			{
@@ -128,16 +134,16 @@ int main()
 			printf ("erreur serveur\n");
 			return 1;
 		}
-		if (login_ok == 1)	// si on eu un bon login, on fork et on lance le programme parseur
+		if (login_ok == 1)	// si on eu une connexion, on fork et on lance le programme parseur
 		{
 			login_ok = 0;
 			// on lance parsage fichier ici comme ca la deconnexion a eu lieu et le vfork ne peut avoir 
 			//lieu dans la callback
 			// il faut lire la premiere ligne du fichier pour synchroniser le temps du PC et le temps de la carte
-			f_test=fopen("ordres.txt", "r");
+		/*	f_test=fopen("ordre.txt", "r");
 			if (f_test == NULL)
 			{
-				printf ("fichier introuvable ou erreur ouverture!!");
+				printf ("fichier: erreur ouverture!!");
 			}
 			else
 			{
@@ -152,15 +158,15 @@ int main()
 					execlp ("date", "date", time, NULL); //on remet le timestamp du PC dans la carte
 					_exit (3);
 				}
-				wait (NULL);	// le pere attend le fils
+				wait (NULL);	// le pere attend le fils*/
 				
-				if (!vfork())	//on est dans le fils
-				{
-					execlp ("./parser", "./parser", NULL);
-					_exit (3);
-				}
-				wait (NULL);	// le pere attend le fils
+			if (!vfork())	//on est dans le fils	on lance le programme de parse et on envoi sur la laison serie les donnees
+			{
+				execlp ("./parser", "./parser", NULL);
+				_exit (3);
 			}
+			wait (NULL);	// le pere attend le fils
+			//}
 		}	
 		printf ("connexion carte terminee\n");
 	}
