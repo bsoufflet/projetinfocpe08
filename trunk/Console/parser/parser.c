@@ -24,7 +24,7 @@ int main()
 		_exit (3);
 	}
 	printf ("fd = %d\n", fd);
-	retour = parametrage (fd, B4800);	// parametrage de la vitesse du port serie (d'autre parametre sont en dur dans la fonction)
+	retour = parametrage (fd, B4800);	// parametrage de la vitesse du port serie 4800 baud pour cette com (d'autre parametres sont en dur dans la fonction)
 	if (retour != 0)
 	{
 		printf ("erreur parametrage port serie\n");
@@ -33,7 +33,15 @@ int main()
 	}
 	printf ("port serie correctement ouvert et parametre\n");
 	// fin reglage liaison serie
-
+	
+	// reglage de l'heure de l'interface CM11 pour eviter le message d'erreur A5 en boucle qui empeche la com
+	retour = set_clock (fd);
+	if (retour != 0)
+	{
+		printf ("set_clock: erreur set_clock\n");
+		deconnexion (fd);	// fermeture du port serie
+		_exit (3);
+	}
 
 	// action parser du fichier
 	if((file = fopen("ordres.txt", "r")) != NULL) //on ouvre le fichier et verifie si on y arrive
@@ -82,6 +90,7 @@ int main()
 			if (retour != 0)
 			{
 				printf ("erreur transmit adresse\n");
+				fclose(file);
 				deconnexion (fd);	// fermeture du port serie
 				_exit (3);
 			}
@@ -91,6 +100,7 @@ int main()
 				if (retour != 0)
 				{
 					printf ("erreur prise off\n");
+					fclose(file);
 					deconnexion (fd);	// fermeture du port serie
 					_exit (3);
 				}
@@ -101,6 +111,7 @@ int main()
 				if (retour != 0)
 				{
 					printf ("erreur prise on\n");
+					fclose(file);
 					deconnexion (fd);	// fermeture du port serie
 					_exit (3);
 				}
@@ -110,6 +121,6 @@ int main()
 		fclose(file);
 	}
 	deconnexion (fd);
-	_exit(3);
+	_exit(2);
 	//return 0;
 }
