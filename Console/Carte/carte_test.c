@@ -58,7 +58,7 @@ int cb (unsigned char msg,SOCKET sock)			//fonction de callback
 				// recoit les donnees de la taille precedemment envoyee
 				// mise à jour des fichiers quand ttes les donnees annoncees sont arrivees
 				printf ("dans 'd'\n");
-				f_test=fopen("ordre.txt", "w");	// ouverture du fichier en ecriture
+				f_test=fopen("ordres.txt", "w");	// ouverture du fichier en ecriture
 				CNX_recoit_int (sock, &taille);
 				frame = 64; 	//taille d'une frame socket en reception
 				printf ("taille = %d frame %d\n", taille, frame);
