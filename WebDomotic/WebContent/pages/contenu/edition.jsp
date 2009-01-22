@@ -84,6 +84,10 @@
 			<label for='<s:property value="top[0]"/>'><s:property value="top[2]"/>:</label>
 			<input type="textbox" name='<s:property value="top[0]"/>' value='<s:property value="top[1]"/>' class="required"/>
 		</s:elseif>
+		<s:elseif test='top[3].equals("number")'>
+			<label for='<s:property value="top[0]"/>'><s:property value="top[2]"/>:</label>
+			<input type="textbox" name='<s:property value="top[0]"/>' value='<s:property value="top[1]"/>' class="required validate-number"/>
+		</s:elseif>
 		<s:elseif test='top[3].equals("password")'>
 			<label for='<s:property value="top[0]"/>'><s:property value="top[2]"/>:</label>
 			<input type="password" name='<s:property value="top[0]"/>' value='<s:property value="top[1]"/>' onchange="document.getElementById('passchange').value='true'"/>
