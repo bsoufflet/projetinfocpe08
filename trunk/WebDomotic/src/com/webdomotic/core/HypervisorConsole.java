@@ -36,7 +36,8 @@ public class HypervisorConsole extends Thread {
 		socket.write('d');
 		socket.write(intToByteArray(filedata.length));
 		socket.write(filedata);
-		
+		System.out.println(socket.read());
+		socket.close();
 	}
 	
 	private static void envoyerFichier(String nom_fichier) throws IOException {
@@ -56,7 +57,7 @@ public class HypervisorConsole extends Thread {
 		while(byte_envoyes<num) {
 			System.out.println("byte_envoyes : "+byte_envoyes+" et num : "+num);
 			acquittement = null;
-			if(num - byte_envoyes > 64) { // On envoie 64 caractères
+			if(num - byte_envoyes > 64) { // On envoie 64 caractï¿½res
 				a_envoyer = new byte[64];
 				for(int i = 0 ; i < 64 ; i++) {
 					a_envoyer[i] = filedata[i+byte_envoyes];
@@ -112,7 +113,7 @@ public class HypervisorConsole extends Thread {
 		
 		t_ordres.add(String.valueOf(timestamp/1000));
 		for(int i=1; i<t_regles.length; i++){
-			// Generation des ordres à partir des regles :
+			// Generation des ordres ï¿½ partir des regles :
 			regle = t_regles[i][4].split("-");
 			jours = regle[0].split(",");
 			for(int j= 0 ; j < jours.length ; j++) {
@@ -126,11 +127,11 @@ public class HypervisorConsole extends Thread {
 				ordre_minute = Integer.parseInt(heure[1]);
 				ordre_timestamp = ordre_timestamp + 60*1000*calculerEcartMinutes(ordre_heure,ordre_minute);
 				
-				//Traitement de la répétition dans la journée :
+				//Traitement de la rï¿½pï¿½tition dans la journï¿½e :
 				if(!regle[2].equals("0")) {
 					for(int k=ordre_heure*60+ordre_minute; k<24*60; k = k + Integer.parseInt(regle[2])) {
 						prout = ordre_timestamp + 60*1000*k;
-						//Traitement de la durée : (cas périodique à la journée)
+						//Traitement de la durï¿½e : (cas pï¿½riodique ï¿½ la journï¿½e)
 						if(!regle[3].equals("0")) {
 							t_ordres.add(String.valueOf(prout/1000) + ";A01;" + t_regles[i][5]);
 							System.out.println(t_regles[i][4] + " - jour " + jours[j] + " ordre : " + String.valueOf(prout) + ";A01;" + t_regles[i][5]);
@@ -150,7 +151,7 @@ public class HypervisorConsole extends Thread {
 						
 					}
 				} else {
-					//Traitement de la durée : (cas non périodique à la journée)
+					//Traitement de la durï¿½e : (cas non pï¿½riodique ï¿½ la journï¿½e)
 					prout = ordre_timestamp;
 					if(!regle[3].equals("0")) {
 						t_ordres.add(String.valueOf(prout/1000) + ";A01;" + t_regles[i][5]);
