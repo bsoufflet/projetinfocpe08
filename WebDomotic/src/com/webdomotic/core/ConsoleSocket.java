@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.Socket;
 
-public final class ConsoleSocket{
+public final class ConsoleSocket extends Socket{
 
 	private Socket socket;
 	private OutputStream out;
@@ -53,14 +53,20 @@ public final class ConsoleSocket{
 			e.printStackTrace();
 		}
 	}
-	public String read() throws IOException{
-		return in.readLine();
+	public String read(){
+		try {
+			return in.readLine();
+		} catch (IOException e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 	public void close(){
 		try {
 			socket.close();
-		} catch (IOException e) {
+		} catch (IOException e){
 			e.printStackTrace();
 		}
 	}
+	
 }

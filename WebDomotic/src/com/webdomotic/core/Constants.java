@@ -11,7 +11,6 @@ public interface Constants {
 	final static String DBurl = "jdbc:mysql://localhost:3306/webdomotic";
 	final static String DBuser = "jboss";
 	final static String DBpass = "jboss";
-	final static String DB_JNDI_NAME = "MySqlDS";
 	
 	
 	/**

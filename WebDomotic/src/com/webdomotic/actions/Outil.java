@@ -1,10 +1,6 @@
 package com.webdomotic.actions;
 
-import java.io.IOException;
-
-import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
-import com.webdomotic.core.Hypervisor;
 import com.webdomotic.core.HypervisorConsole;
 
 
@@ -19,12 +15,7 @@ public class Outil extends ActionSupport {
 	}
 	public String testPeripherique(){
 		System.out.println("Action - testPeripherique - "+identifiant+" - "+String.valueOf(ordre));
-		try {
-			HypervisorConsole.testPeripherique(identifiant, ordre);
-		} catch (IOException e) {
-			e.printStackTrace();
-			return ERROR;
-		}
+		HypervisorConsole.testPeripherique(identifiant, ordre);
 		return SUCCESS;
 	}
 	public void setIdentifiant(String identifiant){

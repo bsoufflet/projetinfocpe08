@@ -18,7 +18,7 @@ public final class ServerDB{
 			try {
 				Class.forName("com.mysql.jdbc.Driver");
 				DBconnector = DriverManager.getConnection(Constants.DBurl,Constants.DBuser,Constants.DBpass);
-				/*
+				/* Pour connecter la BD en datasource avec JNDI (avec jboss seulement)
 				Context ctx = new InitialContext();
 				DataSource ds = (DataSource)ctx.lookup("jdbc/"+Constants.DB_JNDI_NAME);
 				DBconnector = ds.getConnection();
