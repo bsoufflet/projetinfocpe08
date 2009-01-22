@@ -21,14 +21,14 @@ public class HypervisorConsole extends Thread {
 	public HypervisorConsole() {
 	}
 	
-	public static void envoyerOrdres(String userid) throws IOException {
+	public static void envoyerOrdres(String userid){
 		Vector<String> t_ordres = construireOrdres(userid);
 		String nom_fichier = construireFichier(t_ordres);
 		envoyerFichier(nom_fichier);
 		
 	}
 	
-	public static void testPeripherique(String peripherique, int ordre) throws IOException {
+	public static void testPeripherique(String peripherique, int ordre){
 		String ligne = String.valueOf(timestamp/1000) + ";" + peripherique + ";" + ordre;
 		System.out.println(ligne);
 		filedata = ligne.getBytes();
@@ -40,20 +40,26 @@ public class HypervisorConsole extends Thread {
 		socket.close();
 	}
 	
-	private static void envoyerFichier(String nom_fichier) throws IOException {
+	private static void envoyerFichier(String nom_fichier){
 		String acquittement = null;
-		FileInputStream fis = new FileInputStream(nom_fichier);
-		int num = fis.available();
-		int byte_envoyes = 0;
-		filedata = new byte[num];
-		byte [] a_envoyer;
-		fis.read(filedata);
+		FileInputStream fis;
+		int num = 0;
+		try {
+			fis = new FileInputStream(nom_fichier);
+			num = fis.available();
+			filedata = new byte[num];
+			fis.read(filedata);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		
 		System.out.println("Debut envoi");
 		ConsoleSocket socket = new ConsoleSocket("192.168.0.30", 2000);
 		socket.write('d');
 		socket.write(intToByteArray(filedata.length));
 		//Envoi des paquets :
+		int byte_envoyes = 0;
+		byte [] a_envoyer;
 		while(byte_envoyes<num) {
 			System.out.println("byte_envoyes : "+byte_envoyes+" et num : "+num);
 			acquittement = null;
@@ -91,8 +97,9 @@ public class HypervisorConsole extends Thread {
         return b;
     }
 	
-	private static String construireFichier(Vector<String> t_ordres) throws IOException {
+	private static String construireFichier(Vector<String> t_ordres){
 		String nom_fichier = (timestamp/1000) +".txt";
+		try{
 		FileWriter fichier = new FileWriter(nom_fichier);
 		BufferedWriter out = new BufferedWriter(fichier);
 		for(int i=0; i<t_ordres.size(); i++){
@@ -102,6 +109,10 @@ public class HypervisorConsole extends Thread {
 		}
 		out.close();
 		return nom_fichier;
+		}catch (Exception e){
+			e.printStackTrace();
+			return null;
+		}
 	}
 	
 	private static Vector<String> construireOrdres(String userid) {
