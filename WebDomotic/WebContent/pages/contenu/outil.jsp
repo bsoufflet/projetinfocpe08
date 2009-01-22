@@ -50,7 +50,7 @@
 				 } );
 	
 	var handleSuccess = function(o) {
-		webdomotic.wait.hide();
+		setTimeout("webdomotic.wait.hide();",1000);
 	};
 	
 	var handleFailure = function(o) {

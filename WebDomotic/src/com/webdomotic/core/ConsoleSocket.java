@@ -25,7 +25,6 @@ public final class ConsoleSocket{
 			e.printStackTrace();
 		}
 	}
-
 	public void write(char c){
 		try {
 			out.write(c);
@@ -56,5 +55,12 @@ public final class ConsoleSocket{
 	}
 	public String read() throws IOException{
 		return in.readLine();
+	}
+	public void close(){
+		try {
+			socket.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }
