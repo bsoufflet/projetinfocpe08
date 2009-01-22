@@ -15,7 +15,7 @@
 	<label for='identifiant'>Identifiant:</label>
 	<input type="textbox" name="identifiant" value="A01" size="3" maxlength="3"/>
 	<div class="clear"></div>
-	<label for="ordre">Radio buttons:</label>
+	<label for="ordre">Ordre:</label>
 	<input type="radio" name="ordre" value="1" checked/> On
 	<input type="radio" name="ordre" value="0" /> Off
 </form>
