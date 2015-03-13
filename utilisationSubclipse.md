@@ -1,0 +1,1 @@
+Utiliser le menu Team qui s'affiche apres un clique droit sur le projet.
